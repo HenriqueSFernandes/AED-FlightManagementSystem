@@ -4,9 +4,13 @@ project(aed-flights)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(aed-flights main.cpp
-        Airport.cpp
-        Airport.h
-        Airline.cpp
-        Airline.h
-        Flight.cpp
-        Flight.h)
+        src/Airport.cpp
+        src/Airport.h
+        src/Airline.cpp
+        src/Airline.h
+        src/Flight.cpp
+        src/Flight.h
+        src/Graph.h
+        src/ManagementSystem.cpp
+        src/ManagementSystem.h
+)
