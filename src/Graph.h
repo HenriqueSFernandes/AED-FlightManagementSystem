@@ -99,7 +99,7 @@ class Graph {
     vector<Vertex<T> *> vertexSet;      // vertex set
     int _index_;                        // auxiliary field
     stack<Vertex<T>> _stack_;           // auxiliary field
-    list<list<T>> _list_sccs_;        // auxiliary field
+    list <list<T>> _list_sccs_;        // auxiliary field
 
     void dfsVisit(Vertex<T> *v, vector<T> &res) const;
 
@@ -501,7 +501,7 @@ vector<T> Graph<T>::topsort() const {
     }
     while (!toProcess.empty()) {
         auto processing = toProcess.front();
-        for (Edge<T> e : processing->adj) {
+        for (Edge<T> e: processing->adj) {
             e.dest->indegree -= 1;
             if (e.dest->indegree == 0) {
                 toProcess.push(e.dest);

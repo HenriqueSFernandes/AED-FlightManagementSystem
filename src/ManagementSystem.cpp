@@ -28,65 +28,66 @@ void ManagementSystem::readAirlines() {
         getline(iss, callsign, ',');
         getline(iss, country, '\r');
         Airline airline(code, name, callsign, country);
-        airlines.insert(airline);    }
+        airlines.insert(airline);
+    }
 
     airlinesFile.close();
 }
 
 void ManagementSystem::readAirports() {
-    ifstream Airports("../data/airports.csv");
-    if (!Airports) {
+    ifstream airportsFile("../data/airports.csv");
+    if (!airportsFile) {
         cerr << "Failed to open file\n";
         return;
     }
     string line;
-    getline(Airports, line); // Ignore header
-    string Code;
-    string Name;
-    string City;
-    string Country;
-    string Latitude;
-    string Longitude;
+    getline(airportsFile, line); // Ignore header
+    string code;
+    string name;
+    string city;
+    string country;
+    string latitude;
+    string longitude;
     // Iterate over every line of the file, split the line, create a new lesson and add that lesson to the respective class.
-    while (getline(Airports, line)) {
+    while (getline(airportsFile, line)) {
         istringstream iss(line);
-        getline(iss, Code, ',');
-        getline(iss, Name, ',');
-        getline(iss, City, ',');
-        getline(iss, Country, ',');
-        getline(iss, Latitude, ',');
-        getline(iss, Longitude, '\r');
-        const Airport newAirport = Airport(Code, Name, City, Country, stod(Latitude), stod(Longitude));
-        AirportsMap.insert(newAirport);
+        getline(iss, code, ',');
+        getline(iss, name, ',');
+        getline(iss, city, ',');
+        getline(iss, country, ',');
+        getline(iss, latitude, ',');
+        getline(iss, longitude, '\r');
+        Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
+        airports.insert(newAirport);
         airportNetwork.addVertex(newAirport);
 
     }
-    Airports.close();
+    airportsFile.close();
 
 }
 
 void ManagementSystem::readFlights() {
-    ifstream Flights("../data/flights.csv");
-    if (!Flights) {
+    ifstream flightsFile("../data/flights.csv");
+    if (!flightsFile) {
         cerr << "Failed to open file\n";
         return;
     }
     string line;
-    string Source;
-    string Target;
-    string CodeAirline;
+    string source;
+    string target;
+    string airlineCode;
 
 
-    getline(Flights, line); // Ignore header
-    while (getline(Flights, line)) {
+    getline(flightsFile, line); // Ignore header
+    while (getline(flightsFile, line)) {
         istringstream iss(line);
-        getline(iss, Source, ',');
-        getline(iss, Target, ',');
-        getline(iss, CodeAirline, '\r');
-        auto airline = airlines.find(Airline(CodeAirline, "", "", ""));
-        set<Flight>::iterator flight = flights.find(Flight(Source, Target));
+        getline(iss, source, ',');
+        getline(iss, target, ',');
+        getline(iss, airlineCode, '\r');
+        auto airline = airlines.find(Airline(airlineCode, "", "", ""));
+        auto flight = flights.find(Flight(source, target));
         if (flight == flights.end()) {
-            Flight newFlight(Source, Target);
+            Flight newFlight(source, target);
             newFlight.addAirline(*airline);
             flights.insert(newFlight);
         } else {
@@ -96,37 +97,23 @@ void ManagementSystem::readFlights() {
             flights.insert(newFlight);
         }
     }
-    Flights.close();
+    flightsFile.close();
 }
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
     return airportNetwork;
 }
 
-void ManagementSystem::setAirportNetwork(const Graph<Airport> &airportNetwork) {
-    ManagementSystem::airportNetwork = airportNetwork;
-}
 
 const unordered_set<Airline, Airline::HashFunction> &ManagementSystem::getAirlines() const {
     return airlines;
 }
 
-void ManagementSystem::setAirlines(const unordered_set<Airline, Airline::HashFunction> &airlines) {
-    ManagementSystem::airlines = airlines;
-}
 
 const unordered_set<Airport, Airport::HashFunction> &ManagementSystem::getAirportsMap() const {
-    return AirportsMap;
-}
-
-void ManagementSystem::setAirportsMap(const unordered_set<Airport, Airport::HashFunction> &airportsMap) {
-    AirportsMap = airportsMap;
+    return airports;
 }
 
 const set<Flight> &ManagementSystem::getFlights() const {
     return flights;
-}
-
-void ManagementSystem::setFlights(const set<Flight> &flights) {
-    ManagementSystem::flights = flights;
 }
