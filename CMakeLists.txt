@@ -7,4 +7,6 @@ add_executable(aed-flights main.cpp
         Airport.cpp
         Airport.h
         Airline.cpp
-        Airline.h)
+        Airline.h
+        Flight.cpp
+        Flight.h)
