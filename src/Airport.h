@@ -2,6 +2,7 @@
 #define AED_FLIGHTS_AIRPORT_H
 
 #include <string>
+#include <iostream>
 
 class Airport {
     std::string code;
@@ -21,6 +22,8 @@ public:
 
     [[nodiscard]] std::string getCountry() const;
 
+    [[nodiscard]] std::string getName() const;
+
     [[nodiscard]] double getLatitude() const;
 
     [[nodiscard]] double getLongitude() const;
@@ -34,6 +37,8 @@ public:
     struct HashFunction {
         size_t operator()(const Airport &airport) const;
     };
+
+    friend std::ostream &operator<<(std::ostream &os, const Airport &airport);
 };
 
 #endif //AED_FLIGHTS_AIRPORT_H

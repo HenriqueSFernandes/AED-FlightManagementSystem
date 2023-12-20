@@ -24,6 +24,8 @@ public:
     void addAirline(Airline airline);
 
     bool operator<(const Flight &rhs) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Flight &flight);
 };
 
 #endif //AED_FLIGHTS_FLIGHT_H

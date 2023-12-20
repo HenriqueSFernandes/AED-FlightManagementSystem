@@ -4,6 +4,7 @@
 
 #include <string>
 #include <utility>
+#include <iostream>
 
 class Airline {
     std::string code;
@@ -30,6 +31,8 @@ public:
     struct HashFunction {
         size_t operator()(const Airline &airline) const;
     };
+
+    friend std::ostream &operator<<(std::ostream &os, const Airline &airline);
 
 };
 

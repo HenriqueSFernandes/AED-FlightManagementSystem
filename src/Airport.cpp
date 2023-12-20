@@ -29,6 +29,15 @@ bool Airport::operator!=(const Airport &rhs) const {
     return this->code != rhs.code;
 }
 
+std::string Airport::getName() const { return name; }
+
+std::ostream &operator<<(std::ostream &os, const Airport &airport) {
+    os << "Code: " << airport.getCode() << ", Name: " << airport.getName() << ", City: " << airport.getCity()
+       << ", Country: " << airport.getCountry() << ", Coordinates: " << airport.getLatitude() << " "
+       << airport.getLongitude();
+    return os;
+}
+
 size_t Airport::HashFunction::operator()(const Airport &airport) const {
     return std::hash<std::string>()(airport.getCode());
 }

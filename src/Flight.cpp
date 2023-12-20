@@ -23,3 +23,11 @@ const std::set<Airline> &Flight::getAirlines() const {
 }
 
 Flight::Flight(std::string source, std::string target) : source(std::move(source)), target(std::move(target)) {}
+
+std::ostream &operator<<(std::ostream &os, const Flight &flight) {
+    os << "Source: " << flight.getSource() << ", Target: " << flight.getTarget() << ", Airlines:";
+    for (const Airline &airline: flight.getAirlines()) {
+        os << "\n\t- " << airline;
+    }
+    return os;
+}

@@ -32,6 +32,14 @@ Airline::Airline(std::string code, std::string name, std::string callsign, std::
         : code(std::move(code)), name(std::move(name)), callsign(std::move(callsign)),
           country(std::move(country)) {}
 
+std::ostream &operator<<(std::ostream &os, const Airline &airline) {
+    os << "Code: " << airline.getCode() << ", Name: " << airline.getName() << ", Abbreviation: "
+       << airline.getCallsign() << ", Country: " << airline.getCountry();
+    return os;
+}
+
 size_t Airline::HashFunction::operator()(const Airline &airline) const {
     return std::hash<std::string>()(airline.getCode());
 }
+
+

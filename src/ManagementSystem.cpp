@@ -110,7 +110,7 @@ const unordered_set<Airline, Airline::HashFunction> &ManagementSystem::getAirlin
 }
 
 
-const unordered_set<Airport, Airport::HashFunction> &ManagementSystem::getAirportsMap() const {
+const unordered_set<Airport, Airport::HashFunction> &ManagementSystem::getAirports() const {
     return airports;
 }
 

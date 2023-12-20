@@ -18,7 +18,7 @@ public:
 
     const unordered_set<Airline, Airline::HashFunction> &getAirlines() const;
 
-    const unordered_set<Airport, Airport::HashFunction> &getAirportsMap() const;
+    const unordered_set<Airport, Airport::HashFunction> &getAirports() const;
 
     const set<Flight> &getFlights() const;
 
