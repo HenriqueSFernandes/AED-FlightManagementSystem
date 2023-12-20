@@ -98,6 +98,11 @@ void ManagementSystem::readFlights() {
         }
     }
     flightsFile.close();
+    for (const Flight& flight : flights){
+        auto sourceAirport = airports.find(Airport(flight.getSource(), "", "", "", 0, 0));
+        auto targetAirport = airports.find(Airport(flight.getTarget(), "", "", "", 0, 0));
+        airportNetwork.addEdge(*sourceAirport, *targetAirport, flight.getAirlines());
+    }
 }
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {

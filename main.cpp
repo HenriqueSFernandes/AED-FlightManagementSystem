@@ -5,8 +5,11 @@ using namespace std;
 
 int main() {
     ManagementSystem system;
+    cout << "Loading airlines\n";
     system.readAirlines();
+    cout << "Loading airports\n";
     system.readAirports();
+    cout << "Loading flights\n";
     system.readFlights();
     cout << "****************************************\n" << "*               Airlines               *\n"
          << "****************************************\n";
@@ -25,5 +28,7 @@ int main() {
     for (const Flight &flight: system.getFlights()) {
         cout << flight << endl;
     }
+
+
     return 0;
 }
