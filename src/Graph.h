@@ -148,7 +148,7 @@ public:
 /****************** Provided constructors and functions ********************/
 
 template<class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex<T>::Vertex(T in): info(in), indegree(0), outdegree(0) {}
 
 template<class T>
 Edge<T>::Edge(Vertex<T> *d, set<Airline> airlines, double w): dest(d), airlines(airlines), weight(w) {}
