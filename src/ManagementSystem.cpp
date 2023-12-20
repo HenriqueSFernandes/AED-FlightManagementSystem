@@ -60,6 +60,9 @@ void ManagementSystem::readAirports() {
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
         airports.insert(newAirport);
         airportNetwork.addVertex(newAirport);
+        Vertex vertexCreated=airportNetwork.findVertex(newAirport);
+        vertexCreated.setIndegree(0);
+        vertexCreated.setOutdegree(0);
 
     }
     airportsFile.close();
