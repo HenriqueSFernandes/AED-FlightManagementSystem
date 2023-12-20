@@ -5,26 +5,30 @@ using namespace std;
 
 int main() {
     ManagementSystem system;
+    cout << "Loading airlines\n";
     system.readAirlines();
+    cout << "Loading airports\n";
     system.readAirports();
+    cout << "Loading flights\n";
     system.readFlights();
-    cout << "-----Airlines-----\n";
-    for (auto airline: system.getAirlines()) {
-        cout << "Code: " << airline.getCode() << " Name: " << airline.getName() << " Callsign: " << airline.getCallsign()
-             << " Country: " << airline.getCountry() << "\n";
+    cout << "****************************************\n" << "*               Airlines               *\n"
+         << "****************************************\n";
+    for (const Airline &airline: system.getAirlines()) {
+        cout << airline << endl;
     }
-    cout << "-----Airports-----\n";
-    for (auto airport: system.getAirportsMap()) {
-        cout << "Code: " << airport.getCode() << " City: " << airport.getCity()
-             << " Country: " << airport.getCountry() << "\n";
+    cout << "****************************************\n" << "*               Airports               *\n"
+         << "****************************************\n";
+
+    for (const Airport &airport: system.getAirports()) {
+        cout << airport << endl;
     }
-    cout << "-----Flights-----\n";
-    for (auto flight: system.getFlights()) {
-        cout << "Origin: " << flight.getSource() << " Destination: " << flight.getTarget() << endl;
-        for (auto airline: flight.getAirlines()) {
-            cout << "Code: " << airline.getCode() << " Name: " << airline.getName() << " Callsign: "
-                 << airline.getCallsign() << " Country: " << airline.getCountry() << "\n";
-        }
+    cout << "****************************************\n" << "*               Flights                *\n"
+         << "****************************************\n";
+
+    for (const Flight &flight: system.getFlights()) {
+        cout << flight << endl;
     }
+
+
     return 0;
 }
