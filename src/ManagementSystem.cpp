@@ -104,6 +104,10 @@ void ManagementSystem::readFlights() {
     for (const Flight& flight : flights){
         auto sourceAirport = airports.find(Airport(flight.getSource(), "", "", "", 0, 0));
         auto targetAirport = airports.find(Airport(flight.getTarget(), "", "", "", 0, 0));
+        auto SourceVertex= airportNetwork.findVertex(*sourceAirport);
+        auto TargetVertex= airportNetwork.findVertex(*targetAirport);
+        SourceVertex->setOutdegree(SourceVertex->getOutdegree()+1);
+        TargetVertex->setIndegree(TargetVertex->getIndegree()+1);
         airportNetwork.addEdge(*sourceAirport, *targetAirport, flight.getAirlines());
     }
 }
