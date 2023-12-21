@@ -28,6 +28,9 @@ int main() {
     for (const Flight &flight: system.getFlights()) {
         cout << flight << endl;
     }
+    for( auto vertex : system.getAirportNetwork().getVertexSet()){
+        cout<< vertex->getInfo().getCode()<<"goes to "<<vertex->getOutdegree()<<" places and "<<vertex->getIndegree()<<" go to it"<<endl;
+    }
 
 
     return 0;

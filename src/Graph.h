@@ -32,6 +32,10 @@ class Vertex {
     bool visited;          // auxiliary field
     bool processing;       // auxiliary field
     int indegree;          // auxiliary field
+    int outdegree;
+
+private:
+    // auxiliary field
     int num;               // auxiliary field
     int low;               // auxiliary field
 
@@ -69,6 +73,14 @@ public:
     int getLow() const;
 
     void setLow(int low);
+
+    int getOutdegree() const {
+        return outdegree;
+    }
+
+    void setOutdegree(int outdegree) {
+        Vertex::outdegree = outdegree;
+    }
 
     friend class Graph<T>;
 };
@@ -136,7 +148,7 @@ public:
 /****************** Provided constructors and functions ********************/
 
 template<class T>
-Vertex<T>::Vertex(T in): info(in) {}
+Vertex<T>::Vertex(T in): info(in), indegree(0), outdegree(0) {}
 
 template<class T>
 Edge<T>::Edge(Vertex<T> *d, set<Airline> airlines, double w): dest(d), airlines(airlines), weight(w) {}
