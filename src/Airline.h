@@ -68,7 +68,7 @@ public:
 
     struct HashFunction {
         /**
-         * @brief Hash function to store airlines.
+         * @brief Hash function to hash airlines.
          * @param airline The airline to hash.
          */
         size_t operator()(const Airline &airline) const;
