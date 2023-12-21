@@ -99,13 +99,11 @@ void ManagementSystem::readFlights() {
     }
     flightsFile.close();
     for (const Flight& flight : flights){
-        auto sourceAirport = airports.find(Airport(flight.getSource(), "", "", "", 0, 0));
-        auto targetAirport = airports.find(Airport(flight.getTarget(), "", "", "", 0, 0));
-        auto SourceVertex= airportNetwork.findVertex(*sourceAirport);
-        auto TargetVertex= airportNetwork.findVertex(*targetAirport);
-        SourceVertex->setOutdegree(SourceVertex->getOutdegree()+1);
-        TargetVertex->setIndegree(TargetVertex->getIndegree()+1);
-        airportNetwork.addEdge(*sourceAirport, *targetAirport, flight.getAirlines());
+        auto sourceAirportVertex= airportNetwork.findVertex(Airport(flight.getSource(), "", "", "", 0, 0));
+        auto targetAirportVertex= airportNetwork.findVertex(Airport(flight.getTarget(), "", "", "", 0, 0));
+        sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
+        targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
+        airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), flight.getAirlines());
     }
 }
 
