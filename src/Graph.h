@@ -103,6 +103,8 @@ public:
 
     set<Airline> getAirlines();
 
+    void addAirline(Airline airline);
+
     friend class Graph<T>;
 
     friend class Vertex<T>;
@@ -207,6 +209,12 @@ void Edge<T>::setWeight(double weight) {
 template<class T>
 set<Airline> Edge<T>::getAirlines() {
     return airlines;
+}
+
+template<class T>
+void Edge<T>::addAirline(Airline airline) {
+    this->getAirlines().insert(airline);
+
 }
 
 /*

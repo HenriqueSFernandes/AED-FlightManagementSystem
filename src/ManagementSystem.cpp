@@ -84,27 +84,27 @@ void ManagementSystem::readFlights() {
         getline(iss, source, ',');
         getline(iss, target, ',');
         getline(iss, airlineCode, '\r');
+        // Get the airline and airports for the flight
         auto airline = airlines.find(Airline(airlineCode, "", "", ""));
-        auto flight = flights.find(Flight(source, target));
-        if (flight == flights.end()) {
-            Flight newFlight(source, target);
-            newFlight.addAirline(*airline);
-            flights.insert(newFlight);
-        } else {
-            Flight newFlight = *flight;
-            flights.erase(flight);
-            newFlight.addAirline(*airline);
-            flights.insert(newFlight);
+        auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
+        auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
+        // If the flight already exists add the airlines to the flight, otherwise create a new flight
+        bool flightExists = false;
+        for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
+            if (flight.getDest() == targetAirportVertex) {
+                flightExists = true;
+                flight.addAirline(*airline);
+            }
         }
+        if (!flightExists) {
+            set<Airline> airlines = {*airline};
+            airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), airlines);
+            sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
+            targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
+        }
+
     }
     flightsFile.close();
-    for (const Flight& flight : flights){
-        auto sourceAirportVertex= airportNetwork.findVertex(Airport(flight.getSource(), "", "", "", 0, 0));
-        auto targetAirportVertex= airportNetwork.findVertex(Airport(flight.getTarget(), "", "", "", 0, 0));
-        sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
-        targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
-        airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), flight.getAirlines());
-    }
 }
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
