@@ -1,0 +1,5 @@
+<map id="ManagementSystem::readFlights" name="ManagementSystem::readFlights">
+<area shape="rect" id="node1" title="Read flights from the csv file." alt="" coords="5,31,244,57"/>
+<area shape="rect" id="node2" href="$class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="297,5,422,32"/>
+<area shape="rect" id="node3" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="292,56,427,83"/>
+</map>

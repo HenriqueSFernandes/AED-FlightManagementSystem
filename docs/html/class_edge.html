@@ -97,8 +97,8 @@ $(document).ready(function(){initNavTree('class_edge.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9da861a03f920c89984be33515a5d870"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a9da861a03f920c89984be33515a5d870">Edge</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *d, double w)</td></tr>
-<tr class="separator:a9da861a03f920c89984be33515a5d870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8561edb35eaed58f6f3a29b17f140c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c">Edge</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *d, set&lt; <a class="el" href="class_airline.html">Airline</a> &gt; airlines, double w)</td></tr>
+<tr class="separator:a9d8561edb35eaed58f6f3a29b17f140c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a2de066dff8513dd788d553fc1d0c81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">getDest</a> () const</td></tr>
 <tr class="separator:a9a2de066dff8513dd788d553fc1d0c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a163ee9f75e35701e6a04ea1c987e4094"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">setDest</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *dest)</td></tr>
@@ -107,6 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3df378e283d6c8be5be4170ac8d7f4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff600b093dd6917feeeb35bb7947bdd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">setWeight</a> (double weight)</td></tr>
 <tr class="separator:aff600b093dd6917feeeb35bb7947bdd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725ad88933c6ffb776ba5f48a9d7ae65"><td class="memItemLeft" align="right" valign="top">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a725ad88933c6ffb776ba5f48a9d7ae65">getAirlines</a> ()</td></tr>
+<tr class="separator:a725ad88933c6ffb776ba5f48a9d7ae65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af421cc07c859009f4ca6e197008b8b47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#af421cc07c859009f4ca6e197008b8b47">addAirline</a> (<a class="el" href="class_airline.html">Airline</a> airline)</td></tr>
+<tr class="separator:af421cc07c859009f4ca6e197008b8b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -116,8 +120,8 @@ Friends</h2></td></tr>
 <tr class="separator:a2e120a12dec663fa334633b4f26cbed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9da861a03f920c89984be33515a5d870" name="a9da861a03f920c89984be33515a5d870"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9da861a03f920c89984be33515a5d870">&#9670;&nbsp;</a></span>Edge()</h2>
+<a id="a9d8561edb35eaed58f6f3a29b17f140c" name="a9d8561edb35eaed58f6f3a29b17f140c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8561edb35eaed58f6f3a29b17f140c">&#9670;&nbsp;</a></span>Edge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,6 +133,12 @@ template&lt;class T &gt; </div>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; T &gt; *&#160;</td>
           <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt;&#160;</td>
+          <td class="paramname"><em>airlines</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -147,6 +157,42 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af421cc07c859009f4ca6e197008b8b47" name="af421cc07c859009f4ca6e197008b8b47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af421cc07c859009f4ca6e197008b8b47">&#9670;&nbsp;</a></span>addAirline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_edge.html">Edge</a>&lt; T &gt;::addAirline </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_airline.html">Airline</a>&#160;</td>
+          <td class="paramname"><em>airline</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a725ad88933c6ffb776ba5f48a9d7ae65" name="a725ad88933c6ffb776ba5f48a9d7ae65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725ad88933c6ffb776ba5f48a9d7ae65">&#9670;&nbsp;</a></span>getAirlines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt; <a class="el" href="class_edge.html">Edge</a>&lt; T &gt;::getAirlines</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9a2de066dff8513dd788d553fc1d0c81" name="a9a2de066dff8513dd788d553fc1d0c81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9a2de066dff8513dd788d553fc1d0c81">&#9670;&nbsp;</a></span>getDest()</h2>
 
@@ -269,7 +315,7 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/ricky/Desktop/aed/aed-flights/src/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
+<li>src/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

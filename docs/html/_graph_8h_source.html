@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Flight Manager: /home/ricky/Desktop/aed/aed-flights/src/Graph.h Source File</title>
+<title>Flight Manager: src/Graph.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,493 +99,577 @@ $(document).ready(function(){initNavTree('_graph_8h_source.html',''); initResiza
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stack&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">class </span><a class="code hl_class" href="class_edge.html">Edge</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_flight_8h.html">Flight.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">class </span><a class="code hl_class" href="class_edge.html">Edge</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a>;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/****************** Provided structures  ********************/</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_vertex.html">   28</a></span><span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    T info;                <span class="comment">// contents</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    vector&lt;Edge&lt;T&gt; &gt; adj;  <span class="comment">// list of outgoing edges</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> visited;          <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">bool</span> processing;       <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">int</span> indegree;          <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> num;               <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> low;               <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/****************** Provided structures  ********************/</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_vertex.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    T info;                <span class="comment">// contents</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    vector&lt;Edge&lt;T&gt; &gt; adj;  <span class="comment">// list of outgoing edges</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">bool</span> visited;          <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> processing;       <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> indegree;          <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> outdegree;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> addEdge(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest, <span class="keywordtype">double</span> w);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">bool</span> removeEdgeTo(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_function" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex</a>(T in);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> num;               <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> low;               <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> addEdge(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    T <a class="code hl_function" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">getInfo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> removeEdgeTo(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">setInfo</a>(T in);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">isVisited</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">setVisited</a>(<span class="keywordtype">bool</span> v);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">isProcessing</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">setProcessing</a>(<span class="keywordtype">bool</span> p);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">const</span> vector&lt;Edge&lt;T&gt;&gt; &amp;<a class="code hl_function" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">getAdj</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">setAdj</a>(<span class="keyword">const</span> vector&lt;<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>&gt; &amp;adj);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">getIndegree</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">setIndegree</a>(<span class="keywordtype">int</span> indegree);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">getNum</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">setNum</a>(<span class="keywordtype">int</span> num);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">getLow</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_vertex.html#aefa9b76cd57411c5354e5620dc2d84dd">   70</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">setLow</a>(<span class="keywordtype">int</span> low);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>&lt;T&gt;;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex</a>(T in);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    T <a class="code hl_function" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">getInfo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">setInfo</a>(T in);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">isVisited</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">setVisited</a>(<span class="keywordtype">bool</span> v);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">isProcessing</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">setProcessing</a>(<span class="keywordtype">bool</span> p);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> vector&lt;Edge&lt;T&gt;&gt; &amp;<a class="code hl_function" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">getAdj</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">setAdj</a>(<span class="keyword">const</span> vector&lt;<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>&gt; &amp;adj);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">getIndegree</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">setIndegree</a>(<span class="keywordtype">int</span> indegree);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">getNum</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">setNum</a>(<span class="keywordtype">int</span> num);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">getLow</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_edge.html">   76</a></span><span class="keyword">class </span><a class="code hl_class" href="class_edge.html">Edge</a> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest;      <span class="comment">// destination vertex</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">double</span> weight;         <span class="comment">// edge weight</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_function" href="class_edge.html#a9da861a03f920c89984be33515a5d870">Edge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, <span class="keywordtype">double</span> w);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">getDest</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">setDest</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">getWeight</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">setLow</a>(<span class="keywordtype">int</span> low);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_vertex.html#a2dcacc6c46011fe434f631c68664987e">   77</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#a2dcacc6c46011fe434f631c68664987e">getOutdegree</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> outdegree;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="class_vertex.html#aefa9b76cd57411c5354e5620dc2d84dd">   81</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a7c63419557bd6ac9c2bbf10a4d710f86">setOutdegree</a>(<span class="keywordtype">int</span> outdegree) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        Vertex::outdegree = outdegree;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>&lt;T&gt;;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="class_edge.html#aefa9b76cd57411c5354e5620dc2d84dd">   88</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">setWeight</a>(<span class="keywordtype">double</span> weight);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>&lt;T&gt;;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a>&lt;T&gt;;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_graph.html">   96</a></span><span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a> {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    vector&lt;Vertex&lt;T&gt; *&gt; vertexSet;      <span class="comment">// vertex set</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">int</span> _index_;                        <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    stack&lt;Vertex&lt;T&gt;&gt; _stack_;           <span class="comment">// auxiliary field</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    list&lt;list&lt;T&gt;&gt; _list_sccs_;        <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="class_edge.html">   89</a></span><span class="keyword">class </span><a class="code hl_class" href="class_edge.html">Edge</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest;      <span class="comment">// destination vertex</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">double</span> weight;         <span class="comment">// edge weight</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    set&lt;Airline&gt; airlines;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_function" href="class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c">Edge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">getDest</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">setDest</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *dest);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">double</span> <a class="code hl_function" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">getWeight</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> dfsVisit(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v, vector&lt;T&gt; &amp;res) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">setWeight</a>(<span class="keywordtype">double</span> weight);</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">bool</span> dfsIsDAG(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    set&lt;Airline&gt; <a class="code hl_function" href="class_edge.html#a725ad88933c6ffb776ba5f48a9d7ae65">getAirlines</a>();</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">findVertex</a>(<span class="keyword">const</span> T &amp;in) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">getNumVertex</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">addVertex</a>(<span class="keyword">const</span> T &amp;in);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="class_edge.html#aefa9b76cd57411c5354e5620dc2d84dd">  106</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#af421cc07c859009f4ca6e197008b8b47">addAirline</a>(<a class="code hl_class" href="class_airline.html">Airline</a> airline);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a>&lt;T&gt;;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="class_vertex.html">Vertex</a>&lt;T&gt;;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">removeVertex</a>(<span class="keyword">const</span> T &amp;in);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#ac61af3aafe6277215f5a3b3cc7d58ce2">addEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest, <span class="keywordtype">double</span> w);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1106092a37366486cf55576f9ec01692">removeEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    vector&lt;Vertex&lt;T&gt; *&gt; <a class="code hl_function" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">getVertexSet</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">dfs</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">dfs</a>(<span class="keyword">const</span> T &amp;source) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">bfs</a>(<span class="keyword">const</span> T &amp;source) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="class_graph.html">  114</a></span><span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    vector&lt;Vertex&lt;T&gt; *&gt; vertexSet;      <span class="comment">// vertex set</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">int</span> _index_;                        <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    stack&lt;Vertex&lt;T&gt;&gt; _stack_;           <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    list &lt;list&lt;T&gt;&gt; _list_sccs_;        <span class="comment">// auxiliary field</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> dfsVisit(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v, vector&lt;T&gt; &amp;res) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">bool</span> dfsIsDAG(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">  125</a></span>    <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">findVertex</a>(<span class="keyword">const</span> T &amp;in) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">  127</a></span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">topsort</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">  127</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">getNumVertex</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">isDAG</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>};</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">/****************** Provided constructors and functions ********************/</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">  135</a></span><a class="code hl_function" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex&lt;T&gt;::Vertex</a>(T in): info(in) {}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">  129</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">addVertex</a>(<span class="keyword">const</span> T &amp;in);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">  131</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">removeVertex</a>(<span class="keyword">const</span> T &amp;in);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a">  133</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a">addEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w = 0);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="class_graph.html#a1106092a37366486cf55576f9ec01692">  135</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1106092a37366486cf55576f9ec01692">removeEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="class_edge.html#a9da861a03f920c89984be33515a5d870">  138</a></span><a class="code hl_function" href="class_edge.html#a9da861a03f920c89984be33515a5d870">Edge&lt;T&gt;::Edge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, <span class="keywordtype">double</span> w): dest(d), weight(w) {}</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">  137</a></span>    vector&lt;Vertex&lt;T&gt; *&gt; <a class="code hl_function" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">getVertexSet</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">  139</a></span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">dfs</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">  142</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">Graph&lt;T&gt;::getNumVertex</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">return</span> vertexSet.size();</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">  147</a></span>vector&lt;Vertex&lt;T&gt; *&gt; <a class="code hl_function" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">Graph&lt;T&gt;::getVertexSet</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">return</span> vertexSet;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>}</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">  152</a></span>T <a class="code hl_function" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex&lt;T&gt;::getInfo</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">return</span> info;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>}</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">Vertex&lt;T&gt;::setInfo</a>(T in) {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    Vertex::info = in;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">  162</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">Vertex&lt;T&gt;::isProcessing</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordflow">return</span> processing;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">  167</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">Vertex&lt;T&gt;::setProcessing</a>(<span class="keywordtype">bool</span> p) {</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    Vertex::processing = p;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>}</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">  172</a></span><a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">Edge&lt;T&gt;::getDest</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">return</span> dest;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>}</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">  177</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">Edge&lt;T&gt;::setDest</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d) {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    Edge::dest = d;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">  182</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">Edge&lt;T&gt;::getWeight</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">return</span> weight;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">  187</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">Edge&lt;T&gt;::setWeight</a>(<span class="keywordtype">double</span> weight) {</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    Edge::weight = weight;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>}</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"> * Auxiliary function to find a vertex with a given content.</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="class_graph.html#a510522c8221b321a82e687fe2f2cb484">  141</a></span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a510522c8221b321a82e687fe2f2cb484">dfs</a>(<span class="keyword">const</span> T &amp;source) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">  143</a></span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">bfs</a>(<span class="keyword">const</span> T &amp;source) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">  145</a></span>    vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">topsort</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">  147</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">isDAG</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>};</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">/****************** Provided constructors and functions ********************/</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">  153</a></span><a class="code hl_function" href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex&lt;T&gt;::Vertex</a>(T in): info(in), indegree(0), outdegree(0) {}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c">  156</a></span><a class="code hl_function" href="class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c">Edge&lt;T&gt;::Edge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w): dest(d), airlines(airlines), weight(w) {}</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">  160</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">Graph&lt;T&gt;::getNumVertex</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">return</span> vertexSet.size();</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">  165</a></span>vector&lt;Vertex&lt;T&gt; *&gt; <a class="code hl_function" href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">Graph&lt;T&gt;::getVertexSet</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> vertexSet;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">  170</a></span>T <a class="code hl_function" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex&lt;T&gt;::getInfo</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordflow">return</span> info;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>}</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">  175</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">Vertex&lt;T&gt;::setInfo</a>(T in) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    Vertex::info = in;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">  180</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">Vertex&lt;T&gt;::isProcessing</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">return</span> processing;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>}</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">  185</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">Vertex&lt;T&gt;::setProcessing</a>(<span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    Vertex::processing = p;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">  190</a></span><a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">Edge&lt;T&gt;::getDest</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> dest;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">  195</a></span><a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">Graph&lt;T&gt;::findVertex</a>(<span class="keyword">const</span> T &amp;in)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">if</span> (v-&gt;info == in)</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="keywordflow">return</span> v;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>}</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">  203</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">Vertex&lt;T&gt;::isVisited</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">return</span> visited;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">  208</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">Vertex&lt;T&gt;::getIndegree</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">return</span> indegree;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">  213</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">Vertex&lt;T&gt;::setIndegree</a>(<span class="keywordtype">int</span> indegree) {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    Vertex::indegree = indegree;</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">  218</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">Vertex&lt;T&gt;::getNum</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordflow">return</span> num;</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">  223</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">Vertex&lt;T&gt;::setNum</a>(<span class="keywordtype">int</span> num) {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    Vertex::num = num;</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>}</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">  228</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">Vertex&lt;T&gt;::getLow</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordflow">return</span> low;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>}</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">  233</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">Vertex&lt;T&gt;::setLow</a>(<span class="keywordtype">int</span> low) {</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    Vertex::low = low;</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">  238</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">Vertex&lt;T&gt;::setVisited</a>(<span class="keywordtype">bool</span> v) {</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    Vertex::visited = v;</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>}</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">  243</a></span><span class="keyword">const</span> vector&lt;Edge&lt;T&gt;&gt; &amp;<a class="code hl_function" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">Vertex&lt;T&gt;::getAdj</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">return</span> adj;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">  248</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">Vertex&lt;T&gt;::setAdj</a>(<span class="keyword">const</span> vector&lt;<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>&gt; &amp;adj) {</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    Vertex::adj = adj;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment"> *  Adds a vertex with a given content or info (in) to a graph (this).</span></div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"> *  Returns true if successful, and false if a vertex with that content already exists.</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">  258</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph&lt;T&gt;::addVertex</a>(<span class="keyword">const</span> T &amp;in) {</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordflow">if</span> (findVertex(in) != NULL)</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    vertexSet.push_back(<span class="keyword">new</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a>(in));</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>}</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">  195</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">Edge&lt;T&gt;::setDest</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    Edge::dest = d;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">  200</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">Edge&lt;T&gt;::getWeight</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">return</span> weight;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>}</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">  205</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">Edge&lt;T&gt;::setWeight</a>(<span class="keywordtype">double</span> weight) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    Edge::weight = weight;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="class_edge.html#a725ad88933c6ffb776ba5f48a9d7ae65">  210</a></span>set&lt;Airline&gt; <a class="code hl_function" href="class_edge.html#a725ad88933c6ffb776ba5f48a9d7ae65">Edge&lt;T&gt;::getAirlines</a>() {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordflow">return</span> airlines;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="class_edge.html#af421cc07c859009f4ca6e197008b8b47">  215</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_edge.html#af421cc07c859009f4ca6e197008b8b47">Edge&lt;T&gt;::addAirline</a>(<a class="code hl_class" href="class_airline.html">Airline</a> airline) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    this-&gt;getAirlines().insert(airline);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>}</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment"> * Auxiliary function to find a vertex with a given content.</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">  224</a></span><a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *<a class="code hl_function" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">Graph&lt;T&gt;::findVertex</a>(<span class="keyword">const</span> T &amp;in)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keywordflow">if</span> (<span class="keyword">static_cast&lt;</span><span class="keyword">const </span><a class="code hl_class" href="class_airport.html">Airport</a><span class="keyword">&gt;</span>(v-&gt;info) == in)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            <span class="keywordflow">return</span> v;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>}</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">  232</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">Vertex&lt;T&gt;::isVisited</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">return</span> visited;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">  237</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">Vertex&lt;T&gt;::getIndegree</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">return</span> indegree;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>}</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">  242</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">Vertex&lt;T&gt;::setIndegree</a>(<span class="keywordtype">int</span> indegree) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    Vertex::indegree = indegree;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>}</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">  247</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#ab2916c006fa35b918910a2232095e785">Vertex&lt;T&gt;::getNum</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> num;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">  252</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">Vertex&lt;T&gt;::setNum</a>(<span class="keywordtype">int</span> num) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    Vertex::num = num;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>}</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">  257</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">Vertex&lt;T&gt;::getLow</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordflow">return</span> low;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">  262</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">Vertex&lt;T&gt;::setLow</a>(<span class="keywordtype">int</span> low) {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    Vertex::low = low;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>}</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"> * Adds an edge to a graph (this), given the contents of the source and</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment"> * destination vertices and the edge weight (w).</span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment"> * Returns true if successful, and false if the source or destination vertex does not exist.</span></div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">  267</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">Vertex&lt;T&gt;::setVisited</a>(<span class="keywordtype">bool</span> v) {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    Vertex::visited = v;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>}</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="class_graph.html#ac61af3aafe6277215f5a3b3cc7d58ce2">  272</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#ac61af3aafe6277215f5a3b3cc7d58ce2">Graph&lt;T&gt;::addEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest, <span class="keywordtype">double</span> w) {</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">auto</span> v1 = findVertex(sourc);</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keyword">auto</span> v2 = findVertex(dest);</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">if</span> (v1 == NULL || v2 == NULL)</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    v1-&gt;addEdge(v2, w);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">  272</a></span><span class="keyword">const</span> vector&lt;Edge&lt;T&gt;&gt; &amp;<a class="code hl_function" href="class_vertex.html#a0b0341340972782503ff5065f46673fe">Vertex&lt;T&gt;::getAdj</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">return</span> adj;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>}</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">  277</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">Vertex&lt;T&gt;::setAdj</a>(<span class="keyword">const</span> vector&lt;<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>&gt; &amp;adj) {</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    Vertex::adj = adj;</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>}</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment"> * Auxiliary function to add an outgoing edge to a vertex (this),</span></div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment"> * with a given destination vertex (d) and edge weight (w).</span></div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keywordtype">void</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;::addEdge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, <span class="keywordtype">double</span> w) {</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    adj.push_back(<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>(d, w));</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment"> * Removes an edge from a graph (this).</span></div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment"> * The edge is identified by the source (sourc) and destination (dest) contents.</span></div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment"> * Returns true if successful, and false if such edge does not exist.</span></div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="class_graph.html#a1106092a37366486cf55576f9ec01692">  297</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1106092a37366486cf55576f9ec01692">Graph&lt;T&gt;::removeEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest) {</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">auto</span> v1 = findVertex(sourc);</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keyword">auto</span> v2 = findVertex(dest);</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keywordflow">if</span> (v1 == NULL || v2 == NULL)</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordflow">return</span> v1-&gt;removeEdgeTo(v2);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>}</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment"> * Auxiliary function to remove an outgoing edge (with a given destination (d))</span></div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"> * from a vertex (this).</span></div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"> * Returns true if successful, and false if such edge does not exist.</span></div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="keywordtype">bool</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;::removeEdgeTo</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d) {</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = adj.begin(); it != adj.end(); it++)</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">if</span> (it-&gt;dest == d) {</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>            adj.erase(it);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        }</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment"> *  Adds a vertex with a given content or info (in) to a graph (this).</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> *  Returns true if successful, and false if a vertex with that content already exists.</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">  287</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph&lt;T&gt;::addVertex</a>(<span class="keyword">const</span> T &amp;in) {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">if</span> (findVertex(in) != NULL)</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    vertexSet.push_back(<span class="keyword">new</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a>(in));</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment"> * Adds an edge to a graph (this), given the contents of the source and</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment"> * destination vertices and the edge weight (w).</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment"> * Returns true if successful, and false if the source or destination vertex does not exist.</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a">  301</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a">Graph&lt;T&gt;::addEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w) {</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keyword">auto</span> v1 = findVertex(sourc);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keyword">auto</span> v2 = findVertex(dest);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordflow">if</span> (v1 == NULL || v2 == NULL)</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    v1-&gt;addEdge(v2, airlines, w);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment"> * Auxiliary function to add an outgoing edge to a vertex (this),</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment"> * with a given destination vertex (d) and edge weight (w).</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="keywordtype">void</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;::addEdge</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d, set&lt;Airline&gt; airlines, <span class="keywordtype">double</span> w) {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    adj.push_back(<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a>(d, airlines, w));</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>}</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"> *  Removes a vertex with a given content (in) from a graph (this), and</span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment"> *  all outgoing and incoming edges.</span></div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment"> *  Returns true if successful, and false if such vertex does not exist.</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"> * Removes an edge from a graph (this).</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment"> * The edge is identified by the source (sourc) and destination (dest) contents.</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment"> * Returns true if successful, and false if such edge does not exist.</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">  326</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">Graph&lt;T&gt;::removeVertex</a>(<span class="keyword">const</span> T &amp;in) {</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vertexSet.begin(); it != vertexSet.end(); it++)</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <span class="keywordflow">if</span> ((*it)-&gt;info == in) {</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>            <span class="keyword">auto</span> v = *it;</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>            vertexSet.erase(it);</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> u: vertexSet)</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>                u-&gt;removeEdgeTo(v);</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            <span class="keyword">delete</span> v;</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        }</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="comment">/****************** DFS ********************/</span></div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment"> * Performs a depth-first search (dfs) traversal in a graph (this).</span></div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment"> * Returns a vector with the contents of the vertices by dfs order.</span></div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment"> * Follows the algorithm described in theoretical classes.</span></div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">  347</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph&lt;T&gt;::dfs</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    vector&lt;T&gt; res;</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <span class="keywordflow">if</span> (!v-&gt;visited)</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>            dfsVisit(v, res);</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>}</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment"> * Auxiliary function that visits a vertex (v) and its adjacent, recursively.</span></div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment"> * Updates a parameter with the list of visited node contents.</span></div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keywordtype">void</span> <a class="code hl_class" href="class_graph.html">Graph&lt;T&gt;::dfsVisit</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v, vector&lt;T&gt; &amp;res)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    v-&gt;visited = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    res.push_back(v-&gt;info);</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        <span class="keyword">auto</span> w = e.dest;</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="keywordflow">if</span> (!w-&gt;visited)</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>            dfsVisit(w, res);</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    }</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">/****************** DFS ********************/</span></div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"> * Performs a depth-first search (dfs) in a graph (this).</span></div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment"> * Returns a vector with the contents of the vertices by dfs order,</span></div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment"> * from the source node.</span></div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="class_graph.html#a510522c8221b321a82e687fe2f2cb484">  380</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph&lt;T&gt;::dfs</a>(<span class="keyword">const</span> T &amp;source)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    vector&lt;T&gt; res;</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="keyword">auto</span> s = findVertex(source);</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="keywordflow">if</span> (s == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="class_graph.html#a1106092a37366486cf55576f9ec01692">  326</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1106092a37366486cf55576f9ec01692">Graph&lt;T&gt;::removeEdge</a>(<span class="keyword">const</span> T &amp;sourc, <span class="keyword">const</span> T &amp;dest) {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keyword">auto</span> v1 = findVertex(sourc);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">auto</span> v2 = findVertex(dest);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keywordflow">if</span> (v1 == NULL || v2 == NULL)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordflow">return</span> v1-&gt;removeEdgeTo(v2);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> * Auxiliary function to remove an outgoing edge (with a given destination (d))</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment"> * from a vertex (this).</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment"> * Returns true if successful, and false if such edge does not exist.</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keywordtype">bool</span> <a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;::removeEdgeTo</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *d) {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = adj.begin(); it != adj.end(); it++)</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        <span class="keywordflow">if</span> (it-&gt;dest == d) {</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            adj.erase(it);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        }</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>}</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment"> *  Removes a vertex with a given content (in) from a graph (this), and</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment"> *  all outgoing and incoming edges.</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment"> *  Returns true if successful, and false if such vertex does not exist.</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">  355</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#af9c903104ad69a7782979fa9caedf163">Graph&lt;T&gt;::removeVertex</a>(<span class="keyword">const</span> T &amp;in) {</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vertexSet.begin(); it != vertexSet.end(); it++)</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <span class="keywordflow">if</span> ((*it)-&gt;info == in) {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>            <span class="keyword">auto</span> v = *it;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>            vertexSet.erase(it);</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> u: vertexSet)</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>                u-&gt;removeEdgeTo(v);</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>            <span class="keyword">delete</span> v;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>}</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="comment">/****************** DFS ********************/</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment"> * Performs a depth-first search (dfs) traversal in a graph (this).</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment"> * Returns a vector with the contents of the vertices by dfs order.</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment"> * Follows the algorithm described in theoretical classes.</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">  376</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph&lt;T&gt;::dfs</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    vector&lt;T&gt; res;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keywordflow">if</span> (!v-&gt;visited)</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>            dfsVisit(v, res);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>}</div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    dfsVisit(s, res);</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>}</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="comment">/****************** BFS ********************/</span></div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="comment"> * Performs a breadth-first search (bfs) in a graph (this), starting</span></div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="comment"> * from the vertex with the given source contents (source).</span></div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="comment"> * Returns a vector with the contents of the vertices by bfs order.</span></div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">  401</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">Graph&lt;T&gt;::bfs</a>(<span class="keyword">const</span> T &amp;source)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    vector&lt;T&gt; res;</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="keyword">auto</span> s = findVertex(source);</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keywordflow">if</span> (s == NULL)</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    queue&lt;Vertex&lt;T&gt; *&gt; q;</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    q.push(s);</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    s-&gt;visited = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="keywordflow">while</span> (!q.empty()) {</div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        <span class="keyword">auto</span> v = q.front();</div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        q.pop();</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        res.push_back(v-&gt;info);</div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>            <span class="keyword">auto</span> w = e.dest;</div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>            <span class="keywordflow">if</span> (!w-&gt;visited) {</div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>                q.push(w);</div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                w-&gt;visited = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>            }</div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        }</div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    }</div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>}</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> </div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="comment">/****************** isDAG  ********************/</span></div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="comment"> * Performs a depth-first search in a graph (this), to determine if the graph</span></div>
-<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="comment"> * is acyclic (acyclic directed graph or DAG).</span></div>
-<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="comment"> * During the search, a cycle is found if an edge connects to a vertex</span></div>
-<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="comment"> * that is being processed in the stack of recursive calls (see theoretical classes).</span></div>
-<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="comment"> * Returns true if the graph is acyclic, and false otherwise.</span></div>
-<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno"><a class="line" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">  437</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">Graph&lt;T&gt;::isDAG</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet) {</div>
-<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>        v-&gt;processing = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    }</div>
-<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
-<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>        <span class="keywordflow">if</span> (!v-&gt;visited)</div>
-<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>            <span class="keywordflow">if</span> (!dfsIsDAG(v))</div>
-<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>}</div>
-<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> </div>
-<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="keywordtype">bool</span> <a class="code hl_class" href="class_graph.html">Graph&lt;T&gt;::dfsIsDAG</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    v-&gt;visited = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    v-&gt;processing = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        <span class="keyword">auto</span> w = e.dest;</div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        <span class="keywordflow">if</span> (w-&gt;processing)</div>
-<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>        <span class="keywordflow">if</span> (!w-&gt;visited)</div>
-<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>            <span class="keywordflow">if</span> (!dfsIsDAG(w))</div>
-<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    }</div>
-<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    v-&gt;processing = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>}</div>
-<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="preprocessor">#endif </span><span class="comment">/* GRAPH_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclass_edge_html"><div class="ttname"><a href="class_edge.html">Edge</a></div><div class="ttdef"><b>Definition:</b> Graph.h:76</div></div>
-<div class="ttc" id="aclass_edge_html_a163ee9f75e35701e6a04ea1c987e4094"><div class="ttname"><a href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">Edge::setDest</a></div><div class="ttdeci">void setDest(Vertex&lt; T &gt; *dest)</div><div class="ttdef"><b>Definition:</b> Graph.h:177</div></div>
-<div class="ttc" id="aclass_edge_html_a3df378e283d6c8be5be4170ac8d7f4e8"><div class="ttname"><a href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">Edge::getWeight</a></div><div class="ttdeci">double getWeight() const</div><div class="ttdef"><b>Definition:</b> Graph.h:182</div></div>
-<div class="ttc" id="aclass_edge_html_a9a2de066dff8513dd788d553fc1d0c81"><div class="ttname"><a href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">Edge::getDest</a></div><div class="ttdeci">Vertex&lt; T &gt; * getDest() const</div><div class="ttdef"><b>Definition:</b> Graph.h:172</div></div>
-<div class="ttc" id="aclass_edge_html_a9da861a03f920c89984be33515a5d870"><div class="ttname"><a href="class_edge.html#a9da861a03f920c89984be33515a5d870">Edge::Edge</a></div><div class="ttdeci">Edge(Vertex&lt; T &gt; *d, double w)</div><div class="ttdef"><b>Definition:</b> Graph.h:138</div></div>
-<div class="ttc" id="aclass_edge_html_aff600b093dd6917feeeb35bb7947bdd4"><div class="ttname"><a href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">Edge::setWeight</a></div><div class="ttdeci">void setWeight(double weight)</div><div class="ttdef"><b>Definition:</b> Graph.h:187</div></div>
-<div class="ttc" id="aclass_graph_html"><div class="ttname"><a href="class_graph.html">Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:96</div></div>
-<div class="ttc" id="aclass_graph_html_a00be284ea2be3b3d0f0d2e493b70245b"><div class="ttname"><a href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph::addVertex</a></div><div class="ttdeci">bool addVertex(const T &amp;in)</div><div class="ttdef"><b>Definition:</b> Graph.h:258</div></div>
-<div class="ttc" id="aclass_graph_html_a0853eac15cdf0f06d63f4b8a7820ec71"><div class="ttname"><a href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">Graph::getNumVertex</a></div><div class="ttdeci">int getNumVertex() const</div><div class="ttdef"><b>Definition:</b> Graph.h:142</div></div>
-<div class="ttc" id="aclass_graph_html_a1106092a37366486cf55576f9ec01692"><div class="ttname"><a href="class_graph.html#a1106092a37366486cf55576f9ec01692">Graph::removeEdge</a></div><div class="ttdeci">bool removeEdge(const T &amp;sourc, const T &amp;dest)</div><div class="ttdef"><b>Definition:</b> Graph.h:297</div></div>
-<div class="ttc" id="aclass_graph_html_a1ea1512afe5ab878301bc806c2eba9d2"><div class="ttname"><a href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">Graph::isDAG</a></div><div class="ttdeci">bool isDAG() const</div><div class="ttdef"><b>Definition:</b> Graph.h:437</div></div>
-<div class="ttc" id="aclass_graph_html_a8b7b7465fbfd562e2a469f90a437ab75"><div class="ttname"><a href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">Graph::findVertex</a></div><div class="ttdeci">Vertex&lt; T &gt; * findVertex(const T &amp;in) const</div><div class="ttdef"><b>Definition:</b> Graph.h:195</div></div>
-<div class="ttc" id="aclass_graph_html_a911798b1a89f8c4ae90ba3eee849cff8"><div class="ttname"><a href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph::dfs</a></div><div class="ttdeci">vector&lt; T &gt; dfs() const</div><div class="ttdef"><b>Definition:</b> Graph.h:347</div></div>
-<div class="ttc" id="aclass_graph_html_a923b43995f81ad9319bbc81a1e433e64"><div class="ttname"><a href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">Graph::getVertexSet</a></div><div class="ttdeci">vector&lt; Vertex&lt; T &gt; * &gt; getVertexSet() const</div><div class="ttdef"><b>Definition:</b> Graph.h:147</div></div>
-<div class="ttc" id="aclass_graph_html_aa47a4130165550e208e7a063fce6983a"><div class="ttname"><a href="class_graph.html#aa47a4130165550e208e7a063fce6983a">Graph::bfs</a></div><div class="ttdeci">vector&lt; T &gt; bfs(const T &amp;source) const</div><div class="ttdef"><b>Definition:</b> Graph.h:401</div></div>
-<div class="ttc" id="aclass_graph_html_ac61af3aafe6277215f5a3b3cc7d58ce2"><div class="ttname"><a href="class_graph.html#ac61af3aafe6277215f5a3b3cc7d58ce2">Graph::addEdge</a></div><div class="ttdeci">bool addEdge(const T &amp;sourc, const T &amp;dest, double w)</div><div class="ttdef"><b>Definition:</b> Graph.h:272</div></div>
-<div class="ttc" id="aclass_graph_html_af1d4affd1f886bf598d0f4cf4a0cb7cb"><div class="ttname"><a href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">Graph::topsort</a></div><div class="ttdeci">vector&lt; T &gt; topsort() const</div></div>
-<div class="ttc" id="aclass_graph_html_af9c903104ad69a7782979fa9caedf163"><div class="ttname"><a href="class_graph.html#af9c903104ad69a7782979fa9caedf163">Graph::removeVertex</a></div><div class="ttdeci">bool removeVertex(const T &amp;in)</div><div class="ttdef"><b>Definition:</b> Graph.h:326</div></div>
-<div class="ttc" id="aclass_vertex_html"><div class="ttname"><a href="class_vertex.html">Vertex</a></div><div class="ttdef"><b>Definition:</b> Graph.h:28</div></div>
-<div class="ttc" id="aclass_vertex_html_a0b0341340972782503ff5065f46673fe"><div class="ttname"><a href="class_vertex.html#a0b0341340972782503ff5065f46673fe">Vertex::getAdj</a></div><div class="ttdeci">const vector&lt; Edge&lt; T &gt; &gt; &amp; getAdj() const</div><div class="ttdef"><b>Definition:</b> Graph.h:243</div></div>
-<div class="ttc" id="aclass_vertex_html_a3b8e12b4d9805979321212dd6db05961"><div class="ttname"><a href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">Vertex::getLow</a></div><div class="ttdeci">int getLow() const</div><div class="ttdef"><b>Definition:</b> Graph.h:228</div></div>
-<div class="ttc" id="aclass_vertex_html_a48eae2f7af2362634adab02b7b2dbec6"><div class="ttname"><a href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex::getInfo</a></div><div class="ttdeci">T getInfo() const</div><div class="ttdef"><b>Definition:</b> Graph.h:152</div></div>
-<div class="ttc" id="aclass_vertex_html_a68c9c8792b2752b7540e2f8c14f686a4"><div class="ttname"><a href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">Vertex::setInfo</a></div><div class="ttdeci">void setInfo(T in)</div><div class="ttdef"><b>Definition:</b> Graph.h:157</div></div>
-<div class="ttc" id="aclass_vertex_html_a7eecd09188d8f959b1c0ac9332c14218"><div class="ttname"><a href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">Vertex::setNum</a></div><div class="ttdeci">void setNum(int num)</div><div class="ttdef"><b>Definition:</b> Graph.h:223</div></div>
-<div class="ttc" id="aclass_vertex_html_aa1a1921cded8cb209382407b5a9433f3"><div class="ttname"><a href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">Vertex::setVisited</a></div><div class="ttdeci">void setVisited(bool v)</div><div class="ttdef"><b>Definition:</b> Graph.h:238</div></div>
-<div class="ttc" id="aclass_vertex_html_aa2bb17f6ebd98a67f8da1f689b22fadc"><div class="ttname"><a href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">Vertex::isVisited</a></div><div class="ttdeci">bool isVisited() const</div><div class="ttdef"><b>Definition:</b> Graph.h:203</div></div>
-<div class="ttc" id="aclass_vertex_html_aaa41dfa4ce1a19b4e529cc6cdc23b764"><div class="ttname"><a href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">Vertex::isProcessing</a></div><div class="ttdeci">bool isProcessing() const</div><div class="ttdef"><b>Definition:</b> Graph.h:162</div></div>
-<div class="ttc" id="aclass_vertex_html_aacc5763deca4f0f308756b69f9598584"><div class="ttname"><a href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">Vertex::setAdj</a></div><div class="ttdeci">void setAdj(const vector&lt; Edge&lt; T &gt; &gt; &amp;adj)</div><div class="ttdef"><b>Definition:</b> Graph.h:248</div></div>
-<div class="ttc" id="aclass_vertex_html_ab2916c006fa35b918910a2232095e785"><div class="ttname"><a href="class_vertex.html#ab2916c006fa35b918910a2232095e785">Vertex::getNum</a></div><div class="ttdeci">int getNum() const</div><div class="ttdef"><b>Definition:</b> Graph.h:218</div></div>
-<div class="ttc" id="aclass_vertex_html_ac78980191ea1f9d22e6617e9e511b755"><div class="ttname"><a href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">Vertex::getIndegree</a></div><div class="ttdeci">int getIndegree() const</div><div class="ttdef"><b>Definition:</b> Graph.h:208</div></div>
-<div class="ttc" id="aclass_vertex_html_ac7b2e53890abfbcd4d7ce3b7d34ee932"><div class="ttname"><a href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">Vertex::setProcessing</a></div><div class="ttdeci">void setProcessing(bool p)</div><div class="ttdef"><b>Definition:</b> Graph.h:167</div></div>
-<div class="ttc" id="aclass_vertex_html_ad1602c48fedae2d3d5a3949594dc5ab8"><div class="ttname"><a href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">Vertex::setIndegree</a></div><div class="ttdeci">void setIndegree(int indegree)</div><div class="ttdef"><b>Definition:</b> Graph.h:213</div></div>
-<div class="ttc" id="aclass_vertex_html_ada7d878fff0c3d585fce0a51cffa6435"><div class="ttname"><a href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">Vertex::setLow</a></div><div class="ttdeci">void setLow(int low)</div><div class="ttdef"><b>Definition:</b> Graph.h:233</div></div>
-<div class="ttc" id="aclass_vertex_html_afcbdd4d4198b672356559cb8fa088408"><div class="ttname"><a href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex::Vertex</a></div><div class="ttdeci">Vertex(T in)</div><div class="ttdef"><b>Definition:</b> Graph.h:135</div></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="comment"> * Auxiliary function that visits a vertex (v) and its adjacent, recursively.</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment"> * Updates a parameter with the list of visited node contents.</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="keywordtype">void</span> <a class="code hl_class" href="class_graph.html">Graph&lt;T&gt;::dfsVisit</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v, vector&lt;T&gt; &amp;res)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    v-&gt;visited = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    res.push_back(v-&gt;info);</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        <span class="keyword">auto</span> w = e.dest;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        <span class="keywordflow">if</span> (!w-&gt;visited)</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>            dfsVisit(w, res);</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    }</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>}</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="comment">/****************** DFS ********************/</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="comment"> * Performs a depth-first search (dfs) in a graph (this).</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="comment"> * Returns a vector with the contents of the vertices by dfs order,</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="comment"> * from the source node.</span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno"><a class="line" href="class_graph.html#a510522c8221b321a82e687fe2f2cb484">  409</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph&lt;T&gt;::dfs</a>(<span class="keyword">const</span> T &amp;source)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    vector&lt;T&gt; res;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="keyword">auto</span> s = findVertex(source);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordflow">if</span> (s == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    dfsVisit(s, res);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>}</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="comment">/****************** BFS ********************/</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="comment"> * Performs a breadth-first search (bfs) in a graph (this), starting</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="comment"> * from the vertex with the given source contents (source).</span></div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="comment"> * Returns a vector with the contents of the vertices by bfs order.</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno"><a class="line" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">  430</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#aa47a4130165550e208e7a063fce6983a">Graph&lt;T&gt;::bfs</a>(<span class="keyword">const</span> T &amp;source)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    vector&lt;T&gt; res;</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="keyword">auto</span> s = findVertex(source);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    <span class="keywordflow">if</span> (s == NULL)</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    queue&lt;Vertex&lt;T&gt; *&gt; q;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    q.push(s);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    s-&gt;visited = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    <span class="keywordflow">while</span> (!q.empty()) {</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>        <span class="keyword">auto</span> v = q.front();</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>        q.pop();</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>        res.push_back(v-&gt;info);</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>            <span class="keyword">auto</span> w = e.dest;</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>            <span class="keywordflow">if</span> (!w-&gt;visited) {</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>                q.push(w);</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>                w-&gt;visited = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>            }</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        }</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    }</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>}</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> </div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment">/****************** isDAG  ********************/</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span><span class="comment"> * Performs a depth-first search in a graph (this), to determine if the graph</span></div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span><span class="comment"> * is acyclic (acyclic directed graph or DAG).</span></div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span><span class="comment"> * During the search, a cycle is found if an edge connects to a vertex</span></div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span><span class="comment"> * that is being processed in the stack of recursive calls (see theoretical classes).</span></div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span><span class="comment"> * Returns true if the graph is acyclic, and false otherwise.</span></div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno"><a class="line" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">  466</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">Graph&lt;T&gt;::isDAG</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet) {</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        v-&gt;visited = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>        v-&gt;processing = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    }</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet)</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>        <span class="keywordflow">if</span> (!v-&gt;visited)</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>            <span class="keywordflow">if</span> (!dfsIsDAG(v))</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>}</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span><span class="keywordtype">bool</span> <a class="code hl_class" href="class_graph.html">Graph&lt;T&gt;::dfsIsDAG</a>(<a class="code hl_class" href="class_vertex.html">Vertex&lt;T&gt;</a> *v)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>    v-&gt;visited = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>    v-&gt;processing = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;e: v-&gt;adj) {</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>        <span class="keyword">auto</span> w = e.dest;</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>        <span class="keywordflow">if</span> (w-&gt;processing)</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>        <span class="keywordflow">if</span> (!w-&gt;visited)</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>            <span class="keywordflow">if</span> (!dfsIsDAG(w))</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>    }</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>    v-&gt;processing = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>}</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span> </div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="comment">/****************** toposort ********************/</span></div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="comment">//=============================================================================</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="comment">// Exercise 1: Topological Sorting</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="comment">//=============================================================================</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="comment">// TODO</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="comment"> * Performs a topological sorting of the vertices of a graph (this).</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="comment"> * Returns a vector with the contents of the vertices by topological order.</span></div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="comment"> * If the graph has cycles, returns an empty vector.</span></div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span><span class="comment"> * Follows the algorithm described in theoretical classes.</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span> </div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno"><a class="line" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">  512</a></span>vector&lt;T&gt; <a class="code hl_function" href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">Graph&lt;T&gt;::topsort</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    vector&lt;T&gt; res;</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>    queue&lt;Vertex&lt;T&gt; *&gt; toProcess;</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    <span class="keywordflow">if</span> (!this-&gt;isDAG()) <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> vertex: this-&gt;vertexSet) {</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>        vertex-&gt;setIndegree(0);</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>    }</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet) {</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>        <span class="keywordflow">for</span> (<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a> &amp;e: v-&gt;adj) {</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>            e.dest-&gt;indegree++;</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>        }</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>    }</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v: vertexSet) {</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>        <span class="keywordflow">if</span> (v-&gt;indegree == 0) {</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>            toProcess.push(v);</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>        }</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>    }</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>    <span class="keywordflow">while</span> (!toProcess.empty()) {</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>        <span class="keyword">auto</span> processing = toProcess.front();</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>        <span class="keywordflow">for</span> (<a class="code hl_class" href="class_edge.html">Edge&lt;T&gt;</a> e: processing-&gt;adj) {</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>            e.dest-&gt;indegree -= 1;</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>            <span class="keywordflow">if</span> (e.dest-&gt;indegree == 0) {</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                toProcess.push(e.dest);</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>            }</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>        }</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>        toProcess.pop();</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>        res.push_back(processing-&gt;getInfo());</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>    }</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>}</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="preprocessor">#endif </span><span class="comment">/* GRAPH_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_flight_8h_html"><div class="ttname"><a href="_flight_8h.html">Flight.h</a></div></div>
+<div class="ttc" id="aclass_airline_html"><div class="ttname"><a href="class_airline.html">Airline</a></div><div class="ttdef"><b>Definition:</b> Airline.h:9</div></div>
+<div class="ttc" id="aclass_airport_html"><div class="ttname"><a href="class_airport.html">Airport</a></div><div class="ttdef"><b>Definition:</b> Airport.h:7</div></div>
+<div class="ttc" id="aclass_edge_html"><div class="ttname"><a href="class_edge.html">Edge</a></div><div class="ttdef"><b>Definition:</b> Graph.h:89</div></div>
+<div class="ttc" id="aclass_edge_html_a163ee9f75e35701e6a04ea1c987e4094"><div class="ttname"><a href="class_edge.html#a163ee9f75e35701e6a04ea1c987e4094">Edge::setDest</a></div><div class="ttdeci">void setDest(Vertex&lt; T &gt; *dest)</div><div class="ttdef"><b>Definition:</b> Graph.h:195</div></div>
+<div class="ttc" id="aclass_edge_html_a3df378e283d6c8be5be4170ac8d7f4e8"><div class="ttname"><a href="class_edge.html#a3df378e283d6c8be5be4170ac8d7f4e8">Edge::getWeight</a></div><div class="ttdeci">double getWeight() const</div><div class="ttdef"><b>Definition:</b> Graph.h:200</div></div>
+<div class="ttc" id="aclass_edge_html_a725ad88933c6ffb776ba5f48a9d7ae65"><div class="ttname"><a href="class_edge.html#a725ad88933c6ffb776ba5f48a9d7ae65">Edge::getAirlines</a></div><div class="ttdeci">set&lt; Airline &gt; getAirlines()</div><div class="ttdef"><b>Definition:</b> Graph.h:210</div></div>
+<div class="ttc" id="aclass_edge_html_a9a2de066dff8513dd788d553fc1d0c81"><div class="ttname"><a href="class_edge.html#a9a2de066dff8513dd788d553fc1d0c81">Edge::getDest</a></div><div class="ttdeci">Vertex&lt; T &gt; * getDest() const</div><div class="ttdef"><b>Definition:</b> Graph.h:190</div></div>
+<div class="ttc" id="aclass_edge_html_a9d8561edb35eaed58f6f3a29b17f140c"><div class="ttname"><a href="class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c">Edge::Edge</a></div><div class="ttdeci">Edge(Vertex&lt; T &gt; *d, set&lt; Airline &gt; airlines, double w)</div><div class="ttdef"><b>Definition:</b> Graph.h:156</div></div>
+<div class="ttc" id="aclass_edge_html_af421cc07c859009f4ca6e197008b8b47"><div class="ttname"><a href="class_edge.html#af421cc07c859009f4ca6e197008b8b47">Edge::addAirline</a></div><div class="ttdeci">void addAirline(Airline airline)</div><div class="ttdef"><b>Definition:</b> Graph.h:215</div></div>
+<div class="ttc" id="aclass_edge_html_aff600b093dd6917feeeb35bb7947bdd4"><div class="ttname"><a href="class_edge.html#aff600b093dd6917feeeb35bb7947bdd4">Edge::setWeight</a></div><div class="ttdeci">void setWeight(double weight)</div><div class="ttdef"><b>Definition:</b> Graph.h:205</div></div>
+<div class="ttc" id="aclass_graph_html"><div class="ttname"><a href="class_graph.html">Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:114</div></div>
+<div class="ttc" id="aclass_graph_html_a00be284ea2be3b3d0f0d2e493b70245b"><div class="ttname"><a href="class_graph.html#a00be284ea2be3b3d0f0d2e493b70245b">Graph::addVertex</a></div><div class="ttdeci">bool addVertex(const T &amp;in)</div><div class="ttdef"><b>Definition:</b> Graph.h:287</div></div>
+<div class="ttc" id="aclass_graph_html_a0853eac15cdf0f06d63f4b8a7820ec71"><div class="ttname"><a href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71">Graph::getNumVertex</a></div><div class="ttdeci">int getNumVertex() const</div><div class="ttdef"><b>Definition:</b> Graph.h:160</div></div>
+<div class="ttc" id="aclass_graph_html_a1106092a37366486cf55576f9ec01692"><div class="ttname"><a href="class_graph.html#a1106092a37366486cf55576f9ec01692">Graph::removeEdge</a></div><div class="ttdeci">bool removeEdge(const T &amp;sourc, const T &amp;dest)</div><div class="ttdef"><b>Definition:</b> Graph.h:326</div></div>
+<div class="ttc" id="aclass_graph_html_a1ea1512afe5ab878301bc806c2eba9d2"><div class="ttname"><a href="class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2">Graph::isDAG</a></div><div class="ttdeci">bool isDAG() const</div><div class="ttdef"><b>Definition:</b> Graph.h:466</div></div>
+<div class="ttc" id="aclass_graph_html_a510522c8221b321a82e687fe2f2cb484"><div class="ttname"><a href="class_graph.html#a510522c8221b321a82e687fe2f2cb484">Graph::dfs</a></div><div class="ttdeci">vector&lt; T &gt; dfs(const T &amp;source) const</div><div class="ttdef"><b>Definition:</b> Graph.h:409</div></div>
+<div class="ttc" id="aclass_graph_html_a8b7b7465fbfd562e2a469f90a437ab75"><div class="ttname"><a href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75">Graph::findVertex</a></div><div class="ttdeci">Vertex&lt; T &gt; * findVertex(const T &amp;in) const</div><div class="ttdef"><b>Definition:</b> Graph.h:224</div></div>
+<div class="ttc" id="aclass_graph_html_a911798b1a89f8c4ae90ba3eee849cff8"><div class="ttname"><a href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8">Graph::dfs</a></div><div class="ttdeci">vector&lt; T &gt; dfs() const</div><div class="ttdef"><b>Definition:</b> Graph.h:376</div></div>
+<div class="ttc" id="aclass_graph_html_a923b43995f81ad9319bbc81a1e433e64"><div class="ttname"><a href="class_graph.html#a923b43995f81ad9319bbc81a1e433e64">Graph::getVertexSet</a></div><div class="ttdeci">vector&lt; Vertex&lt; T &gt; * &gt; getVertexSet() const</div><div class="ttdef"><b>Definition:</b> Graph.h:165</div></div>
+<div class="ttc" id="aclass_graph_html_aa47a4130165550e208e7a063fce6983a"><div class="ttname"><a href="class_graph.html#aa47a4130165550e208e7a063fce6983a">Graph::bfs</a></div><div class="ttdeci">vector&lt; T &gt; bfs(const T &amp;source) const</div><div class="ttdef"><b>Definition:</b> Graph.h:430</div></div>
+<div class="ttc" id="aclass_graph_html_abba9f46183f3f3d090d6732517701c0a"><div class="ttname"><a href="class_graph.html#abba9f46183f3f3d090d6732517701c0a">Graph::addEdge</a></div><div class="ttdeci">bool addEdge(const T &amp;sourc, const T &amp;dest, set&lt; Airline &gt; airlines, double w=0)</div><div class="ttdef"><b>Definition:</b> Graph.h:301</div></div>
+<div class="ttc" id="aclass_graph_html_af1d4affd1f886bf598d0f4cf4a0cb7cb"><div class="ttname"><a href="class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb">Graph::topsort</a></div><div class="ttdeci">vector&lt; T &gt; topsort() const</div><div class="ttdef"><b>Definition:</b> Graph.h:512</div></div>
+<div class="ttc" id="aclass_graph_html_af9c903104ad69a7782979fa9caedf163"><div class="ttname"><a href="class_graph.html#af9c903104ad69a7782979fa9caedf163">Graph::removeVertex</a></div><div class="ttdeci">bool removeVertex(const T &amp;in)</div><div class="ttdef"><b>Definition:</b> Graph.h:355</div></div>
+<div class="ttc" id="aclass_vertex_html"><div class="ttname"><a href="class_vertex.html">Vertex</a></div><div class="ttdef"><b>Definition:</b> Graph.h:29</div></div>
+<div class="ttc" id="aclass_vertex_html_a0b0341340972782503ff5065f46673fe"><div class="ttname"><a href="class_vertex.html#a0b0341340972782503ff5065f46673fe">Vertex::getAdj</a></div><div class="ttdeci">const vector&lt; Edge&lt; T &gt; &gt; &amp; getAdj() const</div><div class="ttdef"><b>Definition:</b> Graph.h:272</div></div>
+<div class="ttc" id="aclass_vertex_html_a2dcacc6c46011fe434f631c68664987e"><div class="ttname"><a href="class_vertex.html#a2dcacc6c46011fe434f631c68664987e">Vertex::getOutdegree</a></div><div class="ttdeci">int getOutdegree() const</div><div class="ttdef"><b>Definition:</b> Graph.h:77</div></div>
+<div class="ttc" id="aclass_vertex_html_a3b8e12b4d9805979321212dd6db05961"><div class="ttname"><a href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961">Vertex::getLow</a></div><div class="ttdeci">int getLow() const</div><div class="ttdef"><b>Definition:</b> Graph.h:257</div></div>
+<div class="ttc" id="aclass_vertex_html_a48eae2f7af2362634adab02b7b2dbec6"><div class="ttname"><a href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6">Vertex::getInfo</a></div><div class="ttdeci">T getInfo() const</div><div class="ttdef"><b>Definition:</b> Graph.h:170</div></div>
+<div class="ttc" id="aclass_vertex_html_a68c9c8792b2752b7540e2f8c14f686a4"><div class="ttname"><a href="class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4">Vertex::setInfo</a></div><div class="ttdeci">void setInfo(T in)</div><div class="ttdef"><b>Definition:</b> Graph.h:175</div></div>
+<div class="ttc" id="aclass_vertex_html_a7c63419557bd6ac9c2bbf10a4d710f86"><div class="ttname"><a href="class_vertex.html#a7c63419557bd6ac9c2bbf10a4d710f86">Vertex::setOutdegree</a></div><div class="ttdeci">void setOutdegree(int outdegree)</div><div class="ttdef"><b>Definition:</b> Graph.h:81</div></div>
+<div class="ttc" id="aclass_vertex_html_a7eecd09188d8f959b1c0ac9332c14218"><div class="ttname"><a href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218">Vertex::setNum</a></div><div class="ttdeci">void setNum(int num)</div><div class="ttdef"><b>Definition:</b> Graph.h:252</div></div>
+<div class="ttc" id="aclass_vertex_html_aa1a1921cded8cb209382407b5a9433f3"><div class="ttname"><a href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3">Vertex::setVisited</a></div><div class="ttdeci">void setVisited(bool v)</div><div class="ttdef"><b>Definition:</b> Graph.h:267</div></div>
+<div class="ttc" id="aclass_vertex_html_aa2bb17f6ebd98a67f8da1f689b22fadc"><div class="ttname"><a href="class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc">Vertex::isVisited</a></div><div class="ttdeci">bool isVisited() const</div><div class="ttdef"><b>Definition:</b> Graph.h:232</div></div>
+<div class="ttc" id="aclass_vertex_html_aaa41dfa4ce1a19b4e529cc6cdc23b764"><div class="ttname"><a href="class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764">Vertex::isProcessing</a></div><div class="ttdeci">bool isProcessing() const</div><div class="ttdef"><b>Definition:</b> Graph.h:180</div></div>
+<div class="ttc" id="aclass_vertex_html_aacc5763deca4f0f308756b69f9598584"><div class="ttname"><a href="class_vertex.html#aacc5763deca4f0f308756b69f9598584">Vertex::setAdj</a></div><div class="ttdeci">void setAdj(const vector&lt; Edge&lt; T &gt; &gt; &amp;adj)</div><div class="ttdef"><b>Definition:</b> Graph.h:277</div></div>
+<div class="ttc" id="aclass_vertex_html_ab2916c006fa35b918910a2232095e785"><div class="ttname"><a href="class_vertex.html#ab2916c006fa35b918910a2232095e785">Vertex::getNum</a></div><div class="ttdeci">int getNum() const</div><div class="ttdef"><b>Definition:</b> Graph.h:247</div></div>
+<div class="ttc" id="aclass_vertex_html_ac78980191ea1f9d22e6617e9e511b755"><div class="ttname"><a href="class_vertex.html#ac78980191ea1f9d22e6617e9e511b755">Vertex::getIndegree</a></div><div class="ttdeci">int getIndegree() const</div><div class="ttdef"><b>Definition:</b> Graph.h:237</div></div>
+<div class="ttc" id="aclass_vertex_html_ac7b2e53890abfbcd4d7ce3b7d34ee932"><div class="ttname"><a href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932">Vertex::setProcessing</a></div><div class="ttdeci">void setProcessing(bool p)</div><div class="ttdef"><b>Definition:</b> Graph.h:185</div></div>
+<div class="ttc" id="aclass_vertex_html_ad1602c48fedae2d3d5a3949594dc5ab8"><div class="ttname"><a href="class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8">Vertex::setIndegree</a></div><div class="ttdeci">void setIndegree(int indegree)</div><div class="ttdef"><b>Definition:</b> Graph.h:242</div></div>
+<div class="ttc" id="aclass_vertex_html_ada7d878fff0c3d585fce0a51cffa6435"><div class="ttname"><a href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435">Vertex::setLow</a></div><div class="ttdeci">void setLow(int low)</div><div class="ttdef"><b>Definition:</b> Graph.h:262</div></div>
+<div class="ttc" id="aclass_vertex_html_afcbdd4d4198b672356559cb8fa088408"><div class="ttname"><a href="class_vertex.html#afcbdd4d4198b672356559cb8fa088408">Vertex::Vertex</a></div><div class="ttdeci">Vertex(T in)</div><div class="ttdef"><b>Definition:</b> Graph.h:153</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

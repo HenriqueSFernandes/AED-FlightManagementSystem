@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertex_0',['Vertex',['../class_vertex.html',1,'']]]
+  ['flight_0',['Flight',['../class_flight.html',1,'']]]
 ];
