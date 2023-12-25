@@ -53,20 +53,27 @@ public:
      */
     void readFlights();
     /**
-    * @brief Returns global number of available airports
-    */
+     * @brief Gets the total number of airports.
+     * @return Integer representing the total numbers of airports.
+     */
     int GlobalNumberOfAirports();
     /**
-    * @brief Returns global number of available flights
-    */
+     * @brief Returns global number of available flights.
+     * @return Integer representing the total number of flights.
+     */
     int GlobalNumberOfFlights();
     /**
-    * @brief Returns global number of articulations points
-    */
+     * @brief Returns global number of articulations points.
+     * @return Integer representing the total number of articulation points.
+     */
     int articulationPoints();
     /**
-    * @brief Helper dfs function for the previous one
-    */
+     * @brief
+     * @param v Current vertex.
+     * @param s Auxiliary stack of vertices.
+     * @param l Set of vertices that are articulation points.
+     * @param i Auxiliary counter.
+     */
     void dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i);
 };
 
