@@ -52,6 +52,12 @@ public:
      * @brief Read flights from the csv file.
      */
     void readFlights();
+
+    vector<int>
+    getNumberOfDestinations(Airport airport, set<Airport> &airports, set<string> &countries, set<string> &cities);
+
+    vector<int>
+    getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

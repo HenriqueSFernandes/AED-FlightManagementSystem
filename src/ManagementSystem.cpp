@@ -88,7 +88,6 @@ void ManagementSystem::readFlights() {
         auto airline = airlines.find(Airline(airlineCode, "", "", ""));
         auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
-        // If the flight already exists add the airlines to the flight, otherwise create a new flight
         bool flightExists = false;
         for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
             if (flight.getDest() == targetAirportVertex) {
@@ -105,6 +104,37 @@ void ManagementSystem::readFlights() {
 
     }
     flightsFile.close();
+}
+
+vector<int> ManagementSystem::getNumberOfDestinations(string airportString,set<Airport>& airports,set<string> &countries,set<string> &cities){
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    airportNetwork.dfs(sourceAirportVertex->getInfo());
+    int numAirports=0;
+    int numCountries=0;
+    int numCities=0;
+    for( auto vertex : airportNetwork.getVertexSet()){
+        if(vertex->isVisited()== true){
+            Airport airport=vertex->getInfo();
+            if(airports.find(airport)==airports.end()){
+                airports.insert(airport);
+                numAirports++;
+            }
+            if(countries.find(airport.getCountry())==countries.end()){
+                countries.insert(airport.getCountry());
+                numCountries++;
+            }
+            if(cities.find(airport.getCity())==cities.end()){
+                cities.insert(airport.getCity());
+                numCities++;
+            }
+        }
+    }
+    vector<int> ans;
+    ans.push_back(numAirports);
+    ans.push_back(numCountries);
+    ans.push_back(numCities);
+    return ans;
+
 }
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
