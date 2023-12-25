@@ -114,20 +114,20 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
     int numAirports = 0;
     int numCountries = 0;
     int numCities = 0;
-    for (Vertex<Airport> airportVertex : visitableAirports){
+    for (Vertex<Airport> airportVertex: visitableAirports) {
         Airport airport = airportVertex.getInfo();
-            if (airports.find(airport) == airports.end()) {
-                airports.insert(airport);
-                numAirports++;
-            }
-            if (countries.find(airport.getCountry()) == countries.end()) {
-                countries.insert(airport.getCountry());
-                numCountries++;
-            }
-            if (cities.find(airport.getCity()) == cities.end()) {
-                cities.insert(airport.getCity());
-                numCities++;
-            }
+        if (airports.find(airport) == airports.end()) {
+            airports.insert(airport);
+            numAirports++;
+        }
+        if (countries.find(airport.getCountry()) == countries.end()) {
+            countries.insert(airport.getCountry());
+            numCountries++;
+        }
+        if (cities.find(airport.getCity()) == cities.end()) {
+            cities.insert(airport.getCity());
+            numCities++;
+        }
     }
     vector<int> ans;
     ans.push_back(numAirports);
