@@ -213,7 +213,7 @@ set<Airline> Edge<T>::getAirlines() {
 
 template<class T>
 void Edge<T>::addAirline(Airline airline) {
-    this->getAirlines().insert(airline);
+    Edge::airlines.insert(airline);
 
 }
 

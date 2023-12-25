@@ -52,6 +52,22 @@ public:
      * @brief Read flights from the csv file.
      */
     void readFlights();
+    /**
+    * @brief Returns global number of available airports
+    */
+    int GlobalNumberOfAirports();
+    /**
+    * @brief Returns global number of available flights
+    */
+    int GlobalNumberOfFlights();
+    /**
+    * @brief Returns global number of articulations points
+    */
+    int articulationPoints();
+    /**
+    * @brief Helper dfs function for the previous one
+    */
+    void dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
