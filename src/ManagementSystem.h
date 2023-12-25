@@ -54,9 +54,6 @@ public:
     void readFlights();
 
     vector<int>
-    getNumberOfDestinations(Airport airport, set<Airport> &airports, set<string> &countries, set<string> &cities);
-
-    vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
 };
 
