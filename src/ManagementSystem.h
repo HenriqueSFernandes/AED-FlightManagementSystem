@@ -86,6 +86,9 @@ public:
      */
     vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
+
+
+    vector<pair<Airport,int>> topkAirportsMaxFlights(int k);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
