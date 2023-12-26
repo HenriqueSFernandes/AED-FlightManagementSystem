@@ -98,18 +98,21 @@ public:
     void airportDetails(string airportString);
 
     /**
-     * @brief Print details of a given country, like number of flights, countries and airlines.
+     * @brief Prints details of a given country, like number of flights, countries and airlines.
      * @param countryName The name of the country.
      */
     void countryDetails(string countryName);
 
     /**
-     * @brief Print details of a given city, like number of flights, countries and airlines.
+     * @brief Prints details of a given city, like number of flights, countries and airlines.
      * @param cityName The name of the city.
      */
     void cityDetails(string cityName);
 
-
+    /**
+     * @brief Prints details of a given airline, like number of flights and airports.
+     * @param airlineCode The code of the airline.
+     */
     void airlineDetails(string airlineCode);
 
     /**

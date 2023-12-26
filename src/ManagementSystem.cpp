@@ -253,7 +253,7 @@ void ManagementSystem::airportDetails(string airportString) {
          << sourceAirportVertex->getInfo().getCountry() << endl;
     cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
          << availableCountries.size() << " different countries, ";
-    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 192.0 * 100
+    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << availableAirlines.size()
          << " airlines, which are the following:\n";
@@ -306,7 +306,7 @@ void ManagementSystem::countryDetails(string countryName) {
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
-         << countriesAvailable.size() / 192.0 * 100
+         << countriesAvailable.size() / 225.0 * 100
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << countryAirlines.size()
          << " airlines, which are the following:\n";
@@ -359,7 +359,7 @@ void ManagementSystem::cityDetails(string cityName) {
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
-         << countriesAvailable.size() / 192.0 * 100
+         << countriesAvailable.size() / 225.0 * 100
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << cityAirlines.size()
          << " airlines, which are the following:\n";
@@ -368,6 +368,34 @@ void ManagementSystem::cityDetails(string cityName) {
              << " outgoing flight(s).\n";
     }
 
+}
+
+void ManagementSystem::airlineDetails(string airlineCode) {
+    map<Airport, int> availableAirports;
+    int flightCount = 0;
+    set<string> availableCountries;
+    auto airline = airlines.find(Airline(airlineCode, "", "", ""));
+    cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
+         << airline->getCountry() << ":\n";
+    for (Vertex<Airport> *airportVertex: getAirportNetwork().getVertexSet()) {
+        for (Edge<Airport> flight: airportVertex->getAdj()) {
+            if (flight.getAirlines().find(Airline(airlineCode, "", "", "")) != flight.getAirlines().end()) {
+                flightCount++;
+                availableCountries.insert(flight.getDest()->getInfo().getCountry());
+                if (availableAirports.find(airportVertex->getInfo()) == availableAirports.end()) {
+                    availableAirports[airportVertex->getInfo()] = 1;
+                } else {
+                    availableAirports[airportVertex->getInfo()]++;
+                }
+            }
+        }
+    }
+
+    cout << "\tThis airline is responsible for " << flightCount << " flights to " << availableCountries.size()
+         << " different countries, which means this airline covers " << fixed << setprecision(2)
+         << availableCountries.size() / 225.0 * 100
+         << "% of all the countries.\n";
+    cout << "\tThis airline operates in " << availableAirports.size() << " different airports.\n";
 }
 
 vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
@@ -387,5 +415,6 @@ vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
     return res;
 
 }
+
 
 
