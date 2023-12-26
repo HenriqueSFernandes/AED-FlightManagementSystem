@@ -86,6 +86,13 @@ public:
      */
     vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
+
+    /**
+    * @brief Get the top k airports with the maximum number of flights.
+    * @param k The number of top airports to retrieve.
+    * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
+    */
+    vector<pair<Airport,int>> topkAirportsMaxFlights(int k);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

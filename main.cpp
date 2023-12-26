@@ -11,6 +11,7 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
+
     cout << "****************************************\n" << "*               Airlines               *\n"
          << "****************************************\n";
     for (const Airline &airline: system.getAirlines()) {
@@ -49,6 +50,16 @@ int main() {
     cout<<"IT GOES TO"<<ans[1]<<" countries"<<endl;
     cout<<"IT GOES TO"<<ans[2]<<" cities"<<endl;
 
+
+    cout << "****************************************\n" << "*              QUESTION 3-VIII TEST             *\n"
+         << "****************************************\n";
+    cout<<"Input amount of airports you want to see\n";
+    int k;
+    cin >>k;
+    auto a = system.topkAirportsMaxFlights(k);
+    for(auto i : a){
+        cout<<i.first << "\n\n has " << i.second<< " flights\n\n";
+    }
 
     return 0;
 }
