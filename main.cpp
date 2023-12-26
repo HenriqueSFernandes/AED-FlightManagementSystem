@@ -38,5 +38,17 @@ int main() {
     cout << "****************************************\n" << "*              QUESTION 3-IX TEST             *\n"
         << "****************************************\n";
     cout<<system.articulationPoints()<<endl;
+    cout << "****************************************\n" << "*               TEST-3 v               *\n"
+         << "****************************************\n";
+    set<Airport> airports;
+    set<string>  countries;
+    set<string> cities;
+
+    vector<int> ans=system.getNumberOfDestinations("JFK",airports,countries,cities);
+    cout<<"IT GOES TO"<<ans[0]<<" airports"<<endl;
+    cout<<"IT GOES TO"<<ans[1]<<" countries"<<endl;
+    cout<<"IT GOES TO"<<ans[2]<<" cities"<<endl;
+
+
     return 0;
 }
