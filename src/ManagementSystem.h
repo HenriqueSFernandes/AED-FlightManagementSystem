@@ -87,7 +87,16 @@ public:
     vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
 
-
+    /**
+     *
+     * @brief Gets the numbers of destinations possible from a given airport in X layovers
+     * @param airportString
+     * @param airports
+     * @param countries
+     * @param cities
+     * @param x
+     * @return Vector with 3 elements: the number of airports, countries and cities
+     */
     vector<int> getNumberOfDestinationsInXlayovers(string airportString, set<Airport> &airports, set<string> &countries,
                                                    set<string> &cities, int x);
 };
