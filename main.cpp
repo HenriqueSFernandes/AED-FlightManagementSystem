@@ -49,6 +49,10 @@ int main() {
     cout<<"IT GOES TO"<<ans[1]<<" countries"<<endl;
     cout<<"IT GOES TO"<<ans[2]<<" cities"<<endl;
 
+     cout << "****************************************\n" << "*              QUESTION 3-II TEST             *\n"
+         << "****************************************\n";
+    system.airportDetails("OPO");
+
 
     return 0;
 }

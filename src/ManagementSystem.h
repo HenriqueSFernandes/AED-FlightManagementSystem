@@ -52,21 +52,25 @@ public:
      * @brief Read flights from the csv file.
      */
     void readFlights();
+
     /**
      * @brief Gets the total number of airports.
      * @return Integer representing the total numbers of airports.
      */
     int GlobalNumberOfAirports();
+
     /**
      * @brief Returns global number of available flights.
      * @return Integer representing the total number of flights.
      */
     int GlobalNumberOfFlights();
+
     /**
      * @brief Returns global number of articulations points.
      * @return Integer representing the total number of articulation points.
      */
     int articulationPoints();
+
     /**
      * @brief
      * @param v Current vertex.
@@ -86,6 +90,12 @@ public:
      */
     vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
+
+    /**
+     * @brief Prints details of a given airport, like number of flights, countries and airlines.
+     * @param airportString The airport code.
+     */
+    void airportDetails(string airportString);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

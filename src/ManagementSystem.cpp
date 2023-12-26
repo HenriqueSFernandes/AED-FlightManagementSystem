@@ -2,6 +2,9 @@
 #include "ManagementSystem.h"
 #include <fstream>
 #include <sstream>
+#include <iomanip>
+#include <map>
+#include <algorithm>
 
 using namespace std;
 
@@ -89,8 +92,8 @@ void ManagementSystem::readFlights() {
         auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
         bool flightExists = false;
-        for (const Edge<Airport>& flight: sourceAirportVertex->getAdj()) {
-            Edge<Airport>* flightPtr = const_cast<Edge<Airport>*>(&flight);
+        for (const Edge<Airport> &flight: sourceAirportVertex->getAdj()) {
+            Edge<Airport> *flightPtr = const_cast<Edge<Airport> *>(&flight);
             if (flight.getDest()->getInfo().getCode() == targetAirportVertex->getInfo().getCode()) {
                 flightExists = true;
                 flightPtr->addAirline(*airline);
@@ -107,40 +110,42 @@ void ManagementSystem::readFlights() {
     flightsFile.close();
 }
 
-int  ManagementSystem::GlobalNumberOfAirports(){
+int ManagementSystem::GlobalNumberOfAirports() {
     return airportNetwork.getNumVertex();
 }
-int ManagementSystem::GlobalNumberOfFlights(){
-    int numberOfFlights=0;
-    for( auto vertex : airportNetwork.getVertexSet()){
-        for( auto edge : vertex->getAdj()){
-            numberOfFlights+=edge.getAirlines().size();
+
+int ManagementSystem::GlobalNumberOfFlights() {
+    int numberOfFlights = 0;
+    for (auto vertex: airportNetwork.getVertexSet()) {
+        for (auto edge: vertex->getAdj()) {
+            numberOfFlights += edge.getAirlines().size();
         }
     }
     return numberOfFlights;
 }
+
 int ManagementSystem::articulationPoints() {
     set<Airport> res;
-    int k=1;
-    for( auto vertex : airportNetwork.getVertexSet()){
+    int k = 1;
+    for (auto vertex: airportNetwork.getVertexSet()) {
         vertex->setVisited(false);
         vertex->setProcessing(false);
         vertex->setIndegree(0);
     }
-    for( auto vertex : airportNetwork.getVertexSet()){
-        if(!vertex->isVisited()){
-            k=1;
+    for (auto vertex: airportNetwork.getVertexSet()) {
+        if (!vertex->isVisited()) {
+            k = 1;
             stack<Airport> s;
-            ManagementSystem::dfs_art(vertex,s,res,k);
+            ManagementSystem::dfs_art(vertex, s, res, k);
         }
     }
-    for( auto el : res){
-        cout<<el.getCode()<<endl;
+    for (auto el: res) {
+        cout << el.getCode() << endl;
     }
     return res.size();
 }
 
-void ManagementSystem::dfs_art( Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i){
+void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {
 
     v->setLow(i);
     v->setNum(i);
@@ -148,28 +153,29 @@ void ManagementSystem::dfs_art( Vertex<Airport> *v, stack<Airport> &s, set<Airpo
     v->setVisited(true);
     s.push(v->getInfo());
     i++;
-    int treeedges=0;
-    for( auto & edge : v->getAdj()){
-        if(!edge.getDest()->isVisited()){
+    int treeedges = 0;
+    for (auto &edge: v->getAdj()) {
+        if (!edge.getDest()->isVisited()) {
             treeedges++;
-            dfs_art(edge.getDest(),s,l,i);
-            v->setLow(min(v->getLow(),edge.getDest()->getLow()));
-            if(edge.getDest()->getLow()>=v->getNum()){
-                if(v->getNum()!=1){
+            dfs_art(edge.getDest(), s, l, i);
+            v->setLow(min(v->getLow(), edge.getDest()->getLow()));
+            if (edge.getDest()->getLow() >= v->getNum()) {
+                if (v->getNum() != 1) {
                     l.insert(v->getInfo());
                 }
             }
-        }else if(edge.getDest()->isProcessing()){
-            v->setLow(min(v->getLow(),edge.getDest()->getNum()));
+        } else if (edge.getDest()->isProcessing()) {
+            v->setLow(min(v->getLow(), edge.getDest()->getNum()));
         }
-        if(treeedges>1 and v->getNum()==1){
-           // cout<<"here"<<v->getInfo().getCode()<<endl;
-           //l.insert(v->getInfo());
+        if (treeedges > 1 and v->getNum() == 1) {
+            // cout<<"here"<<v->getInfo().getCode()<<endl;
+            //l.insert(v->getInfo());
         }
     }
     v->setProcessing(false);
     s.pop();
 }
+
 vector<int>
 ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries,
                                           set<string> &cities) {
@@ -217,4 +223,42 @@ const unordered_set<Airport, Airport::HashFunction> &ManagementSystem::getAirpor
 
 const set<Flight> &ManagementSystem::getFlights() const {
     return flights;
+}
+
+void ManagementSystem::airportDetails(string airportString) {
+    // Finds the airport
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    set<string> availableCountries;
+    map<Airline, int> availableAirlines;
+    // Iterates over every flight and gets the different countries and airlines.
+    for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
+        availableCountries.insert(flight.getDest()->getInfo().getCountry());
+        for (Airline airline: flight.getAirlines()) {
+            if (availableAirlines.find(airline) == availableAirlines.end()) {
+                availableAirlines[airline] = 1;
+            } else {
+                availableAirlines[airline]++;
+            }
+        }
+    }
+    // Sorts the airlines by the number of flights.
+    vector<pair<Airline, int>> sortedEntries(availableAirlines.begin(), availableAirlines.end());
+    std::sort(sortedEntries.begin(), sortedEntries.end(), [](const auto &a, const auto &b) {
+        return a.second > b.second;
+    });
+
+    cout << "Details for " << sourceAirportVertex->getInfo().getName() << " ("
+         << sourceAirportVertex->getInfo().getCode() << "):\n";
+    cout << "\tThis airport is based in " << sourceAirportVertex->getInfo().getCity() << ", "
+         << sourceAirportVertex->getInfo().getCountry() << endl;
+    cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
+         << availableCountries.size() << " different countries, ";
+    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 192.0 * 100
+         << "% of all the countries.\n";
+    cout << "\tThese flights are made by a total of " << availableAirlines.size()
+         << " airlines, which are the following:\n";
+    for (pair<Airline, int> airline: sortedEntries) {
+        cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
+             << " outgoing flight(s).\n";
+    }
 }
