@@ -52,7 +52,7 @@ int main() {
 
 
     cout << "****************************************\n" << "*              QUESTION 3-VIII TEST             *\n"
-         << "****************************************\n"
+         << "****************************************\n";
     cout<<"Input amount of airports you want to see\n";
     int k;
     cin >>k;
