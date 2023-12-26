@@ -261,4 +261,21 @@ void ManagementSystem::airportDetails(string airportString) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
+
+vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
+    set<pair<int,Airport>> pairs;
+    vector<pair<Airport, int>> res;
+    int count;
+    for(auto vertex : airportNetwork.getVertexSet()){
+        count = 0;
+        for(Edge<Airport> edge : vertex->getAdj()){
+            count+=edge.getAirlines().size();
+        }
+        pairs.insert({count,vertex->getInfo()});
+    }
+    for (auto it = pairs.rbegin(); it != pairs.rend() && k > 0; ++it, --k) {
+        res.push_back({it->second, it->first});
+    }
+    return res;
+
 }
