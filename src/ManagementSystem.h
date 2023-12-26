@@ -52,6 +52,17 @@ public:
      * @brief Read flights from the csv file.
      */
     void readFlights();
+
+    /**
+     * @brief Gets the numbers of destinations possible from a given airport.
+     * @param airportString The code of the airport.
+     * @param airports Auxiliary set of airports containing the possible destinations.
+     * @param countries Auxiliary set of countries containing the possible destinations.
+     * @param cities Auxiliary set of cities containing the possible destinations.
+     * @return Vector with 3 elements: the number of airports, countries and cities.
+     */
+    vector<int>
+    getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
