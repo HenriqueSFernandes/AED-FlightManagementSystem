@@ -97,11 +97,23 @@ public:
      */
     void airportDetails(string airportString);
 
+    /**
+     * @brief Print details of a given country, like number of flights, countries and airlines.
+     * @param countryName The name of the country.
+     */
+    void countryDetails(string countryName);
+
+    void cityDetails(string cityName);
+
+
+    void airlineDetails(string airlineCode);
+
+    /**
     * @brief Get the top k airports with the maximum number of flights.
     * @param k The number of top airports to retrieve.
     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
     */
-    vector<pair<Airport,int>> topkAirportsMaxFlights(int k);
+    vector<pair<Airport, int>> topkAirportsMaxFlights(int k);
 
 };
 
