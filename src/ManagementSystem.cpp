@@ -89,10 +89,11 @@ void ManagementSystem::readFlights() {
         auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
         bool flightExists = false;
-        for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
-            if (flight.getDest() == targetAirportVertex) {
+        for (const Edge<Airport>& flight: sourceAirportVertex->getAdj()) {
+            Edge<Airport>* flightPtr = const_cast<Edge<Airport>*>(&flight);
+            if (flight.getDest()->getInfo().getCode() == targetAirportVertex->getInfo().getCode()) {
                 flightExists = true;
-                flight.addAirline(*airline);
+                flightPtr->addAirline(*airline);
             }
         }
         if (!flightExists) {
@@ -106,6 +107,69 @@ void ManagementSystem::readFlights() {
     flightsFile.close();
 }
 
+int  ManagementSystem::GlobalNumberOfAirports(){
+    return airportNetwork.getNumVertex();
+}
+int ManagementSystem::GlobalNumberOfFlights(){
+    int numberOfFlights=0;
+    for( auto vertex : airportNetwork.getVertexSet()){
+        for( auto edge : vertex->getAdj()){
+            numberOfFlights+=edge.getAirlines().size();
+        }
+    }
+    return numberOfFlights;
+}
+int ManagementSystem::articulationPoints() {
+    set<Airport> res;
+    int k=1;
+    for( auto vertex : airportNetwork.getVertexSet()){
+        vertex->setVisited(false);
+        vertex->setProcessing(false);
+        vertex->setIndegree(0);
+    }
+    for( auto vertex : airportNetwork.getVertexSet()){
+        if(!vertex->isVisited()){
+            k=1;
+            stack<Airport> s;
+            ManagementSystem::dfs_art(vertex,s,res,k);
+        }
+    }
+    for( auto el : res){
+        cout<<el.getCode()<<endl;
+    }
+    return res.size();
+}
+
+void ManagementSystem::dfs_art( Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i){
+
+    v->setLow(i);
+    v->setNum(i);
+    v->setProcessing(true);
+    v->setVisited(true);
+    s.push(v->getInfo());
+    i++;
+    int treeedges=0;
+    for( auto & edge : v->getAdj()){
+        if(!edge.getDest()->isVisited()){
+            treeedges++;
+            dfs_art(edge.getDest(),s,l,i);
+            v->setLow(min(v->getLow(),edge.getDest()->getLow()));
+            if(edge.getDest()->getLow()>=v->getNum()){
+                if(v->getNum()!=1){
+                    l.insert(v->getInfo());
+                }
+            }
+        }else if(edge.getDest()->isProcessing()){
+            v->setLow(min(v->getLow(),edge.getDest()->getNum()));
+        }
+        if(treeedges>1 and v->getNum()==1){
+           // cout<<"here"<<v->getInfo().getCode()<<endl;
+           //l.insert(v->getInfo());
+        }
+    }
+    v->setProcessing(false);
+    s.pop();
+}
 vector<int>
 ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries,
                                           set<string> &cities) {

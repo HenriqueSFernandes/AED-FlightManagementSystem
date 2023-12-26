@@ -31,6 +31,13 @@ int main() {
     for( auto vertex : system.getAirportNetwork().getVertexSet()){
         cout<< vertex->getInfo().getCode()<<"goes to "<<vertex->getOutdegree()<<" places and "<<vertex->getIndegree()<<" go to it"<<endl;
     }
+    cout << "****************************************\n" << "*              QUESTION 3-I TEST             *\n"
+         << "****************************************\n";
+    cout<<"GLOBAL NUMBER OF AIRPORTS IS"<<system.GlobalNumberOfAirports()<<endl;
+    cout<<"GLOCBAL NUMBER OF AVAILABLE FLIGHTS IS"<<system.GlobalNumberOfFlights()<<endl;
+    cout << "****************************************\n" << "*              QUESTION 3-IX TEST             *\n"
+        << "****************************************\n";
+    cout<<system.articulationPoints()<<endl;
     cout << "****************************************\n" << "*               TEST-3 v               *\n"
          << "****************************************\n";
     set<Airport> airports;
