@@ -512,13 +512,11 @@ vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
                 w->visited = true;
                 w->setNum(v->getNum()+1);
                 if(w->getNum()<=k){
-                    cout<<"achei"<<w->getInfo()<<endl;
                     res.push_back(w->info);
                 }
             }
         }
     }
-    cout<<"size is"<<res.size();
     return res;
 }
 

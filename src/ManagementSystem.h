@@ -101,18 +101,20 @@ public:
      * @param x
      * @return Vector with 3 elements: the number of airports, countries and cities
      */
-    vector<int> getNumberOfDestinationsInXlayovers(string airportString, set<Airport> &airports, set<string> &countries,
+    vector<int> getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports, set<string> &countries,
                                                    set<string> &cities, int x);
+    /**
      * @brief Prints details of a given airport, like number of flights, countries and airlines.
      * @param airportString The airport code.
      */
     void airportDetails(string airportString);
 
+    /**
     * @brief Get the top k airports with the maximum number of flights.
     * @param k The number of top airports to retrieve.
     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
     */
-    vector<pair<Airport,int>> topkAirportsMaxFlights(int k);
+    vector<pair<Airport,int>> topKAirportsMaxFlights(int k);
 
 };
 

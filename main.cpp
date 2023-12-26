@@ -32,15 +32,6 @@ int main() {
     for( auto vertex : system.getAirportNetwork().getVertexSet()){
         cout<< vertex->getInfo().getCode()<<"goes to "<<vertex->getOutdegree()<<" places and "<<vertex->getIndegree()<<" go to it"<<endl;
     }
-    cout << "****************************************\n" << "*              QUESTION 3-I TEST             *\n"
-         << "****************************************\n";
-    cout<<"GLOBAL NUMBER OF AIRPORTS IS"<<system.GlobalNumberOfAirports()<<endl;
-    cout<<"GLOCBAL NUMBER OF AVAILABLE FLIGHTS IS"<<system.GlobalNumberOfFlights()<<endl;
-    cout << "****************************************\n" << "*              QUESTION 3-IX TEST             *\n"
-        << "****************************************\n";
-    cout<<system.articulationPoints()<<endl;
-    cout << "****************************************\n" << "*               TEST-3 v               *\n"
-         << "****************************************\n";
     set<Airport> airports;
     set<string>  countries;
     set<string> cities;
@@ -55,16 +46,11 @@ int main() {
     set<Airport> airports2;
     set<string>  countries2;
     set<string> cities2;
-    vector<int> ans2=system.getNumberOfDestinationsInXlayovers("JFK",airports2,countries2,cities2,2);
+    vector<int> ans2= system.getNumberOfDestinationsInXLayovers("JFK", airports2, countries2, cities2, 2);
     cout<<"IT GOES TO"<<ans2[0]<<" airports"<<endl;
     cout<<"IT GOES TO"<<ans2[1]<<" countries"<<endl;
     cout<<"IT GOES TO"<<ans2[2]<<" cities"<<endl;
 
-
-
-     cout << "****************************************\n" << "*              QUESTION 3-II TEST             *\n"
-         << "****************************************\n";
-    system.airportDetails("OPO");
 
 
     cout << "****************************************\n" << "*              QUESTION 3-VIII TEST             *\n"
@@ -72,7 +58,7 @@ int main() {
     cout<<"Input amount of airports you want to see\n";
     int k;
     cin >>k;
-    auto a = system.topkAirportsMaxFlights(k);
+    auto a = system.topKAirportsMaxFlights(k);
     for(auto i : a){
         cout<<i.first << "\n\n has " << i.second<< " flights\n\n";
     }

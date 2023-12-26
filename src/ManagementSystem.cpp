@@ -206,20 +206,21 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
     return ans;
 
 }
+
 vector<int>
-ManagementSystem::getNumberOfDestinationsInXlayovers(string airportString, set<Airport> &airports, set<string> &countries,
-                                          set<string> &cities, int x) {
+ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports,
+                                                     set<string> &countries,
+                                                     set<string> &cities, int x) {
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
-    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(),x);
-    cout<<visitableAirports.size();
+    // Gets all the airports at distance x.
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x);
     int numAirports = 0;
     int numCountries = 0;
     int numCities = 0;
+    // Iterates over the visitable airports and updates the counters.
     for (Vertex<Airport> airportVertex: visitableAirports) {
         Airport airport = airportVertex.getInfo();
-        cout<<airport.getCode()<<endl;
         if (airports.find(airport) == airports.end()) {
-            cout<<"hit"<<endl;
             airports.insert(airport);
             numAirports++;
         }
@@ -237,9 +238,7 @@ ManagementSystem::getNumberOfDestinationsInXlayovers(string airportString, set<A
     ans.push_back(numCountries);
     ans.push_back(numCities);
     return ans;
-
 }
-
 
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
@@ -296,21 +295,21 @@ void ManagementSystem::airportDetails(string airportString) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
+}
 
-vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
-    set<pair<int,Airport>> pairs;
+vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
+    set<pair<int, Airport>> pairs;
     vector<pair<Airport, int>> res;
     int count;
-    for(auto vertex : airportNetwork.getVertexSet()){
+    for (auto vertex: airportNetwork.getVertexSet()) {
         count = 0;
-        for(Edge<Airport> edge : vertex->getAdj()){
-            count+=edge.getAirlines().size();
+        for (Edge<Airport> edge: vertex->getAdj()) {
+            count += edge.getAirlines().size();
         }
-        pairs.insert({count,vertex->getInfo()});
+        pairs.insert({count, vertex->getInfo()});
     }
     for (auto it = pairs.rbegin(); it != pairs.rend() && k > 0; ++it, --k) {
         res.push_back({it->second, it->first});
     }
     return res;
-
 }
