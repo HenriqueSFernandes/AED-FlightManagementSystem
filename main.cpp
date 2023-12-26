@@ -48,6 +48,18 @@ int main() {
     cout<<"IT GOES TO"<<ans[0]<<" airports"<<endl;
     cout<<"IT GOES TO"<<ans[1]<<" countries"<<endl;
     cout<<"IT GOES TO"<<ans[2]<<" cities"<<endl;
+    cout << "****************************************\n" << "*               TEST-3 v i            *\n"
+         << "****************************************\n";
+    cout<<"JFK IN 2"<<endl;
+    set<Airport> airports2;
+    set<string>  countries2;
+    set<string> cities2;
+    vector<int> ans2=system.getNumberOfDestinationsInXlayovers("JFK",airports2,countries2,cities2,2);
+    cout<<"IT GOES TO"<<ans2[0]<<" airports"<<endl;
+    cout<<"IT GOES TO"<<ans2[1]<<" countries"<<endl;
+    cout<<"IT GOES TO"<<ans2[2]<<" cities"<<endl;
+
+
 
 
     return 0;

@@ -86,6 +86,10 @@ public:
      */
     vector<int>
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
+
+
+    vector<int> getNumberOfDestinationsInXlayovers(string airportString, set<Airport> &airports, set<string> &countries,
+                                                   set<string> &cities, int x);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

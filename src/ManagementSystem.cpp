@@ -200,6 +200,41 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
     return ans;
 
 }
+vector<int>
+ManagementSystem::getNumberOfDestinationsInXlayovers(string airportString, set<Airport> &airports, set<string> &countries,
+                                          set<string> &cities, int x) {
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(),x);
+    cout<<visitableAirports.size();
+    int numAirports = 0;
+    int numCountries = 0;
+    int numCities = 0;
+    for (Vertex<Airport> airportVertex: visitableAirports) {
+        Airport airport = airportVertex.getInfo();
+        cout<<airport.getCode()<<endl;
+        if (airports.find(airport) == airports.end()) {
+            cout<<"hit"<<endl;
+            airports.insert(airport);
+            numAirports++;
+        }
+        if (countries.find(airport.getCountry()) == countries.end()) {
+            countries.insert(airport.getCountry());
+            numCountries++;
+        }
+        if (cities.find(airport.getCity()) == cities.end()) {
+            cities.insert(airport.getCity());
+            numCities++;
+        }
+    }
+    vector<int> ans;
+    ans.push_back(numAirports);
+    ans.push_back(numCountries);
+    ans.push_back(numCities);
+    return ans;
+
+}
+
+
 
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
     return airportNetwork;
