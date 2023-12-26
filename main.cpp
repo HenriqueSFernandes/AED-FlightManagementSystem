@@ -65,7 +65,7 @@ int main() {
         cout<<i.first << "\n\n has " << i.second<< " flights\n\n";
     }
 
-    system.countryDetails("Portugal");
+    system.cityDetails("Porto");
 
     return 0;
 }

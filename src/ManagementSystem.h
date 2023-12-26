@@ -103,6 +103,10 @@ public:
      */
     void countryDetails(string countryName);
 
+    /**
+     * @brief Print details of a given city, like number of flights, countries and airlines.
+     * @param cityName The name of the city.
+     */
     void cityDetails(string cityName);
 
 

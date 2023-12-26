@@ -316,6 +316,60 @@ void ManagementSystem::countryDetails(string countryName) {
     }
 }
 
+void ManagementSystem::cityDetails(string cityName) {
+    string countryName;
+    map<Airport, int> cityAirports;
+    map<Airline, int> cityAirlines;
+    set<string> countriesAvailable;
+    int flightCount = 0;
+    for (Vertex<Airport> *vertexAirport: getAirportNetwork().getVertexSet()) {
+        if (vertexAirport->getInfo().getCity() == cityName) {
+            countryName = vertexAirport->getInfo().getCountry();
+            cityAirports[vertexAirport->getInfo()] = 0;
+            for (Edge<Airport> flight: vertexAirport->getAdj()) {
+                flightCount++;
+                cityAirports[vertexAirport->getInfo()]++;
+                for (Airline airline: flight.getAirlines()) {
+                    if (cityAirlines.find(airline) == cityAirlines.end()) {
+                        cityAirlines[airline] = 1;
+                    } else {
+                        cityAirlines[airline]++;
+                    }
+                }
+                countriesAvailable.insert(flight.getDest()->getInfo().getCountry());
+            }
+        }
+    }
+
+    vector<pair<Airline, int>> sortedAirlines(cityAirlines.begin(), cityAirlines.end());
+    std::sort(sortedAirlines.begin(), sortedAirlines.end(), [](const auto &a, const auto &b) {
+        return a.second > b.second;
+    });
+
+    vector<pair<Airport, int>> sortedAirports(cityAirports.begin(), cityAirports.end());
+    std::sort(sortedAirports.begin(), sortedAirports.end(), [](const auto &a, const auto &b) {
+        return a.second > b.second;
+    });
+
+    cout << "Details for " << cityName << ", located in " << countryName << ":\n";
+    cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
+    for (pair<Airport, int> airport: sortedAirports) {
+        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") located in "
+             << airport.first.getCity() << " with " << airport.second << " outgoing flights\n";
+    }
+    cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
+         << " different countries, which means this country covers " << fixed << setprecision(2)
+         << countriesAvailable.size() / 192.0 * 100
+         << "% of all the countries.\n";
+    cout << "\tThese flights are made by a total of " << cityAirlines.size()
+         << " airlines, which are the following:\n";
+    for (pair<Airline, int> airline: sortedAirlines) {
+        cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
+             << " outgoing flight(s).\n";
+    }
+
+}
+
 vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
     set<pair<int, Airport>> pairs;
     vector<pair<Airport, int>> res;
@@ -333,4 +387,5 @@ vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
     return res;
 
 }
+
 
