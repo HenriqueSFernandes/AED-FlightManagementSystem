@@ -287,7 +287,7 @@ void ManagementSystem::airportDetails(string airportString) {
          << sourceAirportVertex->getInfo().getCountry() << endl;
     cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
          << availableCountries.size() << " different countries, ";
-    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 192.0 * 100
+    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << availableAirlines.size()
          << " airlines, which are the following:\n";
