@@ -63,6 +63,8 @@ int main() {
         cout<<i.first << "\n\n has " << i.second<< " flights\n\n";
     }
 
+    system.airlineDetails("TAP");
+
 
     return 0;
 }
