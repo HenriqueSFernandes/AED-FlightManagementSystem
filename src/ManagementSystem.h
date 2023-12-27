@@ -132,7 +132,6 @@ public:
     * @param k The number of top airports to retrieve.
     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
     */
-    vector<pair<Airport, int>> topkAirportsMaxFlights(int k);
     vector<pair<Airport,int>> topKAirportsMaxFlights(int k);
 
 };

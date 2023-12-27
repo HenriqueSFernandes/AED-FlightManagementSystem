@@ -295,7 +295,7 @@ void ManagementSystem::airportDetails(string airportString) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
-
+}
 
 void ManagementSystem::countryDetails(string countryName) {
     map<Airport, int> countryAirports;
