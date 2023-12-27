@@ -413,7 +413,7 @@ void Graph<T>::dfsVisitLimited(Vertex<T> *v, vector<T> &res, int k) const {
         for (auto &e: v->adj) {
             auto w = e.dest;
             if (!w->visited)
-                dfsVisitLimited(w, res, k-1);
+                dfsVisitLimited(w, res, k - 1);
         }
     }
 }
@@ -450,7 +450,7 @@ vector<T> Graph<T>::dfsLimited(const T &source, int k) const {
     for (auto v: vertexSet)
         v->visited = false;
 
-    dfsVisitLimited(s, res,k);
+    dfsVisitLimited(s, res, k);
     return res;
 }
 
@@ -494,7 +494,7 @@ vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
     if (s == NULL)
         return res;
     queue<Vertex<T> *> q;
-    for (auto v: vertexSet){
+    for (auto v: vertexSet) {
         v->visited = false;
         v->setNum(0);
 
@@ -510,8 +510,8 @@ vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
             if (!w->visited) {
                 q.push(w);
                 w->visited = true;
-                w->setNum(v->getNum()+1);
-                if(w->getNum()<=k){
+                w->setNum(v->getNum() + 1);
+                if (w->getNum() <= k) {
                     res.push_back(w->info);
                 }
             }

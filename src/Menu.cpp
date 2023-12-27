@@ -33,12 +33,22 @@ void Menu::statisticsMenu() {
         if (option == "1") {
             airportStatisticsMenu();
         } else if (option == "2") {
+            string airlineCode;
+            cout << "Please enter the code of the airline\n";
+            cin >> airlineCode;
+            system.airlineDetails(airlineCode);
         } else if (option == "3") {
 
         } else if (option == "4") {
-
+            string cityName;
+            cout << "Please enter the name of the city\n";
+            cin >> cityName;
+            system.cityDetails(cityName);
         } else if (option == "5") {
-
+            string countryName;
+            cout << "Please enter the name of the country\n";
+            cin >> countryName;
+            system.countryDetails(countryName);
         } else if (option == "6") {
             break;
         } else {
@@ -89,17 +99,18 @@ void Menu::airportStatisticsMenu() {
                 vector<int> res = system.getNumberOfDestinationsInXLayovers(airportCode, auxAirports, auxCountries,
                                                                             auxCities, k);
                 cout << "There are " << res[0] << " available destinations in " << res[2] << " different cities and "
-                     << res[1] << " different countries considering at most" << k << " layovers.\n";
+                     << res[1] << " different countries considering at most " << k << " layovers.\n";
             }
 
         } else if (option == "4") {
             set<Airport> essentialAirports = system.essentialAirports();
-            cout << "There are " << essentialAirports.size() << " essential airports (airports are essential if, when removed, areas of the network start to be unreachable).\n";
+            cout << "There are " << essentialAirports.size()
+                 << " essential airports (airports are essential if, when removed, areas of the network start to be unreachable).\n";
             int n;
             cout << "How many essential airports do you wish to see?\n";
             cin >> n;
-            for (auto airport : essentialAirports){
-                if (n == 0){
+            for (auto airport: essentialAirports) {
+                if (n == 0) {
                     break;
                 }
                 n--;
@@ -112,8 +123,4 @@ void Menu::airportStatisticsMenu() {
         }
 
     }
-}
-
-void Menu::airlineStatisticsMenu() {
-
 }

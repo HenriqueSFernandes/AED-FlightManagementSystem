@@ -411,8 +411,7 @@ void ManagementSystem::cityDetails(string cityName) {
     cout << "Details for " << cityName << ", located in " << countryName << ":\n";
     cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
     for (pair<Airport, int> airport: sortedAirports) {
-        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") located in "
-             << airport.first.getCity() << " with " << airport.second << " outgoing flights\n";
+        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second << " outgoing flights\n";
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)

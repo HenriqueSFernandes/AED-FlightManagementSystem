@@ -9,10 +9,12 @@ private:
     ManagementSystem system;
 public:
     explicit Menu(const ManagementSystem &system);
+
     void start();
+
     void statisticsMenu();
+
     void airportStatisticsMenu();
-    void airlineStatisticsMenu();
 };
 
 
