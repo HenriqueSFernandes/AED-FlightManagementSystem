@@ -93,13 +93,13 @@ public:
 
     /**
      *
-     * @brief Gets the numbers of destinations possible from a given airport in X layovers
-     * @param airportString
-     * @param airports
-     * @param countries
-     * @param cities
-     * @param x
-     * @return Vector with 3 elements: the number of airports, countries and cities
+     * @brief Gets the numbers of destinations possible from a given airport in X layovers.
+     * @param airportString The code of the airport.
+     * @param airports Auxiliary set of airports.
+     * @param countries Auxiliary set of countries.
+     * @param cities Auxiliary set of cities.
+     * @param x The maximum number of layovers.
+     * @return Vector with 3 elements: the number of airports, countries and cities.
      */
     vector<int> getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports, set<string> &countries,
                                                    set<string> &cities, int x);
