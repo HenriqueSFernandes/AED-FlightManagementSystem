@@ -207,6 +207,40 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
 
 }
 
+vector<int>
+ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports,
+                                                     set<string> &countries,
+                                                     set<string> &cities, int x) {
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    // Gets all the airports at distance x.
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x);
+    int numAirports = 0;
+    int numCountries = 0;
+    int numCities = 0;
+    // Iterates over the visitable airports and updates the counters.
+    for (Vertex<Airport> airportVertex: visitableAirports) {
+        Airport airport = airportVertex.getInfo();
+        if (airports.find(airport) == airports.end()) {
+            airports.insert(airport);
+            numAirports++;
+        }
+        if (countries.find(airport.getCountry()) == countries.end()) {
+            countries.insert(airport.getCountry());
+            numCountries++;
+        }
+        if (cities.find(airport.getCity()) == cities.end()) {
+            cities.insert(airport.getCity());
+            numCities++;
+        }
+    }
+    vector<int> ans;
+    ans.push_back(numAirports);
+    ans.push_back(numCountries);
+    ans.push_back(numCities);
+    return ans;
+}
+
+
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
     return airportNetwork;
 }
@@ -253,7 +287,7 @@ void ManagementSystem::airportDetails(string airportString) {
          << sourceAirportVertex->getInfo().getCountry() << endl;
     cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
          << availableCountries.size() << " different countries, ";
-    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 192.0 * 100
+    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << availableAirlines.size()
          << " airlines, which are the following:\n";
@@ -261,21 +295,21 @@ void ManagementSystem::airportDetails(string airportString) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
+}
 
-vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
-    set<pair<int,Airport>> pairs;
+vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
+    set<pair<int, Airport>> pairs;
     vector<pair<Airport, int>> res;
     int count;
-    for(auto vertex : airportNetwork.getVertexSet()){
+    for (auto vertex: airportNetwork.getVertexSet()) {
         count = 0;
-        for(Edge<Airport> edge : vertex->getAdj()){
-            count+=edge.getAirlines().size();
+        for (Edge<Airport> edge: vertex->getAdj()) {
+            count += edge.getAirlines().size();
         }
-        pairs.insert({count,vertex->getInfo()});
+        pairs.insert({count, vertex->getInfo()});
     }
     for (auto it = pairs.rbegin(); it != pairs.rend() && k > 0; ++it, --k) {
         res.push_back({it->second, it->first});
     }
     return res;
-
 }
