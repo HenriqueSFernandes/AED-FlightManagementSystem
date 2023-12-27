@@ -213,7 +213,7 @@ ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<A
                                                      set<string> &cities, int x) {
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
     // Gets all the airports at distance x.
-    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x);
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x+1);
     int numAirports = 0;
     int numCountries = 0;
     int numCities = 0;
