@@ -124,7 +124,7 @@ int ManagementSystem::GlobalNumberOfFlights() {
     return numberOfFlights;
 }
 
-int ManagementSystem::articulationPoints() {
+set<Airport> ManagementSystem::essentialAirports() {
     set<Airport> res;
     int k = 1;
     for (auto vertex: airportNetwork.getVertexSet()) {
@@ -142,7 +142,7 @@ int ManagementSystem::articulationPoints() {
     for (auto el: res) {
         cout << el.getCode() << endl;
     }
-    return res.size();
+    return res;
 }
 
 void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {

@@ -66,10 +66,10 @@ public:
     int GlobalNumberOfFlights();
 
     /**
-     * @brief Returns global number of articulations points.
-     * @return Integer representing the total number of articulation points.
+     * @brief Returns the essential airports..
+     * @return Set representing the essential points.
      */
-    int articulationPoints();
+    set<Airport> essentialAirports();
 
     /**
      * @brief
