@@ -145,6 +145,12 @@ public:
     vector<T> topsort() const;
 
     bool isDAG() const;
+
+    vector<T> dfsLimited(const T &source, int k) const;
+
+    void dfsVisitLimited(Vertex<T> *v, vector<T> &res, int k) const;
+
+    vector<T> bfsLimited(const T &source, int k) const;
 };
 
 /****************** Provided constructors and functions ********************/
@@ -398,6 +404,21 @@ void Graph<T>::dfsVisit(Vertex<T> *v, vector<T> &res) const {
     }
 }
 
+template<class T>
+void Graph<T>::dfsVisitLimited(Vertex<T> *v, vector<T> &res, int k) const {
+    if (k > 0) {
+        v->visited = true;
+        res.push_back(v->info);
+
+        for (auto &e: v->adj) {
+            auto w = e.dest;
+            if (!w->visited)
+                dfsVisitLimited(w, res, k-1);
+        }
+    }
+}
+
+
 
 /****************** DFS ********************/
 /*
@@ -416,6 +437,20 @@ vector<T> Graph<T>::dfs(const T &source) const {
         v->visited = false;
 
     dfsVisit(s, res);
+    return res;
+}
+
+template<class T>
+vector<T> Graph<T>::dfsLimited(const T &source, int k) const {
+    vector<T> res;
+    auto s = findVertex(source);
+    if (s == nullptr)
+        return res;
+
+    for (auto v: vertexSet)
+        v->visited = false;
+
+    dfsVisitLimited(s, res,k);
     return res;
 }
 
@@ -446,6 +481,39 @@ vector<T> Graph<T>::bfs(const T &source) const {
             if (!w->visited) {
                 q.push(w);
                 w->visited = true;
+            }
+        }
+    }
+    return res;
+}
+
+template<class T>
+vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
+    vector<T> res;
+    auto s = findVertex(source);
+    if (s == NULL)
+        return res;
+    queue<Vertex<T> *> q;
+    for (auto v: vertexSet){
+        v->visited = false;
+        v->setNum(0);
+
+    }
+    q.push(s);
+    s->visited = true;
+    s->setNum(0);
+    while (!q.empty()) {
+        auto v = q.front();
+        q.pop();
+        for (auto &e: v->adj) {
+            auto w = e.dest;
+            if (!w->visited) {
+                q.push(w);
+                w->visited = true;
+                w->setNum(v->getNum()+1);
+                if(w->getNum()<=k){
+                    res.push_back(w->info);
+                }
             }
         }
     }

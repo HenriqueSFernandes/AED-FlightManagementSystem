@@ -207,6 +207,40 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
 
 }
 
+vector<int>
+ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports,
+                                                     set<string> &countries,
+                                                     set<string> &cities, int x) {
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    // Gets all the airports at distance x.
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x);
+    int numAirports = 0;
+    int numCountries = 0;
+    int numCities = 0;
+    // Iterates over the visitable airports and updates the counters.
+    for (Vertex<Airport> airportVertex: visitableAirports) {
+        Airport airport = airportVertex.getInfo();
+        if (airports.find(airport) == airports.end()) {
+            airports.insert(airport);
+            numAirports++;
+        }
+        if (countries.find(airport.getCountry()) == countries.end()) {
+            countries.insert(airport.getCountry());
+            numCountries++;
+        }
+        if (cities.find(airport.getCity()) == cities.end()) {
+            cities.insert(airport.getCity());
+            numCities++;
+        }
+    }
+    vector<int> ans;
+    ans.push_back(numAirports);
+    ans.push_back(numCountries);
+    ans.push_back(numCities);
+    return ans;
+}
+
+
 const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
     return airportNetwork;
 }
@@ -261,7 +295,7 @@ void ManagementSystem::airportDetails(string airportString) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
-}
+
 
 void ManagementSystem::countryDetails(string countryName) {
     map<Airport, int> countryAirports;
@@ -398,7 +432,9 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     cout << "\tThis airline operates in " << availableAirports.size() << " different airports.\n";
 }
 
-vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
+
+
+vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
     set<pair<int, Airport>> pairs;
     vector<pair<Airport, int>> res;
     int count;
@@ -413,7 +449,6 @@ vector<pair<Airport, int>> ManagementSystem::topkAirportsMaxFlights(int k) {
         res.push_back({it->second, it->first});
     }
     return res;
-
 }
 
 
