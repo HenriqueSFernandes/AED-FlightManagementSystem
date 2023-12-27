@@ -12,6 +12,7 @@ public:
     void start();
     void statisticsMenu();
     void airportStatisticsMenu();
+    void airlineStatisticsMenu();
 };
 
 

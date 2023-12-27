@@ -139,9 +139,6 @@ set<Airport> ManagementSystem::essentialAirports() {
             ManagementSystem::dfs_art(vertex, s, res, k);
         }
     }
-    for (auto el: res) {
-        cout << el.getCode() << endl;
-    }
     return res;
 }
 

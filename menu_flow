@@ -1,10 +1,10 @@
-<mxfile host="app.diagrams.net" modified="2023-12-27T16:25:16.391Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="vfc9-x9QX0tL-Dfbr4K0" version="22.1.13" type="device">
+<mxfile host="app.diagrams.net" modified="2023-12-27T17:07:31.297Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="ColY9T1g1AvOp8lwwaJg" version="22.1.13" type="device">
   <diagram name="Página-1" id="mnINL0dqmrJnCJ6uUarj">
-    <mxGraphModel dx="1175" dy="607" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2563" dy="1310" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="vIidtZjvd-23gkILlbUP-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-1" target="vIidtZjvd-23gkILlbUP-3">
+        <mxCell id="vIidtZjvd-23gkILlbUP-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-1" target="vIidtZjvd-23gkILlbUP-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-1" target="vIidtZjvd-23gkILlbUP-2">
@@ -16,38 +16,52 @@
         <mxCell id="vIidtZjvd-23gkILlbUP-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-2" target="vIidtZjvd-23gkILlbUP-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="vIidtZjvd-23gkILlbUP-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-2" target="vIidtZjvd-23gkILlbUP-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-2" value="statisticsMenu()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="234" y="110" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-3" value="search for flight" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="474" y="110" width="120" height="30" as="geometry" />
+          <mxGeometry x="360" y="-40" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="vIidtZjvd-23gkILlbUP-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-10">
+        <mxCell id="vIidtZjvd-23gkILlbUP-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="vIidtZjvd-23gkILlbUP-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-11">
+        <mxCell id="vIidtZjvd-23gkILlbUP-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-11">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vIidtZjvd-23gkILlbUP-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-6" target="vIidtZjvd-23gkILlbUP-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="300.0000000000002" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-6" value="airportStatisticsMenu()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="226" y="190" width="136" height="30" as="geometry" />
+          <mxGeometry x="-83" y="190" width="136" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-9" value="airportDetails()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="10" y="270" width="136" height="30" as="geometry" />
+          <mxGeometry x="-510" y="300" width="136" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-10" value="topKAirportsMaxFlights()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="270" width="136" height="30" as="geometry" />
+          <mxGeometry x="-340" y="300" width="136" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vIidtZjvd-23gkILlbUP-11" target="vIidtZjvd-23gkILlbUP-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-11" value="ask for k layovers" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="346" y="270" width="154" height="30" as="geometry" />
+          <mxGeometry x="-174" y="300" width="154" height="30" as="geometry" />
         </mxCell>
         <mxCell id="vIidtZjvd-23gkILlbUP-15" value="getNumberOfDestinationsInXLayovers()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="306" y="380" width="234" height="30" as="geometry" />
+          <mxGeometry x="-214" y="410" width="234" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vIidtZjvd-23gkILlbUP-19" value="airlineStatisticsMenu()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="190" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vIidtZjvd-23gkILlbUP-22" value="essential airports" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-10" y="300" width="154" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

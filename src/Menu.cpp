@@ -23,10 +23,13 @@ void Menu::start() {
 
 void Menu::statisticsMenu() {
     string option;
+    cout << "There are a total of " << system.GlobalNumberOfFlights() << " in " << system.GlobalNumberOfAirports()
+         << " airports.\n";
     while (true) {
         cout << "\nWhat do you want statistics on?\n";
         cout << "1) Airports\n2) Airlines\n3) Flights\n4) Cities\n5) Countries\n6) Go back\n";
         cin >> option;
+
         if (option == "1") {
             airportStatisticsMenu();
         } else if (option == "2") {
@@ -49,7 +52,7 @@ void Menu::airportStatisticsMenu() {
     while (true) {
         cout << "\nWhat do you want to do?.\n";
         cout
-                << "1) Full airport details\n2) Top airports with the most flights\n3) Available destinations\n4) Go back\n";
+                << "1) Full airport details\n2) Top airports with the most flights\n3) Available destinations\n4) Essential airports\n5) Go back\n";
         cin >> option;
         if (option == "1") {
             string airportCode;
@@ -88,11 +91,29 @@ void Menu::airportStatisticsMenu() {
                 cout << "There are " << res[0] << " available destinations in " << res[2] << " different cities and "
                      << res[1] << " different countries considering at most" << k << " layovers.\n";
             }
+
         } else if (option == "4") {
+            set<Airport> essentialAirports = system.essentialAirports();
+            cout << "There are " << essentialAirports.size() << " essential airports (airports are essential if, when removed, areas of the network start to be unreachable).\n";
+            int n;
+            cout << "How many essential airports do you wish to see?\n";
+            cin >> n;
+            for (auto airport : essentialAirports){
+                if (n == 0){
+                    break;
+                }
+                n--;
+                cout << airport << endl;
+            }
+        } else if (option == "5") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";
         }
 
     }
+}
+
+void Menu::airlineStatisticsMenu() {
+
 }
