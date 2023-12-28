@@ -151,6 +151,10 @@ public:
      * @return A pair containing the set of airport pairs in the maximum diameter and the diameter value.
      */
     pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
+
+    double airportDistance(string airport1, string airport2);
+
+    double haversine(double lat1, double lon1, double lat2, double lon2);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

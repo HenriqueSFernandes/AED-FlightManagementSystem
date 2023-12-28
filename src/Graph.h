@@ -9,6 +9,7 @@
 #include <queue>
 #include <stack>
 #include <list>
+#include <map>
 #include "Flight.h"
 
 using namespace std;
@@ -160,6 +161,9 @@ public:
     void dfsVisitLimited(Vertex<T> *v, vector<T> &res, int k) const;
 
     vector<T> bfsLimited(const T &source, int k) const;
+
+
+    vector<T> bfsPath(const T &source, const T &dest) const;
 };
 
 /****************** Provided constructors and functions ********************/
