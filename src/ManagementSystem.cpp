@@ -136,7 +136,13 @@ double ManagementSystem::haversine(double lat1, double lon1,
 double ManagementSystem::airportDistance(string airport1, string airport2){
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airport1, "", "", "", 0, 0));
     auto destinationAirportVertex = airportNetwork.findVertex(Airport(airport2, "", "", "", 0, 0));
-    return haversine(sourceAirportVertex->getInfo().getLatitude(),sourceAirportVertex->getInfo().getLongitude(),destinationAirportVertex->getInfo().getLatitude(),destinationAirportVertex->getInfo().getLongitude());
+    if(sourceAirportVertex != nullptr and destinationAirportVertex!= nullptr){
+        return haversine(sourceAirportVertex->getInfo().getLatitude(),sourceAirportVertex->getInfo().getLongitude(),destinationAirportVertex->getInfo().getLatitude(),destinationAirportVertex->getInfo().getLongitude());
+    }else{
+        cout << "Invalid airports\n";
+        return 0;
+    }
+
 }
 
 int ManagementSystem::GlobalNumberOfAirports() {
@@ -460,6 +466,10 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set<string> availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
+    if (airline == nullptr) {
+        cout << "The airline doesn't exist!\n";
+        return;
+    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (Vertex<Airport> *airportVertex: getAirportNetwork().getVertexSet()) {
