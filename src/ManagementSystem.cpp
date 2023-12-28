@@ -427,7 +427,7 @@ void ManagementSystem::cityDetails(string cityName) {
     }
     string countryName;
     if (mappedCity->second.size() > 1) {
-        cout << "There are more than city with that name, can you specify the country?\n";
+        cout << "There are more than one city with that name, can you specify the country?\n";
         for (int i = 1; i <= mappedCity->second.size(); i++) {
             cout << "\t" << i << ") " << mappedCity->second[i - 1] << endl;
         }
