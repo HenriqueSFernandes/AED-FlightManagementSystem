@@ -287,7 +287,7 @@ void ManagementSystem::airportDetails(string airportString) {
         }
     }
     // Sorts the airlines by the number of flights.
-    vector<pair<Airline, int>> sortedEntries(availableAirlines.begin(), availableAirlines.end());
+    vector <pair<Airline, int>> sortedEntries(availableAirlines.begin(), availableAirlines.end());
     std::sort(sortedEntries.begin(), sortedEntries.end(), [](const auto &a, const auto &b) {
         return a.second > b.second;
     });
@@ -478,3 +478,83 @@ vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
 
 
 
+
+pair<int, set<Airport>> ManagementSystem::bfsDistanceWithDest(Vertex<Airport> *v) {
+    // Reset all vertices to distance 0 and mark them as not visited
+    for (auto vertex: airportNetwork.getVertexSet()) {
+        vertex->setVisited(false);
+        vertex->setDistance(0);
+    }
+
+    // Queue for BFS traversal
+    queue<Vertex<Airport> *> q;
+    q.push(v);
+    v->setVisited(true);
+    v->setDistance(0);
+    int max = 0;
+    set<Airport> dest;
+
+    // BFS traversal
+    while (!q.empty()) {
+        auto sourceVertex = q.front();
+        q.pop();
+
+        for (const auto &e: sourceVertex->getAdj()) {
+            auto destVertex = e.getDest();
+            if (!destVertex->isVisited()) {
+                q.push(destVertex);
+                destVertex->setVisited(true);
+                destVertex->setDistance(sourceVertex->getDistance() + 1);
+
+                // If the distance is equal to the current max, add the airport to the set
+                if (destVertex->getDistance() == max) {
+                    dest.insert(destVertex->getInfo());
+                }
+
+                // If the distance is greater than the current max, update max and clear the set
+                if (destVertex->getDistance() > max) {
+                    max = destVertex->getDistance();
+                    dest.clear();
+                    dest.insert(destVertex->getInfo());
+                }
+            }
+        }
+    }
+
+    // Return the result as a pair of max distance and set of airports
+    return {max, dest};
+}
+
+
+pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest() {
+    // Initialize the maximum diameter to -1 and the set of airport pairs
+    int max = -1;
+    set<pair<Airport, Airport>> resAirports;
+
+    // Iterate through all vertices in the airport network
+    for (auto vertex: airportNetwork.getVertexSet()) {
+        // Perform BFS to find the maximum diameter and set of airports at that distance
+        pair<int, set<Airport>> res = bfsDistanceWithDest(vertex);
+        int val = res.first;
+        set<Airport> dest = res.second;
+
+        // If the current diameter equals the max diameter, add airport pairs to the result set
+        if (val == max) {
+            for (auto i: dest) {
+                resAirports.insert({vertex->getInfo(), i});
+            }
+        }
+
+        // If the current diameter is greater than the max diameter, update max and clear the result set
+        if (max < val) {
+            max = val;
+            resAirports.clear();
+            for (auto i: dest) {
+                resAirports.insert({vertex->getInfo(), i});
+            }
+        }
+    }
+
+    // Return the result as a pair of set of airport pairs and the maximum diameter
+    return {resAirports, max};
+}

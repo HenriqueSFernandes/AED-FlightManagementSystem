@@ -12,10 +12,12 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
-    set<Airport> a;
-    set<string> b;
-    set<string> c;
-    system.airportDetails("ZZZ");
+    auto viires = system.maxTripWithSourceDest();
+    for(auto i : viires.first){
+        cout<<"Source: " << i.first.getCode() << " - " << i.first.getName() << endl;
+        cout<<"Target: " << i.second.getCode() << " - " << i.second.getName() << endl << endl;
+    }
+    cout<<"Stops: " << viires.second<<endl;
     Menu menu(system);
     menu.start();
     return 0;

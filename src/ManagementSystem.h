@@ -135,6 +135,18 @@ public:
     */
     vector<pair<Airport, int>> topKAirportsMaxFlights(int k);
 
+    /**
+     * @brief Perform BFS traversal to find the maximum distance and set of airports in the diameter.
+     * @param v The starting vertex for BFS traversal.
+     * @return A pair containing the maximum distance and the set of airports at that distance.
+     */
+    pair<int, set<Airport>> bfsDistanceWithDest(Vertex<Airport> *v);
+
+    /**
+     * @brief Find the maximum diameter and corresponding set of airport pairs in the graph.
+     * @return A pair containing the set of airport pairs in the maximum diameter and the diameter value.
+     */
+    pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
