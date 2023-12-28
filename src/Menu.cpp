@@ -38,7 +38,7 @@ void Menu::statisticsMenu() {
             cin >> airlineCode;
             system.airlineDetails(airlineCode);
         } else if (option == "3") {
-
+            flightStatisticsMenu();
         } else if (option == "4") {
             string cityName;
             cout << "Please enter the name of the city\n";
@@ -123,4 +123,29 @@ void Menu::airportStatisticsMenu() {
         }
 
     }
+}
+
+void Menu::flightStatisticsMenu() {
+    string option;
+    while (true) {
+        cout << "\nWhat do you want to do?.\n";
+        cout << "1) Longest trip possible\n2) Go back\n";
+        cin >> option;
+        if (option == "1") {
+            pair<set<pair<Airport, Airport>>, int> longestTrip = system.maxTripWithSourceDest();
+            cout << "There are " << longestTrip.first.size() << " trips with the maximum amount of stops ("
+                 << longestTrip.second << "):\n";
+            for (pair<Airport, Airport> trip: longestTrip.first) {
+                cout << "\n\tFrom " << trip.first.getName() << " (" << trip.first.getCode() << ") located in "
+                     << trip.first.getCity() << ", " << trip.first.getCountry() << endl;
+                cout << "\tTo " << trip.second.getName() << " (" << trip.second.getCode() << ") located in "
+                     << trip.second.getCity() << ", " << trip.second.getCountry() << endl;
+            }
+        } else if (option == "2") {
+            break;
+        } else {
+            cout << "Invalid option, please choose again.\n";
+        }
+    }
+
 }
