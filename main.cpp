@@ -60,10 +60,22 @@ int main() {
     cout<<"Input amount of airports you want to see\n";
     int k;
     cin >>k;
-    auto a = system.topkAirportsMaxFlights(k);
+    auto a = system.topKAirportsMaxFlights(k);
     for(auto i : a){
         cout<<i.first << "\n\n has " << i.second<< " flights\n\n";
     }
+
+
+    cout << "****************************************\n" << "*              QUESTION 3-VII TEST             *\n"
+         << "****************************************\n";
+
+    auto viires = system.maxTripWithSourceDest();
+
+    for(auto i : viires.first){
+        cout<<"Source: " << i.first.getCode() << " - " << i.first.getName() << endl;
+        cout<<"Target: " << i.second.getCode() << " - " << i.second.getName() << endl << endl;
+    }
+    cout<<"Trips: " << viires.second<<endl;
 
     return 0;
 }

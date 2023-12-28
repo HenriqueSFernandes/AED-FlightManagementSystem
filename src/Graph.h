@@ -33,6 +33,7 @@ class Vertex {
     bool processing;       // auxiliary field
     int indegree;          // auxiliary field
     int outdegree;
+    int distance;
 
 private:
     // auxiliary field
@@ -83,6 +84,14 @@ public:
     }
 
     friend class Graph<T>;
+
+    int getDistance() const {
+        return distance;
+    }
+
+    void setDistance(int distance) {
+        Vertex::distance = distance;
+    }
 };
 
 template<class T>
