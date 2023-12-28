@@ -12,6 +12,12 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
+    for (auto i: system.cities) {
+        cout << "\n" << i.first << ": ";
+        for (auto j: i.second) {
+            cout << j << " ";
+        }
+    }
     Menu menu(system);
     menu.start();
     return 0;

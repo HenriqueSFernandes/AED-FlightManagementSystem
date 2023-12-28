@@ -63,7 +63,24 @@ void ManagementSystem::readAirports() {
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
         airports.insert(newAirport);
         airportNetwork.addVertex(newAirport);
-
+        if (cities.find(city) == cities.end()) {
+            vector<string> countries = {country};
+            cities[city] = countries;
+        } else {
+            auto mappedCity = cities.find(city);
+            if (std::find(mappedCity->second.begin(), mappedCity->second.end(), country) == mappedCity->second.end()) {
+                mappedCity->second.push_back(country);
+            }
+        }
+    }
+    auto mappedCityIter = cities.begin();
+    while(mappedCityIter != cities.end()){
+        if (mappedCityIter->second.size() == 1) {
+            mappedCityIter = cities.erase(mappedCityIter);
+        }
+        else{
+            mappedCityIter++;
+        }
     }
     airportsFile.close();
 
