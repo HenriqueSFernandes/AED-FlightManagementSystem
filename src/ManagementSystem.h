@@ -66,10 +66,10 @@ public:
     int GlobalNumberOfFlights();
 
     /**
-     * @brief Returns global number of articulations points.
-     * @return Integer representing the total number of articulation points.
+     * @brief Returns the essential airports..
+     * @return Set representing the essential points.
      */
-    int articulationPoints();
+    set<Airport> essentialAirports();
 
     /**
      * @brief
@@ -92,17 +92,48 @@ public:
     getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries, set<string> &cities);
 
     /**
+     *
+     * @brief Gets the numbers of destinations possible from a given airport in X layovers.
+     * @param airportString The code of the airport.
+     * @param airports Auxiliary set of airports.
+     * @param countries Auxiliary set of countries.
+     * @param cities Auxiliary set of cities.
+     * @param x The maximum number of layovers.
+     * @return Vector with 3 elements: the number of airports, countries and cities.
+     */
+    vector<int> getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports, set<string> &countries,
+                                                   set<string> &cities, int x);
+
+    /**
      * @brief Prints details of a given airport, like number of flights, countries and airlines.
      * @param airportString The airport code.
      */
     void airportDetails(string airportString);
 
     /**
-     * @brief Get the top k airports with the maximum number of flights.
-     * @param k The number of top airports to retrieve.
-     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
+     * @brief Prints details of a given country, like number of flights, countries and airlines.
+     * @param countryName The name of the country.
      */
-    vector<pair<Airport,int>> topKAirportsMaxFlights(int k);
+    void countryDetails(string countryName);
+
+    /**
+     * @brief Prints details of a given city, like number of flights, countries and airlines.
+     * @param cityName The name of the city.
+     */
+    void cityDetails(string cityName);
+
+    /**
+     * @brief Prints details of a given airline, like number of flights and airports.
+     * @param airlineCode The code of the airline.
+     */
+    void airlineDetails(string airlineCode);
+
+    /**
+    * @brief Get the top k airports with the maximum number of flights.
+    * @param k The number of top airports to retrieve.
+    * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
+    */
+    vector<pair<Airport, int>> topKAirportsMaxFlights(int k);
 
     /**
      * @brief Perform BFS traversal to find the maximum distance and set of airports in the diameter.
