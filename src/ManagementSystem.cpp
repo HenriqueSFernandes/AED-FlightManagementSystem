@@ -111,7 +111,7 @@ void ManagementSystem::readFlights() {
     flightsFile.close();
 }
 
-double haversine(double lat1, double lon1,
+double ManagementSystem::haversine(double lat1, double lon1,
                  double lat2, double lon2)
 {
     // distance between latitudes
@@ -136,7 +136,8 @@ double haversine(double lat1, double lon1,
 double ManagementSystem::airportDistance(string airport1, string airport2){
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airport1, "", "", "", 0, 0));
     auto destinationAirportVertex = airportNetwork.findVertex(Airport(airport2, "", "", "", 0, 0));
-    return haversine(sourceAirportVertex->getInfo().getLatitude(),sourceAirportVertex->getInfo().getLongitude(),destinationAirportVertex->getInfo().getLatitude(),destinationAirportVertex->getInfo().getLongitude());}
+    return haversine(sourceAirportVertex->getInfo().getLatitude(),sourceAirportVertex->getInfo().getLongitude(),destinationAirportVertex->getInfo().getLatitude(),destinationAirportVertex->getInfo().getLongitude());
+}
 
 int ManagementSystem::GlobalNumberOfAirports() {
     return airportNetwork.getNumVertex();

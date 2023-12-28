@@ -148,9 +148,9 @@ public:
      */
     pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
 
-    vector<Airport> findBestPath(string src, string dst);
-
     double airportDistance(string airport1, string airport2);
+
+    double haversine(double lat1, double lon1, double lat2, double lon2);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
