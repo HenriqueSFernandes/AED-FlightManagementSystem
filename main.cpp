@@ -75,7 +75,7 @@ int main() {
         cout<<"Source: " << i.first.getCode() << " - " << i.first.getName() << endl;
         cout<<"Target: " << i.second.getCode() << " - " << i.second.getName() << endl << endl;
     }
-    cout<<"Trips: " << viires.second<<endl;
+    cout<<"Stops: " << viires.second<<endl;
 
     return 0;
 }
