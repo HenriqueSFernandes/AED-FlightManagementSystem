@@ -124,7 +124,7 @@ int ManagementSystem::GlobalNumberOfFlights() {
     return numberOfFlights;
 }
 
-int ManagementSystem::articulationPoints() {
+set<Airport> ManagementSystem::essentialAirports() {
     set<Airport> res;
     int k = 1;
     for (auto vertex: airportNetwork.getVertexSet()) {
@@ -139,10 +139,7 @@ int ManagementSystem::articulationPoints() {
             ManagementSystem::dfs_art(vertex, s, res, k);
         }
     }
-    for (auto el: res) {
-        cout << el.getCode() << endl;
-    }
-    return res.size();
+    return res;
 }
 
 void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {
@@ -180,6 +177,11 @@ vector<int>
 ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries,
                                           set<string> &cities) {
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    if (sourceAirportVertex == nullptr) {
+        cout << "The airport doesn't exist!\n";
+        vector<int> res = {};
+        return res;
+    }
     vector<Airport> visitableAirports = airportNetwork.dfs(sourceAirportVertex->getInfo());
     int numAirports = 0;
     int numCountries = 0;
@@ -212,8 +214,13 @@ ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<A
                                                      set<string> &countries,
                                                      set<string> &cities, int x) {
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    if (sourceAirportVertex == nullptr) {
+        cout << "The airport doesn't exist!\n";
+        vector<int> res = {};
+        return res;
+    }
     // Gets all the airports at distance x.
-    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x);
+    vector<Airport> visitableAirports = airportNetwork.bfsLimited(sourceAirportVertex->getInfo(), x + 1);
     int numAirports = 0;
     int numCountries = 0;
     int numCities = 0;
@@ -262,6 +269,10 @@ const set<Flight> &ManagementSystem::getFlights() const {
 void ManagementSystem::airportDetails(string airportString) {
     // Finds the airport
     auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    if (sourceAirportVertex == nullptr) {
+        cout << "The airport doesn't exist!\n";
+        return;
+    }
     set<string> availableCountries;
     map<Airline, int> availableAirlines;
     // Iterates over every flight and gets the different countries and airlines.
@@ -302,9 +313,11 @@ void ManagementSystem::countryDetails(string countryName) {
     map<Airline, int> countryAirlines;
     set<string> countriesAvailable;
     int flightCount = 0;
+    bool countryFound = false;
     // Iterate over every airport
     for (Vertex<Airport> *vertexAirport: getAirportNetwork().getVertexSet()) {
         if (vertexAirport->getInfo().getCountry() == countryName) {
+            countryFound = true;
             countryAirports[vertexAirport->getInfo()] = 0;
 
             for (Edge<Airport> flight: vertexAirport->getAdj()) {
@@ -320,6 +333,10 @@ void ManagementSystem::countryDetails(string countryName) {
                 countriesAvailable.insert(flight.getDest()->getInfo().getCountry());
             }
         }
+    }
+    if (!countryFound) {
+        cout << "The country doesn't exist!\n";
+        return;
     }
 
     vector<pair<Airline, int>> sortedAirlines(countryAirlines.begin(), countryAirlines.end());
@@ -356,8 +373,10 @@ void ManagementSystem::cityDetails(string cityName) {
     map<Airline, int> cityAirlines;
     set<string> countriesAvailable;
     int flightCount = 0;
+    bool cityFound = false;
     for (Vertex<Airport> *vertexAirport: getAirportNetwork().getVertexSet()) {
         if (vertexAirport->getInfo().getCity() == cityName) {
+            cityFound = true;
             countryName = vertexAirport->getInfo().getCountry();
             cityAirports[vertexAirport->getInfo()] = 0;
             for (Edge<Airport> flight: vertexAirport->getAdj()) {
@@ -374,6 +393,10 @@ void ManagementSystem::cityDetails(string cityName) {
             }
         }
     }
+    if (!cityFound) {
+        cout << "The city doesn't exist!\n";
+        return;
+    }
 
     vector<pair<Airline, int>> sortedAirlines(cityAirlines.begin(), cityAirlines.end());
     std::sort(sortedAirlines.begin(), sortedAirlines.end(), [](const auto &a, const auto &b) {
@@ -388,8 +411,7 @@ void ManagementSystem::cityDetails(string cityName) {
     cout << "Details for " << cityName << ", located in " << countryName << ":\n";
     cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
     for (pair<Airport, int> airport: sortedAirports) {
-        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") located in "
-             << airport.first.getCity() << " with " << airport.second << " outgoing flights\n";
+        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second << " outgoing flights\n";
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
@@ -409,6 +431,10 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set<string> availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
+    if (airline == nullptr) {
+        cout << "The airline doesn't exist!\n";
+        return;
+    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (Vertex<Airport> *airportVertex: getAirportNetwork().getVertexSet()) {
@@ -431,7 +457,6 @@ void ManagementSystem::airlineDetails(string airlineCode) {
          << "% of all the countries.\n";
     cout << "\tThis airline operates in " << availableAirports.size() << " different airports.\n";
 }
-
 
 
 vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {

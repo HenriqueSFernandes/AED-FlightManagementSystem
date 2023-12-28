@@ -66,10 +66,10 @@ public:
     int GlobalNumberOfFlights();
 
     /**
-     * @brief Returns global number of articulations points.
-     * @return Integer representing the total number of articulation points.
+     * @brief Returns the essential airports..
+     * @return Set representing the essential points.
      */
-    int articulationPoints();
+    set<Airport> essentialAirports();
 
     /**
      * @brief
@@ -93,16 +93,17 @@ public:
 
     /**
      *
-     * @brief Gets the numbers of destinations possible from a given airport in X layovers
-     * @param airportString
-     * @param airports
-     * @param countries
-     * @param cities
-     * @param x
-     * @return Vector with 3 elements: the number of airports, countries and cities
+     * @brief Gets the numbers of destinations possible from a given airport in X layovers.
+     * @param airportString The code of the airport.
+     * @param airports Auxiliary set of airports.
+     * @param countries Auxiliary set of countries.
+     * @param cities Auxiliary set of cities.
+     * @param x The maximum number of layovers.
+     * @return Vector with 3 elements: the number of airports, countries and cities.
      */
     vector<int> getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports, set<string> &countries,
                                                    set<string> &cities, int x);
+
     /**
      * @brief Prints details of a given airport, like number of flights, countries and airlines.
      * @param airportString The airport code.
@@ -132,7 +133,7 @@ public:
     * @param k The number of top airports to retrieve.
     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
     */
-    vector<pair<Airport,int>> topKAirportsMaxFlights(int k);
+    vector<pair<Airport, int>> topKAirportsMaxFlights(int k);
 
 };
 

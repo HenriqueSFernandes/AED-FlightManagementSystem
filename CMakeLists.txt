@@ -14,4 +14,6 @@ add_executable(aed-flights main.cpp
         src/ManagementSystem.cpp
         src/ManagementSystem.h
         src/Airline.cpp
+        src/Menu.cpp
+        src/Menu.h
 )
