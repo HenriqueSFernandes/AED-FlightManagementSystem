@@ -9,6 +9,7 @@
 #include <queue>
 #include <stack>
 #include <list>
+#include <map>
 #include "Flight.h"
 
 using namespace std;
@@ -160,6 +161,9 @@ public:
     void dfsVisitLimited(Vertex<T> *v, vector<T> &res, int k) const;
 
     vector<T> bfsLimited(const T &source, int k) const;
+
+
+    vector<T> bfsPath(const T &source, const T &dest) const;
 };
 
 /****************** Provided constructors and functions ********************/
@@ -529,6 +533,43 @@ vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
     return res;
 }
 
+template<class T>
+vector<T> Graph<T>::bfsPath(const T &source, const T &dest) const {
+    vector<T> res;
+    map<string,string> parentMap;
+    auto s = findVertex(source);
+    auto d = findVertex(dest);
+    if (s == NULL)
+        return res;
+    queue<Vertex<T> *> q;
+    for (auto v: vertexSet) {
+        v->visited = false;
+    }
+    q.push(s);
+    s->visited = true;
+    parentMap[s->getInfo()]="END";
+    while (!q.empty()) {
+        auto v = q.front();
+        q.pop();
+        for (auto &e: v->adj) {
+            auto w = e.dest;
+            if (!w->visited) {
+                parentMap[w->getInfo()]=s->getInfo();
+                q.push(w);
+                w->visited = true;
+                if(w==d){
+                    auto pointer=w;
+                    while(parentMap[w->getInfo()]!="END"){
+                        res.push_back(parentMap[w->getInfo()]);
+                        pointer=findVertex(parentMap[w->getInfo()]);
+                    }
+                    return res;
+                }
+            }
+        }
+    }
+    return res;
+}
 
 /****************** isDAG  ********************/
 /*

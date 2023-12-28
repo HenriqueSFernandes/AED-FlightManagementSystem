@@ -147,6 +147,10 @@ public:
      * @return A pair containing the set of airport pairs in the maximum diameter and the diameter value.
      */
     pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
+
+    vector<Airport> findBestPath(string src, string dst);
+
+    double airportDistance(string airport1, string airport2);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

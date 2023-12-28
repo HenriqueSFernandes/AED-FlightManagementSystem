@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <map>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 
@@ -109,6 +110,33 @@ void ManagementSystem::readFlights() {
     }
     flightsFile.close();
 }
+
+double haversine(double lat1, double lon1,
+                 double lat2, double lon2)
+{
+    // distance between latitudes
+    // and longitudes
+    double dLat = (lat2 - lat1) *
+                  M_PI / 180.0;
+    double dLon = (lon2 - lon1) *
+                  M_PI / 180.0;
+
+    // convert to radians
+    lat1 = (lat1) * M_PI / 180.0;
+    lat2 = (lat2) * M_PI / 180.0;
+
+    // apply formulae
+    double a = pow(sin(dLat / 2), 2) +
+               pow(sin(dLon / 2), 2) *
+               cos(lat1) * cos(lat2);
+    double rad = 6371;
+    double c = 2 * asin(sqrt(a));
+    return rad * c;
+}
+double ManagementSystem::airportDistance(string airport1, string airport2){
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airport1, "", "", "", 0, 0));
+    auto destinationAirportVertex = airportNetwork.findVertex(Airport(airport2, "", "", "", 0, 0));
+    return haversine(sourceAirportVertex->getInfo().getLatitude(),sourceAirportVertex->getInfo().getLongitude(),destinationAirportVertex->getInfo().getLatitude(),destinationAirportVertex->getInfo().getLongitude());}
 
 int ManagementSystem::GlobalNumberOfAirports() {
     return airportNetwork.getNumVertex();
@@ -431,10 +459,6 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set<string> availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
-    if (airline == nullptr) {
-        cout << "The airline doesn't exist!\n";
-        return;
-    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (Vertex<Airport> *airportVertex: getAirportNetwork().getVertexSet()) {
@@ -532,7 +556,7 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     set<pair<Airport, Airport>> resAirports;
 
     // Iterate through all vertices in the airport network
-    for (auto vertex: airportNetwork.getVertexSet()) {
+    for (auto vertex: airportNetwork.getVertexSet   ()) {
         // Perform BFS to find the maximum diameter and set of airports at that distance
         pair<int, set<Airport>> res = bfsDistanceWithDest(vertex);
         int val = res.first;

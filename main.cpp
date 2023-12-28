@@ -18,6 +18,8 @@ int main() {
         cout<<"Target: " << i.second.getCode() << " - " << i.second.getName() << endl << endl;
     }
     cout<<"Stops: " << viires.second<<endl;
+    cout<<"TEST DISTANCE " <<system.airportDistance("JFK","CDG")<<endl;
+
     Menu menu(system);
     menu.start();
     return 0;
