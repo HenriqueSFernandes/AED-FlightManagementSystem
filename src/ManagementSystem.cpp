@@ -64,8 +64,25 @@ void ManagementSystem::readAirports() {
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
         airports.insert(newAirport);
         airportNetwork.addVertex(newAirport);
-
+        if (cities.find(city) == cities.end()) {
+            vector<string> countries = {country};
+            cities[city] = countries;
+        } else {
+            auto mappedCity = cities.find(city);
+            if (std::find(mappedCity->second.begin(), mappedCity->second.end(), country) == mappedCity->second.end()) {
+                mappedCity->second.push_back(country);
+            }
+        }
     }
+//    auto mappedCityIter = cities.begin();
+//    while(mappedCityIter != cities.end()){
+//        if (mappedCityIter->second.size() == 1) {
+//            mappedCityIter = cities.erase(mappedCityIter);
+//        }
+//        else{
+//            mappedCityIter++;
+//        }
+//    }
     airportsFile.close();
 
 }
@@ -403,15 +420,30 @@ void ManagementSystem::countryDetails(string countryName) {
 }
 
 void ManagementSystem::cityDetails(string cityName) {
+    auto mappedCity = cities.find(cityName);
+    if (mappedCity == cities.end()) {
+        cout << "The city doesn't exist!\n";
+        return;
+    }
     string countryName;
+    if (mappedCity->second.size() > 1) {
+        cout << "There are more than one city with that name, can you specify the country?\n";
+        for (int i = 1; i <= mappedCity->second.size(); i++) {
+            cout << "\t" << i << ") " << mappedCity->second[i - 1] << endl;
+        }
+        int option;
+        cin >> option;
+        countryName = mappedCity->second[option - 1];
+    } else {
+        countryName = mappedCity->second[0];
+    }
+
     map<Airport, int> cityAirports;
     map<Airline, int> cityAirlines;
     set<string> countriesAvailable;
     int flightCount = 0;
-    bool cityFound = false;
     for (Vertex<Airport> *vertexAirport: getAirportNetwork().getVertexSet()) {
-        if (vertexAirport->getInfo().getCity() == cityName) {
-            cityFound = true;
+        if (vertexAirport->getInfo().getCity() == cityName && vertexAirport->getInfo().getCountry() == countryName) {
             countryName = vertexAirport->getInfo().getCountry();
             cityAirports[vertexAirport->getInfo()] = 0;
             for (Edge<Airport> flight: vertexAirport->getAdj()) {
@@ -427,10 +459,6 @@ void ManagementSystem::cityDetails(string cityName) {
                 countriesAvailable.insert(flight.getDest()->getInfo().getCountry());
             }
         }
-    }
-    if (!cityFound) {
-        cout << "The city doesn't exist!\n";
-        return;
     }
 
     vector<pair<Airline, int>> sortedAirlines(cityAirlines.begin(), cityAirlines.end());

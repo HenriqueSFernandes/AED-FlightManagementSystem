@@ -4,6 +4,7 @@
 
 #include "Airport.h"
 #include <unordered_set>
+#include <map>
 #include "Airline.h"
 #include "Flight.h"
 #include "Graph.h"
@@ -18,6 +19,8 @@ private:
     unordered_set<Airport, Airport::HashFunction> airports;
     set<Flight> flights;
 public:
+    map<string, vector<string>> cities;
+
     /**
      * @brief Airport network graph getter.
      * @return The graph representing the airport network.
