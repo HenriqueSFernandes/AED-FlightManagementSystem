@@ -124,7 +124,7 @@ class Graph {
     vector<Vertex<T> *> vertexSet;      // vertex set
     int _index_;                        // auxiliary field
     stack<Vertex<T>> _stack_;           // auxiliary field
-    list <list<T>> _list_sccs_;        // auxiliary field
+    list<list<T>> _list_sccs_;        // auxiliary field
 
     void dfsVisit(Vertex<T> *v, vector<T> &res) const;
 

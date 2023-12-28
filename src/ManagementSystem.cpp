@@ -287,7 +287,7 @@ void ManagementSystem::airportDetails(string airportString) {
         }
     }
     // Sorts the airlines by the number of flights.
-    vector <pair<Airline, int>> sortedEntries(availableAirlines.begin(), availableAirlines.end());
+    vector<pair<Airline, int>> sortedEntries(availableAirlines.begin(), availableAirlines.end());
     std::sort(sortedEntries.begin(), sortedEntries.end(), [](const auto &a, const auto &b) {
         return a.second > b.second;
     });
@@ -411,7 +411,8 @@ void ManagementSystem::cityDetails(string cityName) {
     cout << "Details for " << cityName << ", located in " << countryName << ":\n";
     cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
     for (pair<Airport, int> airport: sortedAirports) {
-        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second << " outgoing flights\n";
+        cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second
+             << " outgoing flights\n";
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
@@ -475,8 +476,6 @@ vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
     }
     return res;
 }
-
-
 
 
 pair<int, set<Airport>> ManagementSystem::bfsDistanceWithDest(Vertex<Airport> *v) {
