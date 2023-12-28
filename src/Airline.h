@@ -1,3 +1,4 @@
+/// @file Airline.h
 #ifndef AED_FLIGHTS_AIRLINE_H
 #define AED_FLIGHTS_AIRLINE_H
 
@@ -6,6 +7,9 @@
 #include <utility>
 #include <iostream>
 
+/**
+ * @brief Class used to represent an airline.
+ */
 class Airline {
     std::string code;
     std::string name;

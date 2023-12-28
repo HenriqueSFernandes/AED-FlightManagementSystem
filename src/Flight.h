@@ -1,3 +1,4 @@
+/// @file Flight.h
 #ifndef AED_FLIGHTS_FLIGHT_H
 #define AED_FLIGHTS_FLIGHT_H
 
@@ -7,6 +8,9 @@
 #include <utility>
 #include "Airline.h"
 
+/**
+ * @brief Class used to represent a flight.
+ */
 class Flight {
 private:
     std::string source;

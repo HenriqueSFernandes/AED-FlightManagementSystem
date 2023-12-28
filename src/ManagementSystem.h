@@ -1,3 +1,4 @@
+/// @file ManagementSystem.h
 #ifndef AED_FLIGHTS_MANAGEMENTSYSTEM_H
 #define AED_FLIGHTS_MANAGEMENTSYSTEM_H
 
@@ -7,6 +8,9 @@
 #include "Flight.h"
 #include "Graph.h"
 
+/**
+ * @brief Class used to handle the core functions of the program, like loading the data files and building the network.
+ */
 class ManagementSystem {
 private:
     Graph<Airport> airportNetwork;

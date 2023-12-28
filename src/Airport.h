@@ -1,9 +1,13 @@
+/// @file Airport.h
 #ifndef AED_FLIGHTS_AIRPORT_H
 #define AED_FLIGHTS_AIRPORT_H
 
 #include <string>
 #include <iostream>
 
+/**
+ * @brief Class used to represent an airport.
+ */
 class Airport {
     std::string code;
     std::string name;
