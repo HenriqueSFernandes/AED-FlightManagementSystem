@@ -44,6 +44,7 @@ namespace prog {
     void Script::save() {
         // Save current image to PNG file.
         string filename;
+        input="/home/jose/Documents/proj2aed/aed-flights/Image/output/world.png";
         saveToPNG(input, image);
     }
 
