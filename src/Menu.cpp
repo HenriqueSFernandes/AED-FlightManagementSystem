@@ -12,7 +12,7 @@ void Menu::start() {
         if (option == "1") {
             statisticsMenu();
         } else if (option == "2") {
-            cout << "searching for flights...\n";
+            flightSearchMenu();
         } else if (option == "3") {
             exit(0);
         } else {
@@ -86,16 +86,16 @@ void Menu::airportStatisticsMenu() {
                     << "How many layovers do you want to consider? (-1 for global, 0 for direct flights, 1 for 1 layover, ...)\n";
             cin >> k;
             if (k == -1) {
-                set<Airport> auxAirports;
-                set<string> auxCountries;
-                set<string> auxCities;
+                set < Airport > auxAirports;
+                set < string > auxCountries;
+                set < string > auxCities;
                 vector<int> res = system.getNumberOfDestinations(airportCode, auxAirports, auxCountries, auxCities);
                 cout << "There are " << res[0] << " available destinations in " << res[2] << " different cities and "
                      << res[1] << " different countries.\n";
             } else {
-                set<Airport> auxAirports;
-                set<string> auxCountries;
-                set<string> auxCities;
+                set < Airport > auxAirports;
+                set < string > auxCountries;
+                set < string > auxCities;
                 vector<int> res = system.getNumberOfDestinationsInXLayovers(airportCode, auxAirports, auxCountries,
                                                                             auxCities, k);
                 cout << "There are " << res[0] << " available destinations in " << res[2] << " different cities and "
@@ -103,7 +103,7 @@ void Menu::airportStatisticsMenu() {
             }
 
         } else if (option == "4") {
-            set<Airport> essentialAirports = system.essentialAirports();
+            set < Airport > essentialAirports = system.essentialAirports();
             cout << "There are " << essentialAirports.size()
                  << " essential airports (airports are essential if, when removed, areas of the network start to be unreachable).\n";
             int n;
@@ -128,7 +128,7 @@ void Menu::airportStatisticsMenu() {
 void Menu::flightStatisticsMenu() {
     string option;
     while (true) {
-        cout << "\nWhat do you want to do?.\n";
+        cout << "\nWhat do you want to do?\n";
         cout << "1) Longest trip possible\n2) Go back\n";
         cin >> option;
         if (option == "1") {
@@ -148,4 +148,66 @@ void Menu::flightStatisticsMenu() {
         }
     }
 
+}
+
+void Menu::flightSearchMenu() {
+    set<Vertex<Airport> *> sourceAirports;
+    set<Vertex<Airport> *> targetAirports;
+    string option;
+    while (true) {
+        cout << "\nCurrently selected departure airports:\n";
+        for (Vertex<Airport>* airport: sourceAirports) {
+            cout << "\t" << airport->getInfo() << endl;
+        }
+        cout << "\nCurrently selected arrival airports:\n";
+        for (Vertex<Airport>* airport: targetAirports) {
+            cout << "\t" << airport->getInfo() << endl;
+        }
+        cout << "What do you want to do?\n";
+        cout << "1) Add departure\n2) Add arrival\n3) Search with flights\n4) Go back\n";
+        cin >> option;
+        if (option == "1") {
+            addAirportMenu(sourceAirports);
+        } else if (option == "2") {
+            addAirportMenu(targetAirports);
+        } else if (option == "3") {
+            vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports);
+            cout << "heyy yooo\n";
+        } else if (option == "4") {
+            break;
+        } else {
+            cout << "Invalid option, please choose again.\n";
+        }
+    }
+}
+
+void Menu::addAirportMenu(set<Vertex<Airport>*> &airports) {
+    string option;
+    while (true) {
+        cout << "\nWhat do you want to add?\n";
+        cout
+                << "1) Single Airport\n2) All airports of a city\n3) All airports of a country\n4) Airport by coordinates\n5) Go back\n";
+        cin >> option;
+        if (option == "1") {
+            string airportCode;
+            cout << "Please insert the code of the airport\n";
+            cin >> airportCode;
+            auto airport = system.getAirportNetwork().findVertex(Airport(airportCode, "", "", "", 0, 0));
+            if (airport == nullptr) {
+                cout << "The airport doesn't exist\n";
+            } else {
+                airports.insert(airport);
+            }
+        } else if (option == "2") {
+
+        } else if (option == "3") {
+
+        } else if (option == "4") {
+
+        } else if (option == "5") {
+            break;
+        } else {
+            cout << "Invalid option, please choose again.\n";
+        }
+    }
 }

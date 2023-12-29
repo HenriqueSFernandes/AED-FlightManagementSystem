@@ -32,18 +32,6 @@ public:
     const unordered_set<Airline, Airline::HashFunction> &getAirlines() const;
 
     /**
-     * @brief Airports getter.
-     * @return An unordered set of all the airports.
-     */
-    const unordered_set<Airport, Airport::HashFunction> &getAirports() const;
-
-    /**
-     * @brief Flights getter.
-     * @return A set of all the flights.
-     */
-    const set<Flight> &getFlights() const;
-
-    /**
      * @brief Read airlines from the csv file.
      */
     void readAirlines();
@@ -177,7 +165,7 @@ public:
      * @param targetAirports A set with the target airports.
      * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
      */
-    vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
+    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports);
 
 };
 
