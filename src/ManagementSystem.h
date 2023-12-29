@@ -155,9 +155,32 @@ public:
      */
     pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
 
+    /**
+     * @brief This functions calculates the spherical distance between 2 airports.
+     * @param airport1 The code of the first airport.
+     * @param airport2 The code of the second airport.
+     * @return The spherical distance between the 2 airports.
+     */
     double airportDistance(string airport1, string airport2);
 
+    /**
+     * @brief This function uses the haversine distance to calculate distance between 2 points on a sphere.
+     * @param lat1 First point latitude.
+     * @param lon1 First point longitude.
+     * @param lat2 Second point latitude.
+     * @param lon2 Second point longitude.
+     * @return The distance between the points.
+     */
     double haversine(double lat1, double lon1, double lat2, double lon2);
+
+    /**
+     * @brief Finds the best flight options for a trip.
+     * @param sourceAirports A set with the source airports.
+     * @param targetAirports A set with the target airports.
+     * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
+     */
+    vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
+
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
