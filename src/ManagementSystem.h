@@ -16,8 +16,11 @@ class ManagementSystem {
 private:
     Graph<Airport> airportNetwork;
     unordered_set<Airline, Airline::HashFunction> airlines;
-public:
     map<string, vector<string>> cities;
+public:
+    const map<string, vector<string>> &getCities() const;
+
+public:
 
     /**
      * @brief Airport network graph getter.

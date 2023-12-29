@@ -655,3 +655,7 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
 
     return res;
 }
+
+const map<string, vector<string>> &ManagementSystem::getCities() const {
+    return cities;
+}

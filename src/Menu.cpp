@@ -156,11 +156,11 @@ void Menu::flightSearchMenu() {
     string option;
     while (true) {
         cout << "\nCurrently selected departure airports:\n";
-        for (Vertex<Airport>* airport: sourceAirports) {
+        for (Vertex<Airport> *airport: sourceAirports) {
             cout << "\t" << airport->getInfo() << endl;
         }
         cout << "\nCurrently selected arrival airports:\n";
-        for (Vertex<Airport>* airport: targetAirports) {
+        for (Vertex<Airport> *airport: targetAirports) {
             cout << "\t" << airport->getInfo() << endl;
         }
         cout << "What do you want to do?\n";
@@ -181,7 +181,7 @@ void Menu::flightSearchMenu() {
     }
 }
 
-void Menu::addAirportMenu(set<Vertex<Airport>*> &airports) {
+void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
     string option;
     while (true) {
         cout << "\nWhat do you want to add?\n";
@@ -199,6 +199,34 @@ void Menu::addAirportMenu(set<Vertex<Airport>*> &airports) {
                 airports.insert(airport);
             }
         } else if (option == "2") {
+            string cityName;
+            string countryName;
+            cout << "Please insert the name of the city\n";
+            cin >> cityName;
+            map<string, vector<string>> cities = system.getCities();
+            auto mappedCity = cities.find(cityName);
+            if (mappedCity == cities.end()) {
+                cout << "The city doesn't exist!\n";
+            } else {
+                if (mappedCity->second.size() > 1) {
+                    cout << "There are more than one city with that name, can you specify the country?\n";
+                    for (int i = 1; i <= mappedCity->second.size(); i++) {
+                        cout << "\t" << i << ") " << mappedCity->second[i - 1] << endl;
+                    }
+                    int option2;
+                    cin >> option2;
+                    countryName = mappedCity->second[option2 - 1];
+                } else {
+                    countryName = mappedCity->second[0];
+                }
+                for (pair<string, Vertex<Airport> *> airportVertex: system.getAirportNetwork().getVertexSet()) {
+                    if (airportVertex.second->getInfo().getCity() == cityName &&
+                        airportVertex.second->getInfo().getCountry() == countryName) {
+                        airports.insert(airportVertex.second);
+                    }
+                }
+            }
+
 
         } else if (option == "3") {
 
