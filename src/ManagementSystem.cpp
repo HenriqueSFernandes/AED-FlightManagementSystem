@@ -623,11 +623,11 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
-vector<vector<Flight>> ManagementSystem::findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports) {
-    vector<vector<Flight>> res;
+vector<vector<Airport>> ManagementSystem::findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports) {
+    vector<vector<Airport>> res;
     for (Airport sourceAirport: sourceAirports) {
-        // Auxiliary queue to help in BFS. The integer is the distance to the source
-        queue<pair<Vertex<Airport> *, int>> auxQueue;
+        // Auxiliary queue to help in BFS. The first element of the pair is the current airport and the second is the path to that airport.
+        queue<pair<Vertex<Airport> *, vector<Airport>>> auxQueue;
         // Set all airports to not visited.
         for (Vertex<Airport> *airport: airportNetwork.getVertexSet()) {
             airport->setVisited(false);
@@ -636,7 +636,7 @@ vector<vector<Flight>> ManagementSystem::findBestFlights(set<Airport> sourceAirp
         Vertex<Airport> *sourceAirportVertex = airportNetwork.findVertex(sourceAirport);
         sourceAirportVertex->setVisited(true);
         // Add the source vertex to the queue.
-        auxQueue.push({sourceAirportVertex, 0});
+        auxQueue.push({sourceAirportVertex, {sourceAirport}});
         // Integer that saves the distance between the source and the target.
         int foundDistance = -1;
         // Perform BFS.
@@ -644,10 +644,8 @@ vector<vector<Flight>> ManagementSystem::findBestFlights(set<Airport> sourceAirp
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
             if (targetAirports.find(currentAirportVertex->getInfo()) != targetAirports.end()) {
-                foundDistance = auxQueue.front().second;
-                cout << "Flight found from " << sourceAirport.getName() << " to "
-                     << targetAirports.find(currentAirportVertex->getInfo())->getName() << " with "
-                     << auxQueue.front().second << " stops.";
+                foundDistance = auxQueue.front().second.size();
+                res.push_back(auxQueue.front().second);
 
             }
             if (foundDistance == -1) {
@@ -655,12 +653,18 @@ vector<vector<Flight>> ManagementSystem::findBestFlights(set<Airport> sourceAirp
                 for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
                     if (!flight.getDest()->isVisited()) {
                         flight.getDest()->setVisited(true);
-                        auxQueue.push({flight.getDest(), auxQueue.front().second + 1});
+                        vector<Airport> path = auxQueue.front().second;
+                        path.push_back(flight.getDest()->getInfo());
+                        auxQueue.push({flight.getDest(), path});
                     }
                 }
             }
             auxQueue.pop();
         }
+
     }
+    std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
+        return a.size() < b.size();
+    });
     return res;
 }

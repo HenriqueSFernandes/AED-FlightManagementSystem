@@ -18,7 +18,14 @@ int main() {
     source.insert(*system.getAirports().find(Airport("OPO", "", "", "", 0, 0)));
 
     target.insert(*system.getAirports().find(Airport("SRV", "", "", "", 0, 0)));
-    system.findBestFlights(source, target);
+    vector<vector<Airport>> paths = system.findBestFlights(source, target);
+    for (auto i : paths){
+        cout << "Trip:\n";
+        for (auto j : i){
+            cout << j.getCode() << " ";
+        }
+    }
+    cout << endl;
     Menu menu(system);
     menu.start();
     return 0;
