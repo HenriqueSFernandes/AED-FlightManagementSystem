@@ -248,6 +248,36 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
                 cout << "The country could not be found.\n";
             }
         } else if (option == "4") {
+            double currentLatitude, currentLongitude;
+            bool validCoordinates = true;
+            cout << "Please enter the latitude.\n";
+            cin >> currentLatitude;
+            cout << "Please enter the longitude.\n";
+            cin >> currentLongitude;
+            if ((currentLatitude < -90 || currentLatitude > 90) ||
+                (currentLongitude < -180 || currentLongitude > 180)) {
+                cout << "Invalid coordinates.\n";
+                validCoordinates = false;
+            }
+            if (validCoordinates) {
+                unordered_map<string, Vertex<Airport> *> vertices = system.getAirportNetwork().getVertexSet();
+                auto currentAirport = vertices.begin();
+                auto closestAirport = currentAirport;
+                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
+                                                           closestAirport->second->getInfo().getLatitude(),
+                                                           closestAirport->second->getInfo().getLongitude());
+                while (currentAirport != vertices.end()) {
+                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
+                                                              currentAirport->second->getInfo().getLatitude(),
+                                                              currentAirport->second->getInfo().getLongitude());
+                    if (currentDistance < shortestDistance) {
+                        shortestDistance = currentDistance;
+                        closestAirport = currentAirport;
+                    }
+                    currentAirport++;
+                }
+                airports.insert(closestAirport->second);
+            }
 
         } else if (option == "5") {
             break;
