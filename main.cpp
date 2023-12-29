@@ -1,10 +1,14 @@
 #include <iostream>
 #include "src/ManagementSystem.h"
 #include "src/Menu.h"
-
+#include "/home/jose/Documents/proj2aed/aed-flights/Image/Script.hpp"
 using namespace std;
 
 int main() {
+    prog::Script script= prog::Script("/home/jose/Documents/proj2aed/aed-flights/Image/input/fcul.png");
+    script.open();
+    script.fill(0,0,200,200,12,12,12);
+    script.save();
     ManagementSystem system;
     cout << "Loading airlines\n";
     system.readAirlines();
