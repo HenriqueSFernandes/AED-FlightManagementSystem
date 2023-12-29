@@ -20,6 +20,9 @@ int main() {
 
     target.insert(system.getAirportNetwork().findVertex(Airport("SRV", "", "", "", 0, 0))->getInfo());
 
+    target.insert(*system.getAirports().find(Airport("SRV", "", "", "", 0, 0)));
+    target.insert(*system.getAirports().find(Airport("JFK", "", "", "", 0, 0)));
+    target.insert(*system.getAirports().find(Airport("CDG", "", "", "", 0, 0)));
     vector<vector<Airport>> paths = system.findBestFlights(source, target);
     for (auto i: paths) {
         cout << "Trip:\n";
@@ -27,6 +30,7 @@ int main() {
             cout << j.getCode() << " ";
         }
     }
+
     cout << endl;
     Menu menu(system);
     menu.start();
