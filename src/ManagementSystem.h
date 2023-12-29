@@ -16,8 +16,6 @@ class ManagementSystem {
 private:
     Graph<Airport> airportNetwork;
     unordered_set<Airline, Airline::HashFunction> airlines;
-    unordered_set<Airport, Airport::HashFunction> airports;
-    set<Flight> flights;
 public:
     map<string, vector<string>> cities;
 

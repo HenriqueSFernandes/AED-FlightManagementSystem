@@ -14,14 +14,16 @@ int main() {
     system.readFlights();
     set < Airport > source;
     set < Airport > target;
-    source.insert(*system.getAirports().find(Airport("ZLT", "", "", "", 0, 0)));
-    source.insert(*system.getAirports().find(Airport("OPO", "", "", "", 0, 0)));
+    source.insert(system.getAirportNetwork().findVertex(Airport("ZLT", "", "", "", 0, 0))->getInfo());
+    source.insert(system.getAirportNetwork().findVertex(Airport("OPO", "", "", "", 0, 0))->getInfo());
 
-    target.insert(*system.getAirports().find(Airport("SRV", "", "", "", 0, 0)));
+
+    target.insert(system.getAirportNetwork().findVertex(Airport("SRV", "", "", "", 0, 0))->getInfo());
+
     vector<vector<Airport>> paths = system.findBestFlights(source, target);
-    for (auto i : paths){
+    for (auto i: paths) {
         cout << "Trip:\n";
-        for (auto j : i){
+        for (auto j: i) {
             cout << j.getCode() << " ";
         }
     }

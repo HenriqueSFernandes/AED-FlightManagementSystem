@@ -62,7 +62,6 @@ void ManagementSystem::readAirports() {
         getline(iss, latitude, ',');
         getline(iss, longitude, '\r');
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
-        airports.insert(newAirport);
         airportNetwork.addVertex(newAirport);
         if (cities.find(city) == cities.end()) {
             vector<string> countries = {country};
@@ -74,15 +73,6 @@ void ManagementSystem::readAirports() {
             }
         }
     }
-//    auto mappedCityIter = cities.begin();
-//    while(mappedCityIter != cities.end()){
-//        if (mappedCityIter->second.size() == 1) {
-//            mappedCityIter = cities.erase(mappedCityIter);
-//        }
-//        else{
-//            mappedCityIter++;
-//        }
-//    }
     airportsFile.close();
 
 }
@@ -309,15 +299,6 @@ const Graph<Airport> &ManagementSystem::getAirportNetwork() const {
 
 const unordered_set<Airline, Airline::HashFunction> &ManagementSystem::getAirlines() const {
     return airlines;
-}
-
-
-const unordered_set<Airport, Airport::HashFunction> &ManagementSystem::getAirports() const {
-    return airports;
-}
-
-const set<Flight> &ManagementSystem::getFlights() const {
-    return flights;
 }
 
 void ManagementSystem::airportDetails(string airportString) {
