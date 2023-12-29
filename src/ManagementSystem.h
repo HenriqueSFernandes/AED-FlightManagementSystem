@@ -158,6 +158,14 @@ public:
     double airportDistance(string airport1, string airport2);
 
     double haversine(double lat1, double lon1, double lat2, double lon2);
+
+    /**
+     * @brief Finds the best flight options for a trip.
+     * @param sourceAirports A set with the source airports.
+     * @param targetAirports A set with the target airports.
+     */
+    vector<vector<Flight>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
+
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
