@@ -164,7 +164,7 @@ void Menu::flightSearchMenu() {
             cout << "\t" << airport->getInfo() << endl;
         }
         cout << "What do you want to do?\n";
-        cout << "1) Add departure\n2) Add arrival\n3) Search with flights\n4) Go back\n";
+        cout << "1) Add departure\n2) Add arrival\n3) Search flights\n4) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
@@ -172,7 +172,12 @@ void Menu::flightSearchMenu() {
             addAirportMenu(targetAirports);
         } else if (option == "3") {
             vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports);
-            cout << "heyy yooo\n";
+            for (auto i: flights) {
+                cout << "Trip:\n";
+                for (auto j: i) {
+                    cout << j.getCode() << " ";
+                }
+            }
         } else if (option == "4") {
             break;
         } else {
@@ -201,7 +206,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
         } else if (option == "2") {
             string cityName;
             string countryName;
-            cout << "Please insert the name of the city\n";
+            cout << "Please insert the name of the city.\n";
             cin >> cityName;
             map<string, vector<string>> cities = system.getCities();
             auto mappedCity = cities.find(cityName);
@@ -229,7 +234,19 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
 
 
         } else if (option == "3") {
-
+            cout << "Please insert the name of the country.\n";
+            string countryName;
+            cin >> countryName;
+            bool countryFound = false;
+            for (pair<string, Vertex<Airport> *> airportVertex: system.getAirportNetwork().getVertexSet()) {
+                if (airportVertex.second->getInfo().getCountry() == countryName) {
+                    airports.insert(airportVertex.second);
+                    countryFound = true;
+                }
+            }
+            if (!countryFound) {
+                cout << "The country could not be found.\n";
+            }
         } else if (option == "4") {
 
         } else if (option == "5") {
