@@ -19,8 +19,19 @@ int main() {
 
     for( auto airport : system.getAirports()){
         int x=round(airport.getLongitude()*1.7621+343.4);
-        int y=round(airport.getLatitude()*(-1.909)+262.71);
-        script.fill(x,y,2,2,255,0,0);
+        int y=0;
+        if( airport.getLatitude()<0){
+            y=round(airport.getLatitude()*(-1.909)+258.71);
+        }else{
+            if(airport.getLatitude()>60){
+                y=round(airport.getLatitude()*(-2.209)+268.71);
+            }else{
+                y=round(-1.909*airport.getLatitude()+261.71);
+            }
+
+        }
+
+        script.fill(x,y,3,3,255,0,0);
 
     }
     script.save();
