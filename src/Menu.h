@@ -54,6 +54,13 @@ public:
      * @param airports A set of the currently selected airports.
      */
     void removeAirportMenu(set<Vertex<Airport> *> &airports);
+
+    /**
+     * @brief Menu for changing the filters.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     */
+    void filterMenu(set<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines);
 };
 
 

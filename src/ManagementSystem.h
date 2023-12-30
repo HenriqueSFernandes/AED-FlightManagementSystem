@@ -166,9 +166,11 @@ public:
      * @brief Finds the best flight options for a trip.
      * @param sourceAirports A set with the source airports.
      * @param targetAirports A set with the target airports.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
      * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
      */
-    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports);
+    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports, set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
 
 };
 

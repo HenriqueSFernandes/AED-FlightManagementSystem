@@ -481,10 +481,10 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set < string > availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
-    /*if (airline == nullptr) {
+    if (airline == airlines.end()) {
         cout << "The airline doesn't exist!\n";
         return;
-    }*/
+    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (pair<string, Vertex<Airport> *> airportVertex: getAirportNetwork().getVertexSet()) {
@@ -608,7 +608,8 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
 }
 
 vector<vector<Airport>>
-ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports) {
+ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports,
+                                  set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
     vector<vector<Airport>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
