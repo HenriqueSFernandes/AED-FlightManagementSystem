@@ -163,6 +163,14 @@ public:
     double haversine(double lat1, double lon1, double lat2, double lon2);
 
     /**
+     * @brief Auxiliary function that determines if all airlines are part of the filtered airlines.
+     * @param airlines Set with the current airlines.
+     * @param filteredAirlines Set with the filtered airlines.
+     * @return True if all airlines are part of the filtered airlines.
+     */
+    bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
+
+    /**
      * @brief Finds the best flight options for a trip.
      * @param sourceAirports A set with the source airports.
      * @param targetAirports A set with the target airports.

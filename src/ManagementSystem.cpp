@@ -607,6 +607,15 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
+bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines) {
+    for (Airline airline: airlines) {
+        if (filteredAirlines.find(airline) == filteredAirlines.end()) {
+            return false;
+        }
+    }
+    return true;
+}
+
 vector<vector<Airport>>
 ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports,
                                   set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
@@ -643,7 +652,8 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             if (foundDistance == -1) {
                 // Get the adjacent flights and add them to que queue.
                 for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
-                    if (!(flight.getDest()->isVisited())) {
+                    if (!(flight.getDest()->isVisited()) &&
+                        !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
                         flight.getDest()->setVisited(true);
                         vector<Airport> path = auxQueue.front().second;
                         path.push_back(flight.getDest()->getInfo());
