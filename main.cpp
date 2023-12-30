@@ -16,9 +16,9 @@ int main() {
     set<Vertex<Airport> *> target;
     set<Vertex<Airport> *> filteredAirports;
     set<Airline> filteredAirlines;
-    source.insert(system.getAirportNetwork().findVertex(Airport("CDG", "", "", "", 0, 0)));
-
-    target.insert(system.getAirportNetwork().findVertex(Airport("LJA", "", "", "", 0, 0)));
+    source.insert(system.getAirportNetwork().findVertex(Airport("OPO", "", "", "", 0, 0)));
+    filteredAirports.insert(system.getAirportNetwork().findVertex(Airport("YYZ", "", "", "", 0, 0)));
+    target.insert(system.getAirportNetwork().findVertex(Airport("SRV", "", "", "", 0, 0)));
 
     vector<vector<Airport>> paths = system.findBestFlights(source, target, filteredAirports, filteredAirlines);
     for (auto i: paths) {

@@ -620,6 +620,10 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
         for (pair<string, Vertex<Airport> *> airport: airportNetwork.getVertexSet()) {
             airport.second->setVisited(false);
         }
+        // Set the filtered airports as visited, so they won't be considered when searching.
+        for (Vertex<Airport> *airportVertex: filteredAirports) {
+            airportVertex->setVisited(true);
+        }
         // Set the vertex as visited.
         sourceAirportVertex->setVisited(true);
         // Add the source vertex to the queue.
@@ -639,7 +643,7 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             if (foundDistance == -1) {
                 // Get the adjacent flights and add them to que queue.
                 for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
-                    if (!flight.getDest()->isVisited()) {
+                    if (!(flight.getDest()->isVisited())) {
                         flight.getDest()->setVisited(true);
                         vector<Airport> path = auxQueue.front().second;
                         path.push_back(flight.getDest()->getInfo());
