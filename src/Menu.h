@@ -37,6 +37,23 @@ public:
      * @brief Menu with statistics about flights.
      */
     void flightStatisticsMenu();
+
+    /**
+     * @brief Menu searching flights.
+     */
+    void flightSearchMenu();
+
+    /**
+     * @brief Menu for adding airport(s) to the current selection.
+     * @param airports A set of the currently selected airports.
+     */
+    void addAirportMenu(set<Vertex<Airport> *> &airports);
+
+    /**
+     * @brief Menu for removing airport(s) to the current selection
+     * @param airports A set of the currently selected airports.
+     */
+    void removeAirportMenu(set<Vertex<Airport> *> &airports);
 };
 
 

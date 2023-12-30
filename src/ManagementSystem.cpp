@@ -109,8 +109,9 @@ void ManagementSystem::readFlights() {
         }
         if (!flightExists) {
             set < Airline > airlines = {*airline};
-            double distance= airportDistance(sourceAirportVertex->getInfo().getCode(),targetAirportVertex->getInfo().getCode());
-            airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), airlines,distance);
+            double distance = airportDistance(sourceAirportVertex->getInfo().getCode(),
+                                              targetAirportVertex->getInfo().getCode());
+            airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), airlines, distance);
             sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
             targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
         }
@@ -606,18 +607,19 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
-vector<vector<Airport>> ManagementSystem::findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports) {
+vector<vector<Airport>>
+ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports) {
     vector<vector<Airport>> res;
-    set<Airport> foundtargets;
-    for (Airport sourceAirport: sourceAirports) {
+    set < Airport > foundtargets;
+    for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
+        Airport sourceAirport = sourceAirportVertex->getInfo();
         // Auxiliary queue to help in BFS. The first element of the pair is the current airport and the second is the path to that airport.
         queue<pair<Vertex<Airport> *, vector<Airport>>> auxQueue;
         // Set all airports to not visited.
         for (pair<string, Vertex<Airport> *> airport: airportNetwork.getVertexSet()) {
             airport.second->setVisited(false);
         }
-        // Find the source vertex and set it as visited.
-        Vertex<Airport> *sourceAirportVertex = airportNetwork.findVertex(sourceAirport);
+        // Set the vertex as visited.
         sourceAirportVertex->setVisited(true);
         // Add the source vertex to the queue.
         auxQueue.push({sourceAirportVertex, {sourceAirport}});
@@ -627,7 +629,7 @@ vector<vector<Airport>> ManagementSystem::findBestFlights(set<Airport> sourceAir
         while (!auxQueue.empty()) {
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
-            if (targetAirports.find(currentAirportVertex->getInfo()) != targetAirports.end()) {
+            if (targetAirports.find(currentAirportVertex) != targetAirports.end()) {
                 foundtargets.insert(currentAirportVertex->getInfo());
                 foundDistance = auxQueue.front().second.size();
                 res.push_back(auxQueue.front().second);
@@ -646,17 +648,14 @@ vector<vector<Airport>> ManagementSystem::findBestFlights(set<Airport> sourceAir
             }
             auxQueue.pop();
         }
-        for( auto target : targetAirports){
-            if(foundtargets.find(target)==foundtargets.end()){
-                cout<<"NO FLIGHT FROM"<<sourceAirport.getCode()<<target.getCode()<<endl;
-            }
-        }
-
-
     }
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
 
     return res;
+}
+
+const map<string, vector<string>> &ManagementSystem::getCities() const {
+    return cities;
 }
