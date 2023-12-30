@@ -164,13 +164,18 @@ void Menu::flightSearchMenu() {
             cout << "\t" << airport->getInfo() << endl;
         }
         cout << "What do you want to do?\n";
-        cout << "1) Add departure\n2) Add arrival\n3) Search flights\n4) Go back\n";
+        cout
+                << "1) Add departure\n2) Add arrival\n3) Remove departure\n4) Remove arrival\n5) Search flights\n6) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
         } else if (option == "2") {
             addAirportMenu(targetAirports);
         } else if (option == "3") {
+            removeAirportMenu(sourceAirports);
+        } else if (option == "4") {
+            removeAirportMenu(targetAirports);
+        } else if (option == "5") {
             vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports);
             for (auto i: flights) {
                 cout << "Trip:\n";
@@ -178,7 +183,7 @@ void Menu::flightSearchMenu() {
                     cout << j.getCode() << " ";
                 }
             }
-        } else if (option == "4") {
+        } else if (option == "6") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";
@@ -203,6 +208,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
             } else {
                 airports.insert(airport);
             }
+            break;
         } else if (option == "2") {
             string cityName;
             string countryName;
@@ -232,7 +238,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
                 }
             }
 
-
+            break;
         } else if (option == "3") {
             cout << "Please insert the name of the country.\n";
             string countryName;
@@ -247,6 +253,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
             if (!countryFound) {
                 cout << "The country could not be found.\n";
             }
+            break;
         } else if (option == "4") {
             double currentLatitude, currentLongitude;
             bool validCoordinates = true;
@@ -278,8 +285,137 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
                 }
                 airports.insert(closestAirport->second);
             }
+            break;
+        } else if (option == "5") {
+            break;
+        } else {
+            cout << "Invalid option, please choose again.\n";
+        }
+    }
+}
+
+void Menu::removeAirportMenu(set<Vertex<Airport> *> &airports) {
+    string option;
+    while (true) {
+        cout << "\nWhat do you want to remove?\n";
+        cout
+                << "1) Single Airport\n2) All airports of a city\n3) All airports of a country\n4) Airport by coordinates\n5) Remove all\n6) Go back\n";
+        cin >> option;
+        if (option == "1") {
+            string airportCode;
+            cout << "Please insert the code of the airport\n";
+            cin >> airportCode;
+            bool airportFound = false;
+            auto it = airports.begin();
+            while (it != airports.end()) {
+                Vertex<Airport> *airportVertex = *it;
+                if (airportVertex->getInfo().getCode() == airportCode) {
+                    it = airports.erase(it);
+                    airportFound = true;
+                } else {
+                    it++;
+                }
+            }
+            if (!airportFound) {
+                cout << "The airport was not found.\n";
+            }
+            break;
+        } else if (option == "2") {
+            string cityName;
+            string countryName;
+            cout << "Please insert the name of the city.\n";
+            cin >> cityName;
+            map<string, vector<string>> cities = system.getCities();
+            auto mappedCity = cities.find(cityName);
+            if (mappedCity == cities.end()) {
+                cout << "The city doesn't exist!\n";
+            } else {
+                if (mappedCity->second.size() > 1) {
+                    cout << "There are more than one city with that name, can you specify the country?\n";
+                    for (int i = 1; i <= mappedCity->second.size(); i++) {
+                        cout << "\t" << i << ") " << mappedCity->second[i - 1] << endl;
+                    }
+                    int option2;
+                    cin >> option2;
+                    countryName = mappedCity->second[option2 - 1];
+                } else {
+                    countryName = mappedCity->second[0];
+                }
+                bool cityFound = false;
+                auto it = airports.begin();
+                while (it != airports.end()) {
+                    Vertex<Airport> *airportVertex = *it;
+                    if (airportVertex->getInfo().getCity() == cityName &&
+                        airportVertex->getInfo().getCountry() == countryName) {
+                        it = airports.erase(it);
+                        cityFound = true;
+                    } else {
+                        it++;
+                    }
+                }
+                if (!cityFound) {
+                    cout << "The city was not found.\n";
+                }
+                break;
+            }
+
+
+        } else if (option == "3") {
+            cout << "Please insert the name of the country.\n";
+            string countryName;
+            cin >> countryName;
+            bool countryFound = false;
+            auto it = airports.begin();
+            while (it != airports.end()) {
+                Vertex<Airport> *airportVertex = *it;
+                if (airportVertex->getInfo().getCountry() == countryName) {
+                    it = airports.erase(it);
+                    countryFound = true;
+                } else {
+                    it++;
+                }
+            }
+            if (!countryFound) {
+                cout << "The country could not be found.\n";
+            }
+            break;
+        } else if (option == "4") {
+            double currentLatitude, currentLongitude;
+            bool validCoordinates = true;
+            cout << "Please enter the latitude.\n";
+            cin >> currentLatitude;
+            cout << "Please enter the longitude.\n";
+            cin >> currentLongitude;
+            if ((currentLatitude < -90 || currentLatitude > 90) ||
+                (currentLongitude < -180 || currentLongitude > 180)) {
+                cout << "Invalid coordinates.\n";
+                validCoordinates = false;
+            }
+            if (validCoordinates) {
+                auto currentAirport = airports.begin();
+                auto closestAirport = currentAirport;
+                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
+                                                           (*closestAirport)->getInfo().getLatitude(),
+                                                           (*closestAirport)->getInfo().getLongitude());
+                while (currentAirport != airports.end()) {
+                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
+                                                              (*currentAirport)->getInfo().getLatitude(),
+                                                              (*currentAirport)->getInfo().getLongitude());
+                    if (currentDistance < shortestDistance) {
+                        shortestDistance = currentDistance;
+                        closestAirport = currentAirport;
+                    }
+                    currentAirport++;
+                }
+                airports.erase(closestAirport);
+            }
+            break;
 
         } else if (option == "5") {
+            airports.clear();
+            break;
+
+        } else if (option == "6") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";

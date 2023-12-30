@@ -47,7 +47,13 @@ public:
      * @brief Menu for adding airport(s) to the current selection.
      * @param airports A set of the currently selected airports.
      */
-    void addAirportMenu(set<Vertex<Airport>*> & airports);
+    void addAirportMenu(set<Vertex<Airport> *> &airports);
+
+    /**
+     * @brief Menu for removing airport(s) to the current selection
+     * @param airports A set of the currently selected airports.
+     */
+    void removeAirportMenu(set<Vertex<Airport> *> &airports);
 };
 
 
