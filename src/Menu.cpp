@@ -153,8 +153,10 @@ void Menu::flightStatisticsMenu() {
 void Menu::flightSearchMenu() {
     set<Vertex<Airport> *> sourceAirports;
     set<Vertex<Airport> *> targetAirports;
-    set<Vertex<Airport> *> filteredAirports;
-    set < Airline > filteredAirlines;
+    set<Vertex<Airport> *> filteredAirports; // Airports that should not be visited.
+    set<Vertex<Airport> *> mandatoryStops; // Airports that need to be visited (mandatory layover).
+    set < Airline > filteredAirlines; // Airlines that should not be visited.
+    set < Airline > mandatoryAirlines; // Only these airlines can be used.
     string option;
     while (true) {
         cout << "\nCurrently selected departure airports:\n";
@@ -167,18 +169,18 @@ void Menu::flightSearchMenu() {
         }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Add arrival\n3) Remove departure\n4) Remove arrival\n5) Change filters\n6) Search flights\n7) Go back\n";
+                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) Change filters\n\n6) Search flights\n\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
         } else if (option == "2") {
-            addAirportMenu(targetAirports);
-        } else if (option == "3") {
             removeAirportMenu(sourceAirports);
+        } else if (option == "3") {
+            addAirportMenu(targetAirports);
         } else if (option == "4") {
             removeAirportMenu(targetAirports);
         } else if (option == "5") {
-            filterMenu(filteredAirports, filteredAirlines);
+            filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
             vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports, filteredAirports,
                                                                      filteredAirlines);
@@ -428,7 +430,8 @@ void Menu::removeAirportMenu(set<Vertex<Airport> *> &airports) {
     }
 }
 
-void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines) {
+void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines,
+                      set<Vertex<Airport> *> &mandatoryStops, set<Airline> &mandatoryAirlines) {
     string option;
     while (true) {
         cout << "\nCurrently selected filters:\n";
@@ -440,9 +443,21 @@ void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &fi
         for (Airline airline: filteredAirlines) {
             cout << "\t\t" << airline << endl;
         }
+        cout << "\tMandatory layovers:\n";
+        for (Vertex<Airport> *airportVertex: mandatoryStops) {
+            cout << "\t\t" << airportVertex->getInfo() << endl;
+        }
+        cout << "\tAllowed airlines:\n";
+        if (mandatoryAirlines.empty()) {
+            cout << "\t\tAll\n";
+        } else {
+            for (Airline airline: mandatoryAirlines) {
+                cout << "\t\t" << airline << endl;
+            }
+        }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add airport to filter\n2) Remove airport from filter\n3) Add airline to filter\n4) Remove airline from filter\n5) Go back\n";
+                << "1) Add airport to excluded airports\n2) Remove airport from excluded airports\n\n3) Add airline to excluded airlines\n4) Remove airline from excluded airlines\n\n5) Add Airport to layover airports\n6) Remove airport from layover airports\n\n7) Add airline to allowed airlines\n8) Remove airline from allowed airlines\n\n9) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(filteredAirports);
@@ -469,6 +484,30 @@ void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &fi
                 filteredAirlines.erase(airline);
             }
         } else if (option == "5") {
+            addAirportMenu(mandatoryStops);
+        } else if (option == "6") {
+            removeAirportMenu(mandatoryStops);
+        } else if (option == "7") {
+            string airlineCode;
+            cout << "Please insert the code of the airline.\n";
+            cin >> airlineCode;
+            auto airline = system.getAirlines().find(Airline(airlineCode, "", "", ""));
+            if (airline == system.getAirlines().end()) {
+                cout << "The airline doesn't exist!\n";
+            } else {
+                mandatoryAirlines.insert(*airline);
+            }
+        } else if (option == "8") {
+            string airlineCode;
+            cout << "Please insert the code of the airline.\n";
+            cin >> airlineCode;
+            auto airline = mandatoryAirlines.find(Airline(airlineCode, "", "", ""));
+            if (airline == mandatoryAirlines.end()) {
+                cout << "The airline could not be found";
+            } else {
+                mandatoryAirlines.erase(airline);
+            }
+        } else if (option == "9") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";

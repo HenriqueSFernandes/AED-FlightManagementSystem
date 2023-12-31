@@ -59,8 +59,10 @@ public:
      * @brief Menu for changing the filters.
      * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
      * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     * @param mandatoryStops A set with airports that need to be visited (layover).
+     * @param mandatoryAirlines A set with the only airlines than can be used.
      */
-    void filterMenu(set<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines);
+    void filterMenu(set<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines, set<Vertex<Airport>*> &mandatoryStops, set<Airline> &mandatoryAirlines);
 };
 
 

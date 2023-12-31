@@ -664,6 +664,7 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             auxQueue.pop();
         }
     }
+    // Sort the result by number of stops.
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
