@@ -668,7 +668,9 @@ ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vecto
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
-
+    if (res.size() == 0){
+        return {};
+    }
     return res[0];
 }
 
