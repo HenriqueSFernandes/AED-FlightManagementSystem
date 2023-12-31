@@ -56,15 +56,30 @@ int main() {
 
     script.save();
     cout<<"END"<<endl;*/
-    Airport airport1 = *system.getAirports().find(Airport("JFK", "", "", "", 0, 0));
-    Airport airport2 = *system.getAirports().find(Airport("MEB", "", "", "", 0, 0));
-
-    double currentLat=airport1.getLatitude();
-    double currentLong=airport1.getLongitude();
-    double targetLat=airport2.getLatitude();
-    double targetLong=airport2.getLongitude();
+    Airport airport1 = *system.getAirports().find(Airport("GRU", "", "", "", 0, 0));
+    Airport airport2 = *system.getAirports().find(Airport("GOH", "", "", "", 0, 0));
+    double currentLat;
+    double targetLat;
+    if(min(airport1.getLongitude(),airport2.getLongitude())==airport1.getLongitude()){
+         currentLat=airport1.getLatitude();
+         targetLat=airport2.getLatitude();
+    }else{
+        currentLat=airport2.getLatitude();
+        targetLat=airport1.getLatitude();
+    }
+    double currentLong=min(airport1.getLongitude(),airport2.getLongitude());
+    double targetLong=max(airport1.getLongitude(),airport2.getLongitude());
     while(abs(targetLat-currentLat)>0.01 or abs(targetLong-currentLong)>0.01){
+        if(currentLong<-180){
+            currentLong=180;
+        }
+        if(currentLong>180){
+            currentLong=-180;
+        }
         double deltaX=(targetLong-currentLong)/360;
+        if(targetLong-currentLong >180){
+            deltaX=(180-targetLong+currentLong)/360;
+        }
         currentLong+=deltaX;
         double deltay=(targetLat-currentLat)/180;
         currentLat+=deltay;
