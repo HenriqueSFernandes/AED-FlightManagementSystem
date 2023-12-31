@@ -151,10 +151,10 @@ void Menu::flightStatisticsMenu() {
 }
 
 void Menu::flightSearchMenu() {
-    set<Vertex<Airport> *> sourceAirports;
-    set<Vertex<Airport> *> targetAirports;
-    set<Vertex<Airport> *> filteredAirports; // Airports that should not be visited.
-    set<Vertex<Airport> *> mandatoryStops; // Airports that need to be visited (mandatory layover).
+    vector<Vertex<Airport> *> sourceAirports;
+    vector<Vertex<Airport> *> targetAirports;
+    vector<Vertex<Airport> *> filteredAirports; // Airports that should not be visited.
+    vector<Vertex<Airport> *> mandatoryStops; // Airports that need to be visited (mandatory layover).
     set < Airline > filteredAirlines; // Airlines that should not be visited.
     set < Airline > mandatoryAirlines; // Only these airlines can be used.
     string option;
@@ -182,14 +182,35 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
-            vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports, filteredAirports,
-                                                                     filteredAirlines);
-            for (auto i: flights) {
-                cout << "Trip:\n";
-                for (auto j: i) {
-                    cout << j.getCode() << " ";
+            vector<Airport> bestTrip;
+            if (mandatoryAirlines.empty()) {
+                // No mandatory airlines.
+                vector<Vertex<Airport> *> currentSources = sourceAirports;
+                vector<Vertex<Airport> *> currentTargets;
+                vector<Airport> currentTrip;
+                for (Vertex<Airport> *layoverAirportVertex: mandatoryStops) {
+                    currentTargets.clear();
+                    currentTargets.push_back(layoverAirportVertex);
+                    currentTrip = system.findBestFlight(currentSources, currentTargets,
+                                                                        filteredAirports, filteredAirlines);
+                    for (int i = 0; i < currentTrip.size() - 1; i++){
+                        bestTrip.push_back(currentTrip[i]);
+                    }
+                    currentSources = currentTargets;
                 }
+                currentTrip = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
+                for (Airport airport : currentTrip){
+                    bestTrip.push_back(airport);
+                }
+            } else {
+                // Mandatory airlines.
+
             }
+            cout << "The best trip with the current filters is:\n";
+            for (Airport airport: bestTrip) {
+                cout << airport.getCode() << " ";
+            }
+            cout << endl;
         } else if (option == "7") {
             break;
         } else {
@@ -198,7 +219,7 @@ void Menu::flightSearchMenu() {
     }
 }
 
-void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
+void Menu::addAirportMenu(vector<Vertex<Airport> *> & airports) {
     string option;
     while (true) {
         cout << "\nWhat do you want to add?\n";
@@ -213,7 +234,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
             if (airport == nullptr) {
                 cout << "The airport doesn't exist\n";
             } else {
-                airports.insert(airport);
+                airports.push_back(airport);
             }
             break;
         } else if (option == "2") {
@@ -240,7 +261,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
                 for (pair<string, Vertex<Airport> *> airportVertex: system.getAirportNetwork().getVertexSet()) {
                     if (airportVertex.second->getInfo().getCity() == cityName &&
                         airportVertex.second->getInfo().getCountry() == countryName) {
-                        airports.insert(airportVertex.second);
+                        airports.push_back(airportVertex.second);
                     }
                 }
             }
@@ -253,7 +274,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
             bool countryFound = false;
             for (pair<string, Vertex<Airport> *> airportVertex: system.getAirportNetwork().getVertexSet()) {
                 if (airportVertex.second->getInfo().getCountry() == countryName) {
-                    airports.insert(airportVertex.second);
+                    airports.push_back(airportVertex.second);
                     countryFound = true;
                 }
             }
@@ -290,7 +311,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
                     }
                     currentAirport++;
                 }
-                airports.insert(closestAirport->second);
+                airports.push_back(closestAirport->second);
             }
             break;
         } else if (option == "5") {
@@ -301,7 +322,7 @@ void Menu::addAirportMenu(set<Vertex<Airport> *> &airports) {
     }
 }
 
-void Menu::removeAirportMenu(set<Vertex<Airport> *> &airports) {
+void Menu::removeAirportMenu(vector<Vertex<Airport> *> & airports) {
     string option;
     while (true) {
         cout << "\nWhat do you want to remove?\n";
@@ -430,8 +451,8 @@ void Menu::removeAirportMenu(set<Vertex<Airport> *> &airports) {
     }
 }
 
-void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines,
-                      set<Vertex<Airport> *> &mandatoryStops, set<Airline> &mandatoryAirlines) {
+void Menu::filterMenu(vector<Vertex<Airport> *> & filteredAirports, set < Airline > &filteredAirlines,
+                      vector<Vertex<Airport> *> & mandatoryStops, set < Airline > &mandatoryAirlines) {
     string option;
     while (true) {
         cout << "\nCurrently selected filters:\n";
