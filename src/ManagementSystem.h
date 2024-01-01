@@ -181,6 +181,15 @@ public:
      */
     vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
 
+    void printAirports(set<Airport> airports, string destinationFile);
+
+    void printPath(Airport airport1, Airport airport2, string destinationFile);
+
+    void printPath(Airport airport1, Airport airport2, string destinationFile, bool helper);
+
+    void printComposedPath(set<Airport> mySet, string destinationFile);
+
+    void printComposedPath(vector<Airport> mySet, string destinationFile);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

@@ -2,12 +2,11 @@
 #include <cmath>
 #include "src/ManagementSystem.h"
 #include "src/Menu.h"
-#include "/home/jose/Documents/proj2aed/aed-flights/Image/Script.hpp"
+#include "src/Image/Script.hpp"
+
 using namespace std;
 
 int main() {
-    prog::Script script= prog::Script();
-    script.open("Image/input/worldmap.png");
 
     ManagementSystem system;
     cout << "Loading airlines\n";
@@ -57,40 +56,33 @@ int main() {
 
     script.save();
     cout<<"END"<<endl;*/
-    Airport airport1 = *system.getAirports().find(Airport("MEB", "", "", "", 0, 0));
-    Airport airport2 = *system.getAirports().find(Airport("GRU", "", "", "", 0, 0));
-    double currentLat;
-    double targetLat;
-    if(min(airport1.getLongitude(),airport2.getLongitude())==airport1.getLongitude()){
-         currentLat=airport1.getLatitude();
-         targetLat=airport2.getLatitude();
-    }else{
-        currentLat=airport2.getLatitude();
-        targetLat=airport1.getLatitude();
-    }
-    double currentLong=min(airport1.getLongitude(),airport2.getLongitude());
-    double targetLong=max(airport1.getLongitude(),airport2.getLongitude());
-    while(abs(targetLat-currentLat)>0.01 or abs(targetLong-currentLong)>0.01){
-        if(currentLong<-180){
-            currentLong=180;
-        }
-        if(currentLong>180){
-            currentLong=-180;
-        }
-        double deltaX=(targetLong-currentLong)/360;
-        if(targetLong-currentLong >180){
-            deltaX=(180-targetLong+currentLong)/360;
-        }
-        currentLong+=deltaX;
-        double deltay=(targetLat-currentLat)/180;
-        currentLat+=deltay;
-        int x = round(currentLong* 1.7621 + 343.4);
-        int y = 260 - round(1.23 * (450 / (2 * M_PI) * log2(tan(M_PI / 4 + currentLat* M_PI * 0.4 / 180))));
-        script.fill(x, y, 2, 2, 255, 0, 0);
-    }
+    Airport airport1 = *system.getAirports().find(Airport("OPO", "", "", "", 0, 0));
+    Airport airport2 = *system.getAirports().find(Airport("YYZ", "", "", "", 0, 0));
+    Airport airport3 = *system.getAirports().find(Airport("PHX", "", "", "", 0, 0));
+    Airport airport4 = *system.getAirports().find(Airport("ANC", "", "", "", 0, 0));
+    Airport airport5 = *system.getAirports().find(Airport("ANI", "", "", "", 0, 0));
+    Airport airport6 = *system.getAirports().find(Airport("CHU", "", "", "", 0, 0));
+    Airport airport7 = *system.getAirports().find(Airport("CKD", "", "", "", 0, 0));
+    Airport airport8 = *system.getAirports().find(Airport("SLQ", "", "", "", 0, 0));
+    Airport airport9 = *system.getAirports().find(Airport("SRV", "", "", "", 0, 0));
 
-    script.save("Image/output/worldmap2.png");
 
+
+
+    vector<Airport> UWU;
+    UWU.push_back(airport1);
+    UWU.push_back(airport2);
+    UWU.push_back(airport3);
+    UWU.push_back(airport4);
+    UWU.push_back(airport5);
+    UWU.push_back(airport6);
+    UWU.push_back(airport7);
+    UWU.push_back(airport8);
+    UWU.push_back(airport9);
+
+    system.printComposedPath(UWU,"src/Image/output/flightuwu.png");
+    Menu menu(system);
+    menu.start();
     cout<<"END"<<endl;
 
     return 0;

@@ -15,11 +15,11 @@ add_executable(aed-flights main.cpp
         src/ManagementSystem.h
         src/Menu.cpp
         src/Menu.h
-        Image/iterators.cpp
-        Image/PNG.hpp
-        Image/PNG.cpp
-        Image/Script.cpp
-        Image/Color.cpp
-        Image/Image.cpp
-        Image/Image.cpp
+        src/Image/iterators.cpp
+        src/Image/PNG.hpp
+        src/Image/PNG.cpp
+        src/Image/Script.cpp
+        src/Image/Color.cpp
+        src/Image/Image.cpp
+        src/Image/Image.cpp
 )
