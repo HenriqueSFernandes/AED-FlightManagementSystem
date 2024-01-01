@@ -213,10 +213,11 @@ void Menu::flightSearchMenu() {
                 cout << "It was impossible to find a trip with the current filters.\n";
             } else {
                 cout << "The best trip with the current filters is:\n";
-                for (Airport airport: bestTrip) {
-                    cout << airport.getCode() << " ";
+                cout << "\tSource: " << bestTrip[0] << endl;
+                for (int i = 1; i < bestTrip.size() - 1; i++){
+                    cout << "\tLayover: " << bestTrip[i] << endl;
                 }
-                cout << endl;
+                cout << "\tTarget: " << bestTrip[bestTrip.size()-1] << endl;
             }
         } else if (option == "7") {
             break;
