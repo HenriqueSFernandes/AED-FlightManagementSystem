@@ -63,11 +63,12 @@ void ManagementSystem::readAirports() {
         getline(iss, longitude, '\r');
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
         airportNetwork.addVertex(newAirport);
-        if (cities.find(city) == cities.end()) {
+        // Search for cities with the same name.
+        auto mappedCity = cities.find(city);
+        if (mappedCity == cities.end()) {
             vector<string> countries = {country};
             cities[city] = countries;
         } else {
-            auto mappedCity = cities.find(city);
             if (std::find(mappedCity->second.begin(), mappedCity->second.end(), country) == mappedCity->second.end()) {
                 mappedCity->second.push_back(country);
             }
@@ -95,7 +96,7 @@ void ManagementSystem::readFlights() {
         getline(iss, source, ',');
         getline(iss, target, ',');
         getline(iss, airlineCode, '\r');
-        // Get the airline and airports for the flight
+        // Get the airline and airports for the flight.
         auto airline = airlines.find(Airline(airlineCode, "", "", ""));
         auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
@@ -115,7 +116,6 @@ void ManagementSystem::readFlights() {
             sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
             targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
         }
-
     }
     flightsFile.close();
 }
@@ -219,10 +219,6 @@ void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airpor
             }
         } else if (edge.getDest()->isProcessing()) {
             v->setLow(min(v->getLow(), edge.getDest()->getNum()));
-        }
-        if (treeedges > 1 and v->getNum() == 1) {
-            // cout<<"here"<<v->getInfo().getCode()<<endl;
-            //l.insert(v->getInfo());
         }
     }
     v->setProcessing(false);
