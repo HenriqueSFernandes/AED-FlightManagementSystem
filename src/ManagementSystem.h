@@ -163,12 +163,22 @@ public:
     double haversine(double lat1, double lon1, double lat2, double lon2);
 
     /**
+     * @brief Auxiliary function that determines if all airlines are part of the filtered airlines.
+     * @param airlines Set with the current airlines.
+     * @param filteredAirlines Set with the filtered airlines.
+     * @return True if all airlines are part of the filtered airlines.
+     */
+    bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
+
+    /**
      * @brief Finds the best flight options for a trip.
      * @param sourceAirports A set with the source airports.
      * @param targetAirports A set with the target airports.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
      * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
      */
-    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports);
+    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports, set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
 
     void MakeUndirected();
 };

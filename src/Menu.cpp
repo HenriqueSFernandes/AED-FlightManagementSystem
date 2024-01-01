@@ -153,6 +153,8 @@ void Menu::flightStatisticsMenu() {
 void Menu::flightSearchMenu() {
     set<Vertex<Airport> *> sourceAirports;
     set<Vertex<Airport> *> targetAirports;
+    set<Vertex<Airport> *> filteredAirports;
+    set < Airline > filteredAirlines;
     string option;
     while (true) {
         cout << "\nCurrently selected departure airports:\n";
@@ -163,9 +165,9 @@ void Menu::flightSearchMenu() {
         for (Vertex<Airport> *airport: targetAirports) {
             cout << "\t" << airport->getInfo() << endl;
         }
-        cout << "What do you want to do?\n";
+        cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Add arrival\n3) Remove departure\n4) Remove arrival\n5) Search flights\n6) Go back\n";
+                << "1) Add departure\n2) Add arrival\n3) Remove departure\n4) Remove arrival\n5) Change filters\n6) Search flights\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
@@ -176,14 +178,17 @@ void Menu::flightSearchMenu() {
         } else if (option == "4") {
             removeAirportMenu(targetAirports);
         } else if (option == "5") {
-            vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports);
+            filterMenu(filteredAirports, filteredAirlines);
+        } else if (option == "6") {
+            vector<vector<Airport>> flights = system.findBestFlights(sourceAirports, targetAirports, filteredAirports,
+                                                                     filteredAirlines);
             for (auto i: flights) {
                 cout << "Trip:\n";
                 for (auto j: i) {
                     cout << j.getCode() << " ";
                 }
             }
-        } else if (option == "6") {
+        } else if (option == "7") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";
@@ -416,6 +421,54 @@ void Menu::removeAirportMenu(set<Vertex<Airport> *> &airports) {
             break;
 
         } else if (option == "6") {
+            break;
+        } else {
+            cout << "Invalid option, please choose again.\n";
+        }
+    }
+}
+
+void Menu::filterMenu(set<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines) {
+    string option;
+    while (true) {
+        cout << "\nCurrently selected filters:\n";
+        cout << "\tAirports excluded from searching:\n";
+        for (Vertex<Airport> *airportVertex: filteredAirports) {
+            cout << "\t\t" << airportVertex->getInfo() << endl;
+        }
+        cout << "\tAirlines excluded from searching:\n";
+        for (Airline airline: filteredAirlines) {
+            cout << "\t\t" << airline << endl;
+        }
+        cout << "\nWhat do you want to do?\n";
+        cout
+                << "1) Add airport to filter\n2) Remove airport from filter\n3) Add airline to filter\n4) Remove airline from filter\n5) Go back\n";
+        cin >> option;
+        if (option == "1") {
+            addAirportMenu(filteredAirports);
+        } else if (option == "2") {
+            removeAirportMenu(filteredAirports);
+        } else if (option == "3") {
+            string airlineCode;
+            cout << "Please insert the code of the airline.\n";
+            cin >> airlineCode;
+            auto airline = system.getAirlines().find(Airline(airlineCode, "", "", ""));
+            if (airline == system.getAirlines().end()) {
+                cout << "The airline doesn't exist!\n";
+            } else {
+                filteredAirlines.insert(*airline);
+            }
+        } else if (option == "4") {
+            string airlineCode;
+            cout << "Please insert the code of the airline.\n";
+            cin >> airlineCode;
+            auto airline = filteredAirlines.find(Airline(airlineCode, "", "", ""));
+            if (airline == filteredAirlines.end()) {
+                cout << "The airline could not be found";
+            } else {
+                filteredAirlines.erase(airline);
+            }
+        } else if (option == "5") {
             break;
         } else {
             cout << "Invalid option, please choose again.\n";

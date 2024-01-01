@@ -491,10 +491,10 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set < string > availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
-    /*if (airline == nullptr) {
+    if (airline == airlines.end()) {
         cout << "The airline doesn't exist!\n";
         return;
-    }*/
+    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (pair<string, Vertex<Airport> *> airportVertex: getAirportNetwork().getVertexSet()) {
@@ -617,8 +617,18 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
+bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines) {
+    for (Airline airline: airlines) {
+        if (filteredAirlines.find(airline) == filteredAirlines.end()) {
+            return false;
+        }
+    }
+    return true;
+}
+
 vector<vector<Airport>>
-ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports) {
+ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports,
+                                  set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
     vector<vector<Airport>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
@@ -628,6 +638,10 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
         // Set all airports to not visited.
         for (pair<string, Vertex<Airport> *> airport: airportNetwork.getVertexSet()) {
             airport.second->setVisited(false);
+        }
+        // Set the filtered airports as visited, so they won't be considered when searching.
+        for (Vertex<Airport> *airportVertex: filteredAirports) {
+            airportVertex->setVisited(true);
         }
         // Set the vertex as visited.
         sourceAirportVertex->setVisited(true);
@@ -648,7 +662,8 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             if (foundDistance == -1) {
                 // Get the adjacent flights and add them to que queue.
                 for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
-                    if (!flight.getDest()->isVisited()) {
+                    if (!(flight.getDest()->isVisited()) &&
+                        !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
                         flight.getDest()->setVisited(true);
                         vector<Airport> path = auxQueue.front().second;
                         path.push_back(flight.getDest()->getInfo());
