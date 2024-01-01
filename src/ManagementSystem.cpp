@@ -169,10 +169,20 @@ int ManagementSystem::GlobalNumberOfFlights() {
     }
     return numberOfFlights;
 }
+void ManagementSystem::MakeUndirected(){
+    for( auto vertex : airportNetwork.getVertexSet()){
+        for( auto edge: vertex.second->getAdj()){
+            airportNetwork.addEdge(edge.getDest()->getInfo(),vertex.second->getInfo(),{},0);
+        }
+    }
 
+}
 set<Airport> ManagementSystem::essentialAirports() {
     set < Airport > res;
     int k = 1;
+    Graph<Airport> recover=airportNetwork;
+    MakeUndirected();
+
     for (pair<string, Vertex<Airport> *> vertex: airportNetwork.getVertexSet()) {
         vertex.second->setVisited(false);
         vertex.second->setProcessing(false);
@@ -185,9 +195,9 @@ set<Airport> ManagementSystem::essentialAirports() {
             ManagementSystem::dfs_art(vertex.second, s, res, k);
         }
     }
+    airportNetwork=recover;
     return res;
 }
-
 void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {
 
     v->setLow(i);
