@@ -56,8 +56,8 @@ int main() {
 
     script.save();
     cout<<"END"<<endl;*/
-    Airport airport1 = *system.getAirports().find(Airport("GRU", "", "", "", 0, 0));
-    Airport airport2 = *system.getAirports().find(Airport("GOH", "", "", "", 0, 0));
+    Airport airport1 = *system.getAirports().find(Airport("OPO", "", "", "", 0, 0));
+    Airport airport2 = *system.getAirports().find(Airport("SDU", "", "", "", 0, 0));
     double currentLat;
     double targetLat;
     if(min(airport1.getLongitude(),airport2.getLongitude())==airport1.getLongitude()){
