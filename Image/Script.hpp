@@ -11,19 +11,17 @@ namespace prog
   class Script
   {
   public: 
-    Script(const std::string &filename);
+    Script();
     ~Script();
     void run();
       void fill(int x, int y, int w, int h,rgb_value r,rgb_value g,rgb_value b);
       void clear_image_if_any();
-      void open();
+      void open(std::string in);
       void blank();
-      void save();
+      void save(std::string out);
   private:
     // Current image.
     Image *image;
-    // Input stream for reading script commands.
-    std::string input;
 
 
   };

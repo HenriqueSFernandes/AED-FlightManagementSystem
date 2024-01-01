@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <filesystem>
 #include "Script.hpp"
 #include "PNG.hpp"
 
@@ -17,8 +18,8 @@ namespace prog {
         return input;
     }
 
-    Script::Script(const string& filename) :
-            image(nullptr), input(filename) {
+    Script::Script() :
+            image(nullptr){
 
     }
     void Script::clear_image_if_any() {
@@ -32,20 +33,41 @@ namespace prog {
     }
 
 
-    void Script::open() {
+    void Script::open(string input) {
         // Replace current image (if any) with image read from PNG file.
         clear_image_if_any();
         string filename;
-        image = loadFromPNG(input);
-        cout<<image->width();
+        std::filesystem::path absolutePath = std::filesystem::absolute(input);
+        filename=absolutePath.string();
+        const std::string subdirectoryToRemove = "cmake-build-debug/";
+        // Find the position of the substring
+        size_t pos = filename.find(subdirectoryToRemove);
+
+        // If the substring is found, erase it
+        if (pos != std::string::npos) {
+            filename.erase(pos, subdirectoryToRemove.length());
+        }
+
+        image = loadFromPNG(filename);
+
     }
 
 
-    void Script::save() {
+    void Script::save(string ou) {
         // Save current image to PNG file.
-        string filename;
-        input="/home/jose/Documents/proj2aed/aed-flights/Image/output/world.png";
-        saveToPNG(input, image);
+        string out;
+        std::filesystem::path absolutePath = std::filesystem::absolute(ou);
+        out=absolutePath.string();
+        const std::string subdirectoryToRemove = "cmake-build-debug/";
+        // Find the position of the substring
+        size_t pos = out.find(subdirectoryToRemove);
+
+        // If the substring is found, erase it
+        if (pos != std::string::npos) {
+            out.erase(pos, subdirectoryToRemove.length());
+        }
+
+        saveToPNG(out, image);
     }
 
     void Script::fill(int x, int y, int w, int h,rgb_value r,rgb_value g,rgb_value b){

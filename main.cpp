@@ -6,7 +6,8 @@
 using namespace std;
 
 int main() {
-    prog::Script script= prog::Script("/home/jose/Documents/proj2aed/aed-flights/Image/input/worldmap.png");
+    prog::Script script= prog::Script();
+    script.open("Image/input/worldmap.png");
 
     ManagementSystem system;
     cout << "Loading airlines\n";
@@ -15,7 +16,7 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
-    script.open();
+
     /*
     for( auto airport : system.getAirports()){
         int x=round(airport.getLongitude()*1.7621+343.4);
@@ -56,8 +57,8 @@ int main() {
 
     script.save();
     cout<<"END"<<endl;*/
-    Airport airport1 = *system.getAirports().find(Airport("OPO", "", "", "", 0, 0));
-    Airport airport2 = *system.getAirports().find(Airport("SDU", "", "", "", 0, 0));
+    Airport airport1 = *system.getAirports().find(Airport("MEB", "", "", "", 0, 0));
+    Airport airport2 = *system.getAirports().find(Airport("GRU", "", "", "", 0, 0));
     double currentLat;
     double targetLat;
     if(min(airport1.getLongitude(),airport2.getLongitude())==airport1.getLongitude()){
@@ -88,7 +89,8 @@ int main() {
         script.fill(x, y, 2, 2, 255, 0, 0);
     }
 
-    script.save();
+    script.save("Image/output/worldmap2.png");
+
     cout<<"END"<<endl;
 
     return 0;

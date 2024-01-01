@@ -16,6 +16,7 @@ namespace prog {
         if (buffer == nullptr) {
             return nullptr; // Could not load image!
         }
+
         rgb_value* p = buffer;
         Image* image = new Image(w, h);
         for (int y = 0; y < h; y++) {
