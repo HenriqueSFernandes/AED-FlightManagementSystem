@@ -71,7 +71,7 @@ public:
     /**
      * @brief Returns the essential airports.
      *
-     * Complexity is O(n * k + n + n³ + kn²) where n is the number of airports and k is the number of flights per airport.
+     * Complexity is O(k (V + E)) where k is the number of articulation points, V is the number of airports and E is the number of flights.
      * @return Set representing the essential points.
      */
     set<Airport> essentialAirports();
@@ -202,49 +202,42 @@ public:
     bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
 
     /**
-     * @brief Finds the best flight options for a trip.
-     *
-     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
-     * @param sourceAirports A set with the source airports.
-     * @param targetAirports A set with the target airports.
-     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
-     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
-     * @return The best trip (a trip is a vector of airports).
-     */
-
-
-    vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
-    /**
-     * @brief Prints given airports in the specified image file
-     * @param airports
-     * @param destinationFile
+     * @brief Prints given airports in the specified image file.
+     * @param airports A set with the airports.
+     * @param destinationFile The name of the file.
      */
     void printAirports(set<Airport> airports, string destinationFile);
+
     /**
-     * @brief Helper prints direct path between A and B
-     * @param airport1
-     * @param airport2
-     * @param destinationFile
+     * @brief Prints the path from A to B to the given file
+     * @param airport1 First airport.
+     * @param airport2 Second airport.
+     * @param destinationFile The name of the file.
      */
     void printPath(Airport airport1, Airport airport2, string destinationFile);
-    /**
-     * @brief Prints path
-     * @param mySet
-     * @param destinationFile
-     */
-    void printComposedPath(vector<Airport> mySet, string destinationFile);
-      /**
-     * @brief Finds the best flight options for a trip.
-     *
-     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
-     * @param sourceAirports A set with the source airports.
-     * @param targetAirports A set with the target airports.
-     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
-     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
-     * @return The best trip (a trip is a vector of airports).
-     */
 
-    vector<Airport> findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports, vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
+    /**
+     * @brief Prints a trip (vector of airports) to the file.
+     * @param airports A vector with the airports in order.
+     * @param destinationFile The name of the file.
+     */
+    void printComposedPath(vector<Airport> airports, string destinationFile);
+
+    /**
+   * @brief Finds the best flight options for a trip.
+   *
+   * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
+   * @param sourceAirports A set with the source airports.
+   * @param targetAirports A set with the target airports.
+   * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+   * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+   * @return The best trip (a trip is a vector of pairs airport-airlines).
+   */
+
+    vector<pair<Airport, set<Airline>>> findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
+                                                       const vector<Vertex<Airport> *> &targetAirports,
+                                                       const vector<Vertex<Airport> *> &filteredAirports,
+                                                       const set<Airline> &filteredAirlines);
 
 
     /**

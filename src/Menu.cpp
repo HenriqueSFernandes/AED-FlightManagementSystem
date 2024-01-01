@@ -169,7 +169,7 @@ void Menu::flightSearchMenu() {
         }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) Change filters\n\n6) Search flights\n\n7) Go back\n";
+                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) View/Change filters (layovers, allowed airlines and exclusions)\n\n6) Search flights\n\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
@@ -182,7 +182,8 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
-            vector<Airport> bestTrip;
+            vector<pair<Airport, set<Airline>>> bestTrip;
+            set < Airline > filteredAirlinesBackup = filteredAirlines;
             if (!mandatoryAirlines.empty()) {
                 // Mandatory airlines.
                 filteredAirlines.clear();
@@ -194,30 +195,44 @@ void Menu::flightSearchMenu() {
             }
             vector<Vertex<Airport> *> currentSources = sourceAirports;
             vector<Vertex<Airport> *> currentTargets;
-            vector<Airport> currentTrip;
+            vector<pair<Airport, set<Airline>>> currentTrip;
             for (Vertex<Airport> *layoverAirportVertex: mandatoryStops) {
                 currentTargets.clear();
                 currentTargets.push_back(layoverAirportVertex);
                 currentTrip = system.findBestFlight(currentSources, currentTargets,
                                                     filteredAirports, filteredAirlines);
+                if (currentTrip.empty()) {
+                    cout << "It was impossible to find a trip with the current filters.\n";
+                    break;
+                }
                 for (int i = 0; i < currentTrip.size() - 1; i++) {
                     bestTrip.push_back(currentTrip[i]);
                 }
                 currentSources = currentTargets;
             }
             currentTrip = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
-            for (Airport airport: currentTrip) {
+            for (const pair<Airport, set<Airline>> &airport: currentTrip) {
                 bestTrip.push_back(airport);
             }
-            if (bestTrip.size() == 0) {
+            if (bestTrip.empty()) {
                 cout << "It was impossible to find a trip with the current filters.\n";
             } else {
                 cout << "The best trip with the current filters is:\n";
-                for (Airport airport: bestTrip) {
-                    cout << airport.getCode() << " ";
+                cout << "\n\tSource: " << bestTrip[0].first << endl;
+                for (int i = 1; i < bestTrip.size() - 1; i++) {
+                    cout << "\n\tLayover: " << bestTrip[i].first << endl;
+                    cout << "\t\tPossible airlines:\n";
+                    for (const Airline &airline: bestTrip[i].second) {
+                        cout << "\t\t\t" << airline << endl;
+                    }
                 }
-                cout << endl;
+                cout << "\n\tTarget: " << bestTrip.back().first << endl;
+                cout << "\t\tPossible airlines:\n";
+                for (const Airline &airline: bestTrip.back().second) {
+                    cout << "\t\t\t" << airline << endl;
+                }
             }
+            filteredAirlines = filteredAirlinesBackup;
         } else if (option == "7") {
             break;
         } else {
