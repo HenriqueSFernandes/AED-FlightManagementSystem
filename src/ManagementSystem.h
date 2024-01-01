@@ -202,20 +202,6 @@ public:
     bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
 
     /**
-     * @brief Finds the best flight options for a trip.
-     *
-     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
-     * @param sourceAirports A set with the source airports.
-     * @param targetAirports A set with the target airports.
-     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
-     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
-     * @return The best trip (a trip is a vector of airports).
-     */
-
-
-    vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
-
-    /**
      * @brief Prints given airports in the specified image file
      * @param airports
      * @param destinationFile

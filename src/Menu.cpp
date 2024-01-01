@@ -169,7 +169,7 @@ void Menu::flightSearchMenu() {
         }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) Change filters\n\n6) Search flights\n\n7) Go back\n";
+                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) View/Change filters (layovers, allowed airlines and exclusions)\n\n6) Search flights\n\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
@@ -201,6 +201,10 @@ void Menu::flightSearchMenu() {
                 currentTargets.push_back(layoverAirportVertex);
                 currentTrip = system.findBestFlight(currentSources, currentTargets,
                                                     filteredAirports, filteredAirlines);
+                if (currentTrip.empty()) {
+                    cout << "It was impossible to find a trip with the current filters.\n";
+                    break;
+                }
                 for (int i = 0; i < currentTrip.size() - 1; i++) {
                     bestTrip.push_back(currentTrip[i]);
                 }
