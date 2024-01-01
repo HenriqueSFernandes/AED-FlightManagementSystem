@@ -39,7 +39,16 @@ namespace prog {
         string filename;
         std::filesystem::path absolutePath = std::filesystem::absolute(input);
         filename=absolutePath.string();
-        const std::string subdirectoryToRemove = "cmake-build-debug/";
+        std::string subdirectoryToRemove = "cmake-build-debug/";
+        for(char c : filename){
+            if ( c == '\\'){
+                subdirectoryToRemove = "cmake-build-debug\\";
+                break;
+            }else if ( c == '/'){
+                subdirectoryToRemove = "cmake-build-debug/";
+                break;
+            }
+        }
         // Find the position of the substring
         size_t pos = filename.find(subdirectoryToRemove);
 
@@ -58,7 +67,16 @@ namespace prog {
         string out;
         std::filesystem::path absolutePath = std::filesystem::absolute(ou);
         out=absolutePath.string();
-        const std::string subdirectoryToRemove = "cmake-build-debug/";
+        std::string subdirectoryToRemove = "cmake-build-debug/";
+        for(char c : out){
+            if ( c == '\\'){
+                subdirectoryToRemove = "cmake-build-debug\\";
+                break;
+            }else if ( c == '/'){
+                subdirectoryToRemove = "cmake-build-debug/";
+                break;
+            }
+        }
         // Find the position of the substring
         size_t pos = out.find(subdirectoryToRemove);
 

@@ -15,9 +15,9 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
-    Airport airport1 = *system.getAirports().find(Airport("OPO", "", "", "", 0, 0));
-    Airport airport2 = *system.getAirports().find(Airport("YYZ", "", "", "", 0, 0));
-    Airport airport3 = *system.getAirports().find(Airport("GRU", "", "", "", 0, 0));
+    Airport airport1 = system.getAirportNetwork().findVertex(Airport("OPO", "", "", "", 0, 0))->getInfo();
+    Airport airport2 = system.getAirportNetwork().findVertex(Airport("YYZ", "", "", "", 0, 0))->getInfo();
+    Airport airport3 = system.getAirportNetwork().findVertex(Airport("GRU", "", "", "", 0, 0))->getInfo();
   
     vector<Airport> UWU;
     UWU.push_back(airport1);
