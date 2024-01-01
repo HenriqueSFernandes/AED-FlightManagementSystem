@@ -184,21 +184,21 @@ void ManagementSystem::printPath(Airport airport1, Airport airport2, string dest
 
 }
 
-void ManagementSystem::printComposedPath(vector<Airport> mySet, string destinationFile) {
+void ManagementSystem::printComposedPath(vector<Airport> airports, string destinationFile) {
     prog::Script script = prog::Script();
     script.open("src/Image/input/worldmap.png");
     script.save(destinationFile);
 
-    if (mySet.empty()) {
+    if (airports.empty()) {
         return;  // Nothing to print if the set is empty
     }
 
-    auto it = mySet.begin();
-    while (it != std::prev(mySet.end())) {
+    auto it = airports.begin();
+    while (it != std::prev(airports.end())) {
         auto currentAirport = *it;
         auto nextIt = std::next(it);
 
-        if (nextIt == mySet.end()) {
+        if (nextIt == airports.end()) {
             break;
         }
 

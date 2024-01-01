@@ -71,7 +71,7 @@ public:
     /**
      * @brief Returns the essential airports.
      *
-     * Complexity is O(n * k + n + n³ + kn²) where n is the number of airports and k is the number of flights per airport.
+     * Complexity is O(k (V + E)) where k is the number of articulation points, V is the number of airports and E is the number of flights.
      * @return Set representing the essential points.
      */
     set<Airport> essentialAirports();
@@ -202,26 +202,26 @@ public:
     bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
 
     /**
-     * @brief Prints given airports in the specified image file
-     * @param airports
-     * @param destinationFile
+     * @brief Prints given airports in the specified image file.
+     * @param airports A set with the airports.
+     * @param destinationFile The name of the file.
      */
     void printAirports(set<Airport> airports, string destinationFile);
 
     /**
-     * @brief Helper prints direct path between A and B
-     * @param airport1
-     * @param airport2
-     * @param destinationFile
+     * @brief Prints the path from A to B to the given file
+     * @param airport1 First airport.
+     * @param airport2 Second airport.
+     * @param destinationFile The name of the file.
      */
     void printPath(Airport airport1, Airport airport2, string destinationFile);
 
     /**
-     * @brief Prints path
-     * @param mySet
-     * @param destinationFile
+     * @brief Prints a trip (vector of airports) to the file.
+     * @param airports A vector with the airports in order.
+     * @param destinationFile The name of the file.
      */
-    void printComposedPath(vector<Airport> mySet, string destinationFile);
+    void printComposedPath(vector<Airport> airports, string destinationFile);
 
     /**
    * @brief Finds the best flight options for a trip.
