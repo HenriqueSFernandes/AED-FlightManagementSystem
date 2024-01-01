@@ -1,5 +1,8 @@
 <map id="ManagementSystem::readFlights" name="ManagementSystem::readFlights">
-<area shape="rect" id="node1" title="Read flights from the csv file." alt="" coords="5,31,244,57"/>
-<area shape="rect" id="node2" href="$class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="297,5,422,32"/>
-<area shape="rect" id="node3" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="292,56,427,83"/>
+<area shape="rect" id="node1" title="Read flights from the csv file." alt="" coords="5,81,244,108"/>
+<area shape="rect" id="node2" href="$class_edge.html#af421cc07c859009f4ca6e197008b8b47" title=" " alt="" coords="332,5,460,32"/>
+<area shape="rect" id="node3" href="$class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="333,56,459,83"/>
+<area shape="rect" id="node4" href="$class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2" title="This functions calculates the spherical distance between 2 airports." alt="" coords="292,158,500,199"/>
+<area shape="rect" id="node5" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="595,111,730,137"/>
+<area shape="rect" id="node6" href="$class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="548,165,777,192"/>
 </map>

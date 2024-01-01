@@ -1,4 +1,14 @@
 <map id="Graph::findVertex" name="Graph::findVertex">
-<area shape="rect" id="node1" title=" " alt="" coords="292,5,427,32"/>
-<area shape="rect" id="node2" href="$class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="5,5,244,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="949,163,1084,189"/>
+<area shape="rect" id="node2" href="$class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="697,5,867,32"/>
+<area shape="rect" id="node6" href="$class_management_system.html#a8e7b23c6f8220d9a8104b9ad863c869c" title="Prints details of a given airport, like number of flights, countries and airlines." alt="" coords="678,57,886,98"/>
+<area shape="rect" id="node9" href="$class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2" title="This functions calculates the spherical distance between 2 airports." alt="" coords="678,253,886,294"/>
+<area shape="rect" id="node10" href="$class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="376,289,615,316"/>
+<area shape="rect" id="node11" href="$class_management_system.html#ac4efc484e6b530122484d9c81201b737" title="Gets the numbers of destinations possible from a given airport." alt="" coords="663,122,901,163"/>
+<area shape="rect" id="node12" href="$class_management_system.html#acd6208efc50b192e627cd2a0cf41d03d" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="663,187,901,229"/>
+<area shape="rect" id="node3" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="429,5,561,32"/>
+<area shape="rect" id="node4" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,56,328,83"/>
+<area shape="rect" id="node5" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,92,101,119"/>
+<area shape="rect" id="node7" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="393,124,598,151"/>
+<area shape="rect" id="node8" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="158,117,319,144"/>
 </map>

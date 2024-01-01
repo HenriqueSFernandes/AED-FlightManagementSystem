@@ -1,0 +1,5 @@
+<map id="Menu::filterMenu" name="Menu::filterMenu">
+<area shape="rect" id="node1" title="Menu for changing the filters." alt="" coords="376,5,508,32"/>
+<area shape="rect" id="node2" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,5,328,32"/>
+<area shape="rect" id="node3" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,5,101,32"/>
+</map>

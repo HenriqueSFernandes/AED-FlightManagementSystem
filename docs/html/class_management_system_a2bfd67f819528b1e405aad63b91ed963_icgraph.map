@@ -1,0 +1,11 @@
+<map id="ManagementSystem::getAirportNetwork" name="ManagementSystem::getAirportNetwork">
+<area shape="rect" id="node1" title="Airport network graph getter." alt="" coords="868,86,1099,127"/>
+<area shape="rect" id="node2" href="$class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="617,5,788,32"/>
+<area shape="rect" id="node6" href="$class_management_system.html#a5a34aafdcc5305d56312e08aca798599" title="Prints details of a given airline, like number of flights and airports." alt="" coords="599,57,806,98"/>
+<area shape="rect" id="node8" href="$class_management_system.html#a590d07135eb0ae3a9605a00cb0d69953" title="Prints details of a given city, like number of flights, countries and airlines." alt="" coords="585,123,820,149"/>
+<area shape="rect" id="node9" href="$class_management_system.html#a1a05a8736b1d92a27ceec3b62fdf7576" title="Prints details of a given country, like number of flights, countries and airlines." alt="" coords="595,174,810,215"/>
+<area shape="rect" id="node3" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="391,5,523,32"/>
+<area shape="rect" id="node4" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,56,328,83"/>
+<area shape="rect" id="node5" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,89,101,116"/>
+<area shape="rect" id="node7" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="376,119,537,145"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="Graph::getVertexSet" name="Graph::getVertexSet">
+<area shape="rect" id="node1" title=" " alt="" coords="1227,231,1380,258"/>
+<area shape="rect" id="node2" href="$class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="958,93,1129,119"/>
+<area shape="rect" id="node6" href="$class_management_system.html#aa6fb813391b6e909aa029aff8ccb44f6" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="922,195,1165,236"/>
+<area shape="rect" id="node7" href="$class_management_system.html#a6dcf0a2f23037d07bf4546299c437314" title="Find the maximum diameter and corresponding set of airport pairs in the graph." alt="" coords="628,195,845,236"/>
+<area shape="rect" id="node10" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="625,361,849,403"/>
+<area shape="rect" id="node12" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="934,5,1153,47"/>
+<area shape="rect" id="node13" href="$class_management_system.html#a34d8fc43a6b007d5618b6db69d19201a" title="Returns global number of available flights." alt="" coords="359,136,565,177"/>
+<area shape="rect" id="node14" href="$class_management_system.html#ae64677753f15199d630d7d7d7767d0df" title="Makes the graph undirected by duplicating edges." alt="" coords="908,362,1179,389"/>
+<area shape="rect" id="node15" href="$class_management_system.html#a2fd2d671e5319b6aa5ed385fec55d7ae" title="Get the top k airports with the maximum number of flights." alt="" coords="613,296,860,337"/>
+<area shape="rect" id="node3" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="671,93,803,119"/>
+<area shape="rect" id="node4" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="373,63,551,90"/>
+<area shape="rect" id="node5" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,147,101,174"/>
+<area shape="rect" id="node8" href="$class_menu.html#abbba6bf21b34983a169fe5b089787250" title="Menu with statistics about flights." alt="" coords="365,202,559,229"/>
+<area shape="rect" id="node9" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,173,311,199"/>
+<area shape="rect" id="node11" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,303,565,330"/>
+</map>

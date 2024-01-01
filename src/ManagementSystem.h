@@ -6,7 +6,6 @@
 #include <unordered_set>
 #include <map>
 #include "Airline.h"
-#include "Flight.h"
 #include "Graph.h"
 
 /**

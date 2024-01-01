@@ -1,0 +1,6 @@
+<map id="ManagementSystem::containsFilteredAirline" name="ManagementSystem::containsFilteredAirline">
+<area shape="rect" id="node1" title="Auxiliary function that determines if all airlines are part of the filtered airlines." alt="" coords="643,5,863,47"/>
+<area shape="rect" id="node2" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="376,5,595,47"/>
+<area shape="rect" id="node3" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,13,328,39"/>
+<area shape="rect" id="node4" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
