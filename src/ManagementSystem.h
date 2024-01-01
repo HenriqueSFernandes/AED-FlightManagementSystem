@@ -241,10 +241,10 @@ public:
      * @param targetAirports A set with the target airports.
      * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
      * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
-     * @return The best trip (a trip is a vector of airports).
+     * @return The best trip (a trip is a vector of pairs airport-airlines).
      */
 
-    vector<Airport> findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports, vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
+    vector<pair<Airport, set<Airline>>> findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports, vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
 
 
     /**

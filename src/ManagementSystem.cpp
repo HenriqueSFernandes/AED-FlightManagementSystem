@@ -708,15 +708,15 @@ bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airlin
     return true;
 }
 
-vector<Airport>
+vector<pair<Airport, set<Airline>>>
 ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports,
                                  vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
-    vector<vector<Airport>> res;
+    vector<vector<pair<Airport, set<Airline>>>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
         Airport sourceAirport = sourceAirportVertex->getInfo();
-        // Auxiliary queue to help in BFS. The first element of the pair is the current airport and the second is the path to that airport.
-        queue<pair<Vertex<Airport> *, vector<Airport>>> auxQueue;
+        // Auxiliary queue to help in BFS. The first element of the pair is the current airport, the second is the path to that airport (the path is a vector of pairs Airport-Airlines)..
+        queue<pair<Vertex<Airport> *, vector<pair<Airport, set<Airline>>>>> auxQueue;
         // Set all airports to not visited.
         for (pair<string, Vertex<Airport> *> airport: airportNetwork.getVertexSet()) {
             airport.second->setVisited(false);
@@ -728,7 +728,8 @@ ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vecto
         // Set the vertex as visited.
         sourceAirportVertex->setVisited(true);
         // Add the source vertex to the queue.
-        auxQueue.push({sourceAirportVertex, {sourceAirport}});
+
+        auxQueue.push({sourceAirportVertex, {{sourceAirport, {}}}});
         // Integer that saves the distance between the source and the target.
         int foundDistance = -1;
         // Perform BFS.
@@ -747,8 +748,8 @@ ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vecto
                     if (!(flight.getDest()->isVisited()) &&
                         !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
                         flight.getDest()->setVisited(true);
-                        vector<Airport> path = auxQueue.front().second;
-                        path.push_back(flight.getDest()->getInfo());
+                        vector<pair<Airport, set<Airline>>> path = auxQueue.front().second;
+                        path.push_back({flight.getDest()->getInfo(), flight.getAirlines()});
                         auxQueue.push({flight.getDest(), path});
                     }
                 }
@@ -760,7 +761,7 @@ ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vecto
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
-    if (res.size() == 0){
+    if (res.empty()){
         return {};
     }
     return res[0];

@@ -182,7 +182,7 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
-            vector<Airport> bestTrip;
+            vector<pair<Airport, set<Airline>>> bestTrip;
             if (!mandatoryAirlines.empty()) {
                 // Mandatory airlines.
                 filteredAirlines.clear();
@@ -194,7 +194,7 @@ void Menu::flightSearchMenu() {
             }
             vector<Vertex<Airport> *> currentSources = sourceAirports;
             vector<Vertex<Airport> *> currentTargets;
-            vector<Airport> currentTrip;
+            vector<pair<Airport, set<Airline>>> currentTrip;
             for (Vertex<Airport> *layoverAirportVertex: mandatoryStops) {
                 currentTargets.clear();
                 currentTargets.push_back(layoverAirportVertex);
@@ -206,18 +206,26 @@ void Menu::flightSearchMenu() {
                 currentSources = currentTargets;
             }
             currentTrip = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
-            for (Airport airport: currentTrip) {
+            for (const pair<Airport, set<Airline>> &airport: currentTrip) {
                 bestTrip.push_back(airport);
             }
-            if (bestTrip.size() == 0) {
+            if (bestTrip.empty()) {
                 cout << "It was impossible to find a trip with the current filters.\n";
             } else {
                 cout << "The best trip with the current filters is:\n";
-                cout << "\tSource: " << bestTrip[0] << endl;
-                for (int i = 1; i < bestTrip.size() - 1; i++){
-                    cout << "\tLayover: " << bestTrip[i] << endl;
+                cout << "\n\tSource: " << bestTrip[0].first << endl;
+                for (int i = 1; i < bestTrip.size() - 1; i++) {
+                    cout << "\n\tLayover: " << bestTrip[i].first << endl;
+                    cout << "\t\tPossible airlines:\n";
+                    for (const Airline &airline: bestTrip[i].second) {
+                        cout << "\t\t\t" << airline << endl;
+                    }
                 }
-                cout << "\tTarget: " << bestTrip[bestTrip.size()-1] << endl;
+                cout << "\n\tTarget: " << bestTrip.back().first << endl;
+                cout << "\t\tPossible airlines:\n";
+                for (const Airline &airline: bestTrip.back().second) {
+                    cout << "\t\t\t" << airline << endl;
+                }
             }
         } else if (option == "7") {
             break;
