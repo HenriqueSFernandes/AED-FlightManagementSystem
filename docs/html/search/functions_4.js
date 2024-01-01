@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['findvertex_0',['findVertex',['../class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75',1,'Graph']]],
-  ['flight_1',['Flight',['../class_flight.html#a7458f795aa9119138a5af4eb7124e62e',1,'Flight']]]
+  ['edge_0',['Edge',['../class_edge.html#a9d8561edb35eaed58f6f3a29b17f140c',1,'Edge']]],
+  ['essentialairports_1',['essentialAirports',['../class_management_system.html#a8cff91882fd7313aee8178b821cc7c17',1,'ManagementSystem']]]
 ];

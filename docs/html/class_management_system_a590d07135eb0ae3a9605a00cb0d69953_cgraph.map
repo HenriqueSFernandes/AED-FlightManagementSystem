@@ -1,0 +1,4 @@
+<map id="ManagementSystem::cityDetails" name="ManagementSystem::cityDetails">
+<area shape="rect" id="node1" title="Prints details of a given city, like number of flights, countries and airlines." alt="" coords="5,13,240,39"/>
+<area shape="rect" id="node2" href="$class_management_system.html#a2bfd67f819528b1e405aad63b91ed963" title="Airport network graph getter." alt="" coords="288,5,519,47"/>
+</map>

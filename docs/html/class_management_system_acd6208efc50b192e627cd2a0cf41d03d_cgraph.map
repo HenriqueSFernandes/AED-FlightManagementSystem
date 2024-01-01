@@ -1,0 +1,9 @@
+<map id="ManagementSystem::getNumberOfDestinationsInXLayovers" name="ManagementSystem::getNumberOfDestinationsInXLayovers">
+<area shape="rect" id="node1" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="5,99,244,141"/>
+<area shape="rect" id="node2" href="$class_graph.html#a16d0a8d45cf09694ff538521ae58288a" title=" " alt="" coords="296,31,435,57"/>
+<area shape="rect" id="node5" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="298,81,433,108"/>
+<area shape="rect" id="node6" href="$class_airport.html#a4f8fbb5b1c5250bf0aaa77dfc25897dc" title="Airport city getter." alt="" coords="305,132,426,159"/>
+<area shape="rect" id="node7" href="$class_airport.html#aefabe22c551403c9ca291404eba2323b" title="Airport country getter." alt="" coords="292,183,439,209"/>
+<area shape="rect" id="node3" href="$class_vertex.html#ab2916c006fa35b918910a2232095e785" title=" " alt="" coords="487,5,611,32"/>
+<area shape="rect" id="node4" href="$class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218" title=" " alt="" coords="487,56,610,83"/>
+</map>

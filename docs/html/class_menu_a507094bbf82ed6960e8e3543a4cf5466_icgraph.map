@@ -1,0 +1,4 @@
+<map id="Menu::statisticsMenu" name="Menu::statisticsMenu">
+<area shape="rect" id="node1" title="Statistics menu." alt="" coords="149,5,311,32"/>
+<area shape="rect" id="node2" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,5,101,32"/>
+</map>

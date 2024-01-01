@@ -1,0 +1,25 @@
+<map id="Menu::airportStatisticsMenu" name="Menu::airportStatisticsMenu">
+<area shape="rect" id="node1" title="Menu with statistics about airports." alt="" coords="5,157,211,184"/>
+<area shape="rect" id="node2" href="$class_management_system.html#a8e7b23c6f8220d9a8104b9ad863c869c" title="Prints details of a given airport, like number of flights, countries and airlines." alt="" coords="278,9,486,50"/>
+<area shape="rect" id="node4" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="270,385,494,426"/>
+<area shape="rect" id="node17" href="$class_management_system.html#ac4efc484e6b530122484d9c81201b737" title="Gets the numbers of destinations possible from a given airport." alt="" coords="263,85,501,126"/>
+<area shape="rect" id="node21" href="$class_management_system.html#acd6208efc50b192e627cd2a0cf41d03d" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="263,150,501,191"/>
+<area shape="rect" id="node23" href="$class_management_system.html#a2fd2d671e5319b6aa5ed385fec55d7ae" title="Get the top k airports with the maximum number of flights." alt="" coords="259,271,505,313"/>
+<area shape="rect" id="node3" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="621,5,756,32"/>
+<area shape="rect" id="node5" href="$class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c" title="Auxiliary DFS function for finding articulation points." alt="" coords="583,309,794,336"/>
+<area shape="rect" id="node14" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="877,512,1030,539"/>
+<area shape="rect" id="node15" href="$class_management_system.html#ae64677753f15199d630d7d7d7767d0df" title="Makes the graph undirected by duplicating edges." alt="" coords="553,512,824,539"/>
+<area shape="rect" id="node6" href="$class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="896,411,1011,437"/>
+<area shape="rect" id="node7" href="$class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="894,461,1013,488"/>
+<area shape="rect" id="node8" href="$class_vertex.html#a3b8e12b4d9805979321212dd6db05961" title=" " alt="" coords="894,208,1013,235"/>
+<area shape="rect" id="node9" href="$class_vertex.html#ab2916c006fa35b918910a2232095e785" title=" " alt="" coords="891,157,1015,184"/>
+<area shape="rect" id="node10" href="$class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435" title=" " alt="" coords="894,259,1013,285"/>
+<area shape="rect" id="node11" href="$class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218" title=" " alt="" coords="892,107,1015,133"/>
+<area shape="rect" id="node12" href="$class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932" title=" " alt="" coords="872,309,1035,336"/>
+<area shape="rect" id="node13" href="$class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="885,360,1022,387"/>
+<area shape="rect" id="node16" href="$class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="891,563,1016,589"/>
+<area shape="rect" id="node18" href="$class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8" title=" " alt="" coords="644,56,733,83"/>
+<area shape="rect" id="node19" href="$class_airport.html#a4f8fbb5b1c5250bf0aaa77dfc25897dc" title="Airport city getter." alt="" coords="628,107,749,133"/>
+<area shape="rect" id="node20" href="$class_airport.html#aefabe22c551403c9ca291404eba2323b" title="Airport country getter." alt="" coords="615,157,762,184"/>
+<area shape="rect" id="node22" href="$class_graph.html#a16d0a8d45cf09694ff538521ae58288a" title=" " alt="" coords="619,208,758,235"/>
+</map>

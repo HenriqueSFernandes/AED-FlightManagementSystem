@@ -1,0 +1,6 @@
+<map id="ManagementSystem::getAirlines" name="ManagementSystem::getAirlines">
+<area shape="rect" id="node1" title="Airlines getter." alt="" coords="556,31,791,57"/>
+<area shape="rect" id="node2" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="376,5,508,32"/>
+<area shape="rect" id="node3" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,31,328,57"/>
+<area shape="rect" id="node4" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,31,101,57"/>
+</map>

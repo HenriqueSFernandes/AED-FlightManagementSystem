@@ -1,0 +1,6 @@
+<map id="ManagementSystem::bfsDistanceWithDest" name="ManagementSystem::bfsDistanceWithDest">
+<area shape="rect" id="node1" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="5,49,248,90"/>
+<area shape="rect" id="node2" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="296,5,449,32"/>
+<area shape="rect" id="node3" href="$class_vertex.html#a410c4d3cae0e22e83a3670ea616ccc94" title=" " alt="" coords="298,56,447,83"/>
+<area shape="rect" id="node4" href="$class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="304,107,441,133"/>
+</map>
