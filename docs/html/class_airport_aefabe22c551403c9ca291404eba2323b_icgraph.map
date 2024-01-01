@@ -1,0 +1,8 @@
+<map id="Airport::getCountry" name="Airport::getCountry">
+<area shape="rect" id="node1" title="Airport country getter." alt="" coords="899,46,1045,73"/>
+<area shape="rect" id="node2" href="$class_management_system.html#ac4efc484e6b530122484d9c81201b737" title="Gets the numbers of destinations possible from a given airport." alt="" coords="612,5,851,47"/>
+<area shape="rect" id="node6" href="$class_management_system.html#acd6208efc50b192e627cd2a0cf41d03d" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="612,71,851,112"/>
+<area shape="rect" id="node3" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,46,564,73"/>
+<area shape="rect" id="node4" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,46,311,73"/>
+<area shape="rect" id="node5" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,46,101,73"/>
+</map>

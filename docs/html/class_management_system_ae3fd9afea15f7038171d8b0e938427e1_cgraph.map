@@ -1,0 +1,8 @@
+<map id="ManagementSystem::findBestFlight" name="ManagementSystem::findBestFlight">
+<area shape="rect" id="node1" title="Finds the best flight options for a trip." alt="" coords="5,115,224,156"/>
+<area shape="rect" id="node2" href="$class_management_system.html#ad428988c1d9b613634892f704a62a98d" title="Auxiliary function that determines if all airlines are part of the filtered airlines." alt="" coords="272,5,492,47"/>
+<area shape="rect" id="node3" href="$class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="325,71,439,98"/>
+<area shape="rect" id="node4" href="$class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="323,122,441,149"/>
+<area shape="rect" id="node5" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="305,173,459,199"/>
+<area shape="rect" id="node6" href="$class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="313,223,451,250"/>
+</map>

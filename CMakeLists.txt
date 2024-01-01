@@ -8,8 +8,6 @@ add_executable(aed-flights main.cpp
         src/Airport.h
         src/Airline.cpp
         src/Airline.h
-        src/Flight.cpp
-        src/Flight.h
         src/Graph.h
         src/ManagementSystem.cpp
         src/ManagementSystem.h

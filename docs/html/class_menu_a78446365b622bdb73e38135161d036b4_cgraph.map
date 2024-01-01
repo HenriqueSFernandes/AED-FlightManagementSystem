@@ -1,0 +1,17 @@
+<map id="Menu::flightSearchMenu" name="Menu::flightSearchMenu">
+<area shape="rect" id="node1" title="Menu searching flights." alt="" coords="5,223,184,250"/>
+<area shape="rect" id="node2" href="$class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="444,122,615,149"/>
+<area shape="rect" id="node8" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="232,223,364,250"/>
+<area shape="rect" id="node9" href="$class_management_system.html#ab0d0046df8f73bb6184a8fb762bbde01" title="Airlines getter." alt="" coords="412,247,647,274"/>
+<area shape="rect" id="node10" href="$class_menu.html#a22458f4ca27ba3558483ae3e9033cd7e" title="Menu for removing airport(s) to the current selection." alt="" coords="431,173,627,199"/>
+<area shape="rect" id="node12" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="420,324,639,365"/>
+<area shape="rect" id="node3" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="743,71,877,98"/>
+<area shape="rect" id="node4" href="$class_management_system.html#a2bfd67f819528b1e405aad63b91ed963" title="Airport network graph getter." alt="" coords="695,5,925,47"/>
+<area shape="rect" id="node5" href="$class_management_system.html#adf84ce827481ed57f5b04359182e8c12" title=" " alt="" coords="699,173,921,199"/>
+<area shape="rect" id="node6" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="733,223,887,250"/>
+<area shape="rect" id="node7" href="$class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="695,122,925,149"/>
+<area shape="rect" id="node11" href="$class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="751,274,869,301"/>
+<area shape="rect" id="node13" href="$class_management_system.html#ad428988c1d9b613634892f704a62a98d" title="Auxiliary function that determines if all airlines are part of the filtered airlines." alt="" coords="700,325,920,367"/>
+<area shape="rect" id="node14" href="$class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="753,391,867,418"/>
+<area shape="rect" id="node15" href="$class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="741,442,879,469"/>
+</map>

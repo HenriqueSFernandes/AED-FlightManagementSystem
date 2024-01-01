@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['isdag_0',['isDAG',['../class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2',1,'Graph']]],
-  ['isprocessing_1',['isProcessing',['../class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764',1,'Vertex']]],
-  ['isvisited_2',['isVisited',['../class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc',1,'Vertex']]]
+  ['hashfunction_0',['HashFunction',['../struct_airline_1_1_hash_function.html',1,'Airline::HashFunction'],['../struct_airport_1_1_hash_function.html',1,'Airport::HashFunction']]],
+  ['haversine_1',['haversine',['../class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17',1,'ManagementSystem']]]
 ];

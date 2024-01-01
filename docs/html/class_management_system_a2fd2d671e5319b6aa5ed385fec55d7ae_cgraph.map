@@ -1,0 +1,4 @@
+<map id="ManagementSystem::topKAirportsMaxFlights" name="ManagementSystem::topKAirportsMaxFlights">
+<area shape="rect" id="node1" title="Get the top k airports with the maximum number of flights." alt="" coords="5,5,252,47"/>
+<area shape="rect" id="node2" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="300,13,453,39"/>
+</map>

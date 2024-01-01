@@ -1,0 +1,5 @@
+<map id="ManagementSystem::airportDistance" name="ManagementSystem::airportDistance">
+<area shape="rect" id="node1" title="This functions calculates the spherical distance between 2 airports." alt="" coords="5,23,213,65"/>
+<area shape="rect" id="node2" href="$class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="309,5,443,32"/>
+<area shape="rect" id="node3" href="$class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="261,56,491,83"/>
+</map>

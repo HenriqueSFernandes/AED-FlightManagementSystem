@@ -2,6 +2,7 @@ var class_vertex =
 [
     [ "Vertex", "class_vertex.html#afcbdd4d4198b672356559cb8fa088408", null ],
     [ "getAdj", "class_vertex.html#a0b0341340972782503ff5065f46673fe", null ],
+    [ "getDistance", "class_vertex.html#ad9100a9cfb4c84a30b33daad7d16b0eb", null ],
     [ "getIndegree", "class_vertex.html#ac78980191ea1f9d22e6617e9e511b755", null ],
     [ "getInfo", "class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6", null ],
     [ "getLow", "class_vertex.html#a3b8e12b4d9805979321212dd6db05961", null ],
@@ -10,6 +11,7 @@ var class_vertex =
     [ "isProcessing", "class_vertex.html#aaa41dfa4ce1a19b4e529cc6cdc23b764", null ],
     [ "isVisited", "class_vertex.html#aa2bb17f6ebd98a67f8da1f689b22fadc", null ],
     [ "setAdj", "class_vertex.html#aacc5763deca4f0f308756b69f9598584", null ],
+    [ "setDistance", "class_vertex.html#a410c4d3cae0e22e83a3670ea616ccc94", null ],
     [ "setIndegree", "class_vertex.html#ad1602c48fedae2d3d5a3949594dc5ab8", null ],
     [ "setInfo", "class_vertex.html#a68c9c8792b2752b7540e2f8c14f686a4", null ],
     [ "setLow", "class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435", null ],

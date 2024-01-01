@@ -1,0 +1,6 @@
+<map id="Menu::removeAirportMenu" name="Menu::removeAirportMenu">
+<area shape="rect" id="node1" title="Menu for removing airport(s) to the current selection." alt="" coords="5,56,201,83"/>
+<area shape="rect" id="node2" href="$class_management_system.html#adf84ce827481ed57f5b04359182e8c12" title=" " alt="" coords="253,5,475,32"/>
+<area shape="rect" id="node3" href="$class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="305,56,423,83"/>
+<area shape="rect" id="node4" href="$class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="249,107,479,133"/>
+</map>

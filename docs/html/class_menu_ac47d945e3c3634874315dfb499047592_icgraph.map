@@ -1,0 +1,5 @@
+<map id="Menu::airportStatisticsMenu" name="Menu::airportStatisticsMenu">
+<area shape="rect" id="node1" title="Menu with statistics about airports." alt="" coords="359,5,564,32"/>
+<area shape="rect" id="node2" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,5,311,32"/>
+<area shape="rect" id="node3" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,5,101,32"/>
+</map>

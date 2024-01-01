@@ -1,0 +1,13 @@
+<map id="Vertex::setVisited" name="Vertex::setVisited">
+<area shape="rect" id="node1" title=" " alt="" coords="1192,95,1329,122"/>
+<area shape="rect" id="node2" href="$class_management_system.html#aa6fb813391b6e909aa029aff8ccb44f6" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="901,5,1144,47"/>
+<area shape="rect" id="node7" href="$class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c" title="Auxiliary DFS function for finding articulation points." alt="" coords="917,95,1128,122"/>
+<area shape="rect" id="node10" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="913,147,1132,188"/>
+<area shape="rect" id="node3" href="$class_management_system.html#a6dcf0a2f23037d07bf4546299c437314" title="Find the maximum diameter and corresponding set of airport pairs in the graph." alt="" coords="633,15,850,56"/>
+<area shape="rect" id="node4" href="$class_menu.html#abbba6bf21b34983a169fe5b089787250" title="Menu with statistics about flights." alt="" coords="381,38,576,65"/>
+<area shape="rect" id="node5" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="158,95,319,122"/>
+<area shape="rect" id="node6" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,125,101,151"/>
+<area shape="rect" id="node8" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="629,88,853,129"/>
+<area shape="rect" id="node9" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="376,95,581,122"/>
+<area shape="rect" id="node11" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,150,328,177"/>
+</map>

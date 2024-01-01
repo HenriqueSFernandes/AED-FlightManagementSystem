@@ -1,0 +1,5 @@
+<map id="ManagementSystem::MakeUndirected" name="ManagementSystem::MakeUndirected">
+<area shape="rect" id="node1" title="Makes the graph undirected by duplicating edges." alt="" coords="5,31,276,57"/>
+<area shape="rect" id="node2" href="$class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="338,5,463,32"/>
+<area shape="rect" id="node3" href="$class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="324,56,477,83"/>
+</map>

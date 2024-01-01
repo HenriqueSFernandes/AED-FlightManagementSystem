@@ -1,0 +1,8 @@
+<map id="ManagementSystem::getCities" name="ManagementSystem::getCities">
+<area shape="rect" id="node1" title=" " alt="" coords="800,31,1023,57"/>
+<area shape="rect" id="node2" href="$class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="569,5,739,32"/>
+<area shape="rect" id="node6" href="$class_menu.html#a22458f4ca27ba3558483ae3e9033cd7e" title="Menu for removing airport(s) to the current selection." alt="" coords="556,56,752,83"/>
+<area shape="rect" id="node3" href="$class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="376,31,508,57"/>
+<area shape="rect" id="node4" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,31,328,57"/>
+<area shape="rect" id="node5" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,31,101,57"/>
+</map>

@@ -92,22 +92,21 @@ $(document).ready(function(){initNavTree('class_management_system.html',''); ini
 </div><!--header-->
 <div class="contents">
 
+<p>Class used to handle the core functions of the program, like loading the data files and building the network.  
+ <a href="class_management_system.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_management_system_8h_source.html">ManagementSystem.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:adf84ce827481ed57f5b04359182e8c12"><td class="memItemLeft" align="right" valign="top">const map&lt; string, vector&lt; string &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#adf84ce827481ed57f5b04359182e8c12">getCities</a> () const</td></tr>
+<tr class="separator:adf84ce827481ed57f5b04359182e8c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bfd67f819528b1e405aad63b91ed963"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963">getAirportNetwork</a> () const</td></tr>
-<tr class="memdesc:a2bfd67f819528b1e405aad63b91ed963"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_airport.html">Airport</a> network graph getter.  <a href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963">More...</a><br /></td></tr>
+<tr class="memdesc:a2bfd67f819528b1e405aad63b91ed963"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_airport.html" title="Class used to represent an airport.">Airport</a> network graph getter.  <a href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963">More...</a><br /></td></tr>
 <tr class="separator:a2bfd67f819528b1e405aad63b91ed963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0d0046df8f73bb6184a8fb762bbde01"><td class="memItemLeft" align="right" valign="top">const unordered_set&lt; <a class="el" href="class_airline.html">Airline</a>, <a class="el" href="struct_airline_1_1_hash_function.html">Airline::HashFunction</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ab0d0046df8f73bb6184a8fb762bbde01">getAirlines</a> () const</td></tr>
 <tr class="memdesc:ab0d0046df8f73bb6184a8fb762bbde01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Airlines getter.  <a href="class_management_system.html#ab0d0046df8f73bb6184a8fb762bbde01">More...</a><br /></td></tr>
 <tr class="separator:ab0d0046df8f73bb6184a8fb762bbde01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3e8b32ba29e2faaa3fa88babf96a621"><td class="memItemLeft" align="right" valign="top">const unordered_set&lt; <a class="el" href="class_airport.html">Airport</a>, <a class="el" href="struct_airport_1_1_hash_function.html">Airport::HashFunction</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ad3e8b32ba29e2faaa3fa88babf96a621">getAirports</a> () const</td></tr>
-<tr class="memdesc:ad3e8b32ba29e2faaa3fa88babf96a621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Airports getter.  <a href="class_management_system.html#ad3e8b32ba29e2faaa3fa88babf96a621">More...</a><br /></td></tr>
-<tr class="separator:ad3e8b32ba29e2faaa3fa88babf96a621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a09594a8260974aeed357df7eb9e6a5"><td class="memItemLeft" align="right" valign="top">const set&lt; <a class="el" href="class_flight.html">Flight</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a1a09594a8260974aeed357df7eb9e6a5">getFlights</a> () const</td></tr>
-<tr class="memdesc:a1a09594a8260974aeed357df7eb9e6a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flights getter.  <a href="class_management_system.html#a1a09594a8260974aeed357df7eb9e6a5">More...</a><br /></td></tr>
-<tr class="separator:a1a09594a8260974aeed357df7eb9e6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87fcb5600e3680a65f83ec61e890fd99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a87fcb5600e3680a65f83ec61e890fd99">readAirlines</a> ()</td></tr>
 <tr class="memdesc:a87fcb5600e3680a65f83ec61e890fd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read airlines from the csv file.  <a href="class_management_system.html#a87fcb5600e3680a65f83ec61e890fd99">More...</a><br /></td></tr>
 <tr class="separator:a87fcb5600e3680a65f83ec61e890fd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,8 +116,606 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae0de3e007210a78ac5d599d10315d51d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ae0de3e007210a78ac5d599d10315d51d">readFlights</a> ()</td></tr>
 <tr class="memdesc:ae0de3e007210a78ac5d599d10315d51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read flights from the csv file.  <a href="class_management_system.html#ae0de3e007210a78ac5d599d10315d51d">More...</a><br /></td></tr>
 <tr class="separator:ae0de3e007210a78ac5d599d10315d51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb3d1eb2f81e2a80526ba68eb766f00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#aecb3d1eb2f81e2a80526ba68eb766f00">GlobalNumberOfAirports</a> ()</td></tr>
+<tr class="memdesc:aecb3d1eb2f81e2a80526ba68eb766f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of airports.  <a href="class_management_system.html#aecb3d1eb2f81e2a80526ba68eb766f00">More...</a><br /></td></tr>
+<tr class="separator:aecb3d1eb2f81e2a80526ba68eb766f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d8fc43a6b007d5618b6db69d19201a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a34d8fc43a6b007d5618b6db69d19201a">GlobalNumberOfFlights</a> ()</td></tr>
+<tr class="memdesc:a34d8fc43a6b007d5618b6db69d19201a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns global number of available flights.  <a href="class_management_system.html#a34d8fc43a6b007d5618b6db69d19201a">More...</a><br /></td></tr>
+<tr class="separator:a34d8fc43a6b007d5618b6db69d19201a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cff91882fd7313aee8178b821cc7c17"><td class="memItemLeft" align="right" valign="top">set&lt; <a class="el" href="class_airport.html">Airport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a8cff91882fd7313aee8178b821cc7c17">essentialAirports</a> ()</td></tr>
+<tr class="memdesc:a8cff91882fd7313aee8178b821cc7c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the essential airports.  <a href="class_management_system.html#a8cff91882fd7313aee8178b821cc7c17">More...</a><br /></td></tr>
+<tr class="separator:a8cff91882fd7313aee8178b821cc7c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a563a3d48fb291cf7be2825cf67a9ea4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c">dfs_art</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; *v, stack&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;s, set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;l, int &amp;i)</td></tr>
+<tr class="memdesc:a563a3d48fb291cf7be2825cf67a9ea4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary DFS function for finding articulation points.  <a href="class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c">More...</a><br /></td></tr>
+<tr class="separator:a563a3d48fb291cf7be2825cf67a9ea4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4efc484e6b530122484d9c81201b737"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ac4efc484e6b530122484d9c81201b737">getNumberOfDestinations</a> (string airportString, set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;airports, set&lt; string &gt; &amp;countries, set&lt; string &gt; &amp;cities)</td></tr>
+<tr class="memdesc:ac4efc484e6b530122484d9c81201b737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the numbers of destinations possible from a given airport.  <a href="class_management_system.html#ac4efc484e6b530122484d9c81201b737">More...</a><br /></td></tr>
+<tr class="separator:ac4efc484e6b530122484d9c81201b737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd6208efc50b192e627cd2a0cf41d03d"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#acd6208efc50b192e627cd2a0cf41d03d">getNumberOfDestinationsInXLayovers</a> (string airportString, set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;airports, set&lt; string &gt; &amp;countries, set&lt; string &gt; &amp;cities, int x)</td></tr>
+<tr class="memdesc:acd6208efc50b192e627cd2a0cf41d03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the numbers of destinations possible from a given airport in X layovers.  <a href="class_management_system.html#acd6208efc50b192e627cd2a0cf41d03d">More...</a><br /></td></tr>
+<tr class="separator:acd6208efc50b192e627cd2a0cf41d03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e7b23c6f8220d9a8104b9ad863c869c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a8e7b23c6f8220d9a8104b9ad863c869c">airportDetails</a> (string airportString)</td></tr>
+<tr class="memdesc:a8e7b23c6f8220d9a8104b9ad863c869c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints details of a given airport, like number of flights, countries and airlines.  <a href="class_management_system.html#a8e7b23c6f8220d9a8104b9ad863c869c">More...</a><br /></td></tr>
+<tr class="separator:a8e7b23c6f8220d9a8104b9ad863c869c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a05a8736b1d92a27ceec3b62fdf7576"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a1a05a8736b1d92a27ceec3b62fdf7576">countryDetails</a> (string countryName)</td></tr>
+<tr class="memdesc:a1a05a8736b1d92a27ceec3b62fdf7576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints details of a given country, like number of flights, countries and airlines.  <a href="class_management_system.html#a1a05a8736b1d92a27ceec3b62fdf7576">More...</a><br /></td></tr>
+<tr class="separator:a1a05a8736b1d92a27ceec3b62fdf7576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a590d07135eb0ae3a9605a00cb0d69953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a590d07135eb0ae3a9605a00cb0d69953">cityDetails</a> (string cityName)</td></tr>
+<tr class="memdesc:a590d07135eb0ae3a9605a00cb0d69953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints details of a given city, like number of flights, countries and airlines.  <a href="class_management_system.html#a590d07135eb0ae3a9605a00cb0d69953">More...</a><br /></td></tr>
+<tr class="separator:a590d07135eb0ae3a9605a00cb0d69953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a34aafdcc5305d56312e08aca798599"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a5a34aafdcc5305d56312e08aca798599">airlineDetails</a> (string airlineCode)</td></tr>
+<tr class="memdesc:a5a34aafdcc5305d56312e08aca798599"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints details of a given airline, like number of flights and airports.  <a href="class_management_system.html#a5a34aafdcc5305d56312e08aca798599">More...</a><br /></td></tr>
+<tr class="separator:a5a34aafdcc5305d56312e08aca798599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd2d671e5319b6aa5ed385fec55d7ae"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; <a class="el" href="class_airport.html">Airport</a>, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a2fd2d671e5319b6aa5ed385fec55d7ae">topKAirportsMaxFlights</a> (int k)</td></tr>
+<tr class="memdesc:a2fd2d671e5319b6aa5ed385fec55d7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the top k airports with the maximum number of flights.  <a href="class_management_system.html#a2fd2d671e5319b6aa5ed385fec55d7ae">More...</a><br /></td></tr>
+<tr class="separator:a2fd2d671e5319b6aa5ed385fec55d7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6fb813391b6e909aa029aff8ccb44f6"><td class="memItemLeft" align="right" valign="top">pair&lt; int, set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#aa6fb813391b6e909aa029aff8ccb44f6">bfsDistanceWithDest</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; *v)</td></tr>
+<tr class="memdesc:aa6fb813391b6e909aa029aff8ccb44f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform BFS traversal to find the maximum distance and set of airports in the diameter.  <a href="class_management_system.html#aa6fb813391b6e909aa029aff8ccb44f6">More...</a><br /></td></tr>
+<tr class="separator:aa6fb813391b6e909aa029aff8ccb44f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dcf0a2f23037d07bf4546299c437314"><td class="memItemLeft" align="right" valign="top">pair&lt; set&lt; pair&lt; <a class="el" href="class_airport.html">Airport</a>, <a class="el" href="class_airport.html">Airport</a> &gt; &gt;, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a6dcf0a2f23037d07bf4546299c437314">maxTripWithSourceDest</a> ()</td></tr>
+<tr class="memdesc:a6dcf0a2f23037d07bf4546299c437314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum diameter and corresponding set of airport pairs in the graph.  <a href="class_management_system.html#a6dcf0a2f23037d07bf4546299c437314">More...</a><br /></td></tr>
+<tr class="separator:a6dcf0a2f23037d07bf4546299c437314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf7e6c8aa3dfa18153a733883cf8ac2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2">airportDistance</a> (string airport1, string airport2)</td></tr>
+<tr class="memdesc:a3bf7e6c8aa3dfa18153a733883cf8ac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This functions calculates the spherical distance between 2 airports.  <a href="class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2">More...</a><br /></td></tr>
+<tr class="separator:a3bf7e6c8aa3dfa18153a733883cf8ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2739416353e1d7f3abd54aa02fc76e17"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17">haversine</a> (double lat1, double lon1, double lat2, double lon2)</td></tr>
+<tr class="memdesc:a2739416353e1d7f3abd54aa02fc76e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function uses the haversine distance to calculate distance between 2 points on a sphere.  <a href="class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17">More...</a><br /></td></tr>
+<tr class="separator:a2739416353e1d7f3abd54aa02fc76e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad428988c1d9b613634892f704a62a98d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ad428988c1d9b613634892f704a62a98d">containsFilteredAirline</a> (set&lt; <a class="el" href="class_airline.html">Airline</a> &gt; airlines, set&lt; <a class="el" href="class_airline.html">Airline</a> &gt; filteredAirlines)</td></tr>
+<tr class="memdesc:ad428988c1d9b613634892f704a62a98d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function that determines if all airlines are part of the filtered airlines.  <a href="class_management_system.html#ad428988c1d9b613634892f704a62a98d">More...</a><br /></td></tr>
+<tr class="separator:ad428988c1d9b613634892f704a62a98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fd9afea15f7038171d8b0e938427e1"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_airport.html">Airport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1">findBestFlight</a> (vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt; sourceAirports, vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt; targetAirports, vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt; filteredAirports, set&lt; <a class="el" href="class_airline.html">Airline</a> &gt; filteredAirlines)</td></tr>
+<tr class="memdesc:ae3fd9afea15f7038171d8b0e938427e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the best flight options for a trip.  <a href="class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1">More...</a><br /></td></tr>
+<tr class="separator:ae3fd9afea15f7038171d8b0e938427e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64677753f15199d630d7d7d7767d0df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_management_system.html#ae64677753f15199d630d7d7d7767d0df">MakeUndirected</a> ()</td></tr>
+<tr class="memdesc:ae64677753f15199d630d7d7d7767d0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the graph undirected by duplicating edges.  <a href="class_management_system.html#ae64677753f15199d630d7d7d7767d0df">More...</a><br /></td></tr>
+<tr class="separator:ae64677753f15199d630d7d7d7767d0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Class used to handle the core functions of the program, like loading the data files and building the network. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5a34aafdcc5305d56312e08aca798599" name="a5a34aafdcc5305d56312e08aca798599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a34aafdcc5305d56312e08aca798599">&#9670;&nbsp;</a></span>airlineDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::airlineDetails </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airlineCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints details of a given airline, like number of flights and airports. </p>
+<p >Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airlineCode</td><td>The code of the airline. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a5a34aafdcc5305d56312e08aca798599_cgraph.png" border="0" usemap="#aclass_management_system_a5a34aafdcc5305d56312e08aca798599_cgraph" alt=""/></div>
+<map name="aclass_management_system_a5a34aafdcc5305d56312e08aca798599_cgraph" id="aclass_management_system_a5a34aafdcc5305d56312e08aca798599_cgraph">
+<area shape="rect" title="Prints details of a given airline, like number of flights and airports." alt="" coords="5,5,212,47"/>
+<area shape="rect" href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963" title="Airport network graph getter." alt="" coords="260,5,491,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a5a34aafdcc5305d56312e08aca798599_icgraph.png" border="0" usemap="#aclass_management_system_a5a34aafdcc5305d56312e08aca798599_icgraph" alt=""/></div>
+<map name="aclass_management_system_a5a34aafdcc5305d56312e08aca798599_icgraph" id="aclass_management_system_a5a34aafdcc5305d56312e08aca798599_icgraph">
+<area shape="rect" title="Prints details of a given airline, like number of flights and airports." alt="" coords="359,5,565,47"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8e7b23c6f8220d9a8104b9ad863c869c" name="a8e7b23c6f8220d9a8104b9ad863c869c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e7b23c6f8220d9a8104b9ad863c869c">&#9670;&nbsp;</a></span>airportDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::airportDetails </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airportString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints details of a given airport, like number of flights, countries and airlines. </p>
+<p >Complexity is O(n * k) where n is the number of flights and k is the number of airlines per flight. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airportString</td><td>The airport code. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_cgraph.png" border="0" usemap="#aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_cgraph" alt=""/></div>
+<map name="aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_cgraph" id="aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_cgraph">
+<area shape="rect" title="Prints details of a given airport, like number of flights, countries and airlines." alt="" coords="5,5,213,47"/>
+<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="261,13,396,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_icgraph.png" border="0" usemap="#aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_icgraph" alt=""/></div>
+<map name="aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_icgraph" id="aclass_management_system_a8e7b23c6f8220d9a8104b9ad863c869c_icgraph">
+<area shape="rect" title="Prints details of a given airport, like number of flights, countries and airlines." alt="" coords="612,5,820,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3bf7e6c8aa3dfa18153a733883cf8ac2" name="a3bf7e6c8aa3dfa18153a733883cf8ac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bf7e6c8aa3dfa18153a733883cf8ac2">&#9670;&nbsp;</a></span>airportDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ManagementSystem::airportDistance </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airport1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airport2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This functions calculates the spherical distance between 2 airports. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airport1</td><td>The code of the first airport. </td></tr>
+    <tr><td class="paramname">airport2</td><td>The code of the second airport. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The spherical distance between the 2 airports. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_cgraph.png" border="0" usemap="#aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_cgraph" alt=""/></div>
+<map name="aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_cgraph" id="aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_cgraph">
+<area shape="rect" title="This functions calculates the spherical distance between 2 airports." alt="" coords="5,23,213,65"/>
+<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="309,5,443,32"/>
+<area shape="rect" href="class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="261,56,491,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_icgraph.png" border="0" usemap="#aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_icgraph" alt=""/></div>
+<map name="aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_icgraph" id="aclass_management_system_a3bf7e6c8aa3dfa18153a733883cf8ac2_icgraph">
+<area shape="rect" title="This functions calculates the spherical distance between 2 airports." alt="" coords="292,5,500,47"/>
+<area shape="rect" href="class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="5,13,244,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa6fb813391b6e909aa029aff8ccb44f6" name="aa6fb813391b6e909aa029aff8ccb44f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6fb813391b6e909aa029aff8ccb44f6">&#9670;&nbsp;</a></span>bfsDistanceWithDest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pair&lt; int, set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &gt; ManagementSystem::bfsDistanceWithDest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; *&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform BFS traversal to find the maximum distance and set of airports in the diameter. </p>
+<p >Complexity is O(n + k) where n is the number of airports and k is the number of flights. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The starting vertex for BFS traversal. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pair containing the maximum distance and the set of airports at that distance. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_aa6fb813391b6e909aa029aff8ccb44f6_cgraph.png" border="0" usemap="#aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_cgraph" alt=""/></div>
+<map name="aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_cgraph" id="aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_cgraph">
+<area shape="rect" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="5,49,248,90"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="296,5,449,32"/>
+<area shape="rect" href="class_vertex.html#a410c4d3cae0e22e83a3670ea616ccc94" title=" " alt="" coords="298,56,447,83"/>
+<area shape="rect" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="304,107,441,133"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_aa6fb813391b6e909aa029aff8ccb44f6_icgraph.png" border="0" usemap="#aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_icgraph" alt=""/></div>
+<map name="aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_icgraph" id="aclass_management_system_aa6fb813391b6e909aa029aff8ccb44f6_icgraph">
+<area shape="rect" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="867,5,1109,47"/>
+<area shape="rect" href="class_management_system.html#a6dcf0a2f23037d07bf4546299c437314" title="Find the maximum diameter and corresponding set of airport pairs in the graph." alt="" coords="601,5,819,47"/>
+<area shape="rect" href="class_menu.html#abbba6bf21b34983a169fe5b089787250" title="Menu with statistics about flights." alt="" coords="359,13,553,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a590d07135eb0ae3a9605a00cb0d69953" name="a590d07135eb0ae3a9605a00cb0d69953"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a590d07135eb0ae3a9605a00cb0d69953">&#9670;&nbsp;</a></span>cityDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::cityDetails </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>cityName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints details of a given city, like number of flights, countries and airlines. </p>
+<p >Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cityName</td><td>The name of the city. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a590d07135eb0ae3a9605a00cb0d69953_cgraph.png" border="0" usemap="#aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_cgraph" alt=""/></div>
+<map name="aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_cgraph" id="aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_cgraph">
+<area shape="rect" title="Prints details of a given city, like number of flights, countries and airlines." alt="" coords="5,13,240,39"/>
+<area shape="rect" href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963" title="Airport network graph getter." alt="" coords="288,5,519,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a590d07135eb0ae3a9605a00cb0d69953_icgraph.png" border="0" usemap="#aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_icgraph" alt=""/></div>
+<map name="aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_icgraph" id="aclass_management_system_a590d07135eb0ae3a9605a00cb0d69953_icgraph">
+<area shape="rect" title="Prints details of a given city, like number of flights, countries and airlines." alt="" coords="359,5,593,32"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,5,311,32"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,5,101,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad428988c1d9b613634892f704a62a98d" name="ad428988c1d9b613634892f704a62a98d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad428988c1d9b613634892f704a62a98d">&#9670;&nbsp;</a></span>containsFilteredAirline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ManagementSystem::containsFilteredAirline </td>
+          <td>(</td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt;&#160;</td>
+          <td class="paramname"><em>airlines</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt;&#160;</td>
+          <td class="paramname"><em>filteredAirlines</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auxiliary function that determines if all airlines are part of the filtered airlines. </p>
+<p >Complexity is O(n * log(k)) where n is the number of airlines and k is the number of filtered airlines. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airlines</td><td>Set with the current airlines. </td></tr>
+    <tr><td class="paramname">filteredAirlines</td><td>Set with the filtered airlines. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if all airlines are part of the filtered airlines. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ad428988c1d9b613634892f704a62a98d_icgraph.png" border="0" usemap="#aclass_management_system_ad428988c1d9b613634892f704a62a98d_icgraph" alt=""/></div>
+<map name="aclass_management_system_ad428988c1d9b613634892f704a62a98d_icgraph" id="aclass_management_system_ad428988c1d9b613634892f704a62a98d_icgraph">
+<area shape="rect" title="Auxiliary function that determines if all airlines are part of the filtered airlines." alt="" coords="643,5,863,47"/>
+<area shape="rect" href="class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="376,5,595,47"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,13,328,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1a05a8736b1d92a27ceec3b62fdf7576" name="a1a05a8736b1d92a27ceec3b62fdf7576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a05a8736b1d92a27ceec3b62fdf7576">&#9670;&nbsp;</a></span>countryDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::countryDetails </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>countryName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints details of a given country, like number of flights, countries and airlines. </p>
+<p >Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">countryName</td><td>The name of the country. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_cgraph.png" border="0" usemap="#aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_cgraph" alt=""/></div>
+<map name="aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_cgraph" id="aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_cgraph">
+<area shape="rect" title="Prints details of a given country, like number of flights, countries and airlines." alt="" coords="5,5,220,47"/>
+<area shape="rect" href="class_management_system.html#a2bfd67f819528b1e405aad63b91ed963" title="Airport network graph getter." alt="" coords="268,5,499,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_icgraph.png" border="0" usemap="#aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_icgraph" alt=""/></div>
+<map name="aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_icgraph" id="aclass_management_system_a1a05a8736b1d92a27ceec3b62fdf7576_icgraph">
+<area shape="rect" title="Prints details of a given country, like number of flights, countries and airlines." alt="" coords="359,5,573,47"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a563a3d48fb291cf7be2825cf67a9ea4c" name="a563a3d48fb291cf7be2825cf67a9ea4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a563a3d48fb291cf7be2825cf67a9ea4c">&#9670;&nbsp;</a></span>dfs_art()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::dfs_art </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; *&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">stack&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Auxiliary DFS function for finding articulation points. </p>
+<p >Complexity is O(n * (n + k) where n is the number of airports and k is the number of flights per airport. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>Current vertex. </td></tr>
+    <tr><td class="paramname">s</td><td>Auxiliary stack of vertices. </td></tr>
+    <tr><td class="paramname">l</td><td>Set of vertices that are articulation points. </td></tr>
+    <tr><td class="paramname">i</td><td>Auxiliary counter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_cgraph.png" border="0" usemap="#aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_cgraph" alt=""/></div>
+<map name="aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_cgraph" id="aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_cgraph">
+<area shape="rect" title="Auxiliary DFS function for finding articulation points." alt="" coords="5,183,216,209"/>
+<area shape="rect" href="class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="288,5,403,32"/>
+<area shape="rect" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="286,56,405,83"/>
+<area shape="rect" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961" title=" " alt="" coords="286,107,405,133"/>
+<area shape="rect" href="class_vertex.html#ab2916c006fa35b918910a2232095e785" title=" " alt="" coords="283,157,407,184"/>
+<area shape="rect" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435" title=" " alt="" coords="286,208,405,235"/>
+<area shape="rect" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218" title=" " alt="" coords="284,259,407,285"/>
+<area shape="rect" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932" title=" " alt="" coords="264,309,427,336"/>
+<area shape="rect" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="277,360,414,387"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_icgraph.png" border="0" usemap="#aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_icgraph" alt=""/></div>
+<map name="aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_icgraph" id="aclass_management_system_a563a3d48fb291cf7be2825cf67a9ea4c_icgraph">
+<area shape="rect" title="Auxiliary DFS function for finding articulation points." alt="" coords="884,29,1095,56"/>
+<area shape="rect" href="class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="612,22,836,63"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,29,564,56"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,29,311,56"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,29,101,56"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8cff91882fd7313aee8178b821cc7c17" name="a8cff91882fd7313aee8178b821cc7c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cff91882fd7313aee8178b821cc7c17">&#9670;&nbsp;</a></span>essentialAirports()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; ManagementSystem::essentialAirports </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the essential airports. </p>
+<p >Complexity is O(n * k + n + n³ + kn²) where n is the number of airports and k is the number of flights per airport. </p><dl class="section return"><dt>Returns</dt><dd>Set representing the essential points. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a8cff91882fd7313aee8178b821cc7c17_cgraph.png" border="0" usemap="#aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_cgraph" alt=""/></div>
+<map name="aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_cgraph" id="aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_cgraph">
+<area shape="rect" title="Returns the essential airports." alt="" coords="5,378,229,419"/>
+<area shape="rect" href="class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c" title="Auxiliary DFS function for finding articulation points." alt="" coords="307,208,518,235"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="601,411,754,437"/>
+<area shape="rect" href="class_management_system.html#ae64677753f15199d630d7d7d7767d0df" title="Makes the graph undirected by duplicating edges." alt="" coords="277,436,548,463"/>
+<area shape="rect" href="class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="620,5,735,32"/>
+<area shape="rect" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="618,56,737,83"/>
+<area shape="rect" href="class_vertex.html#a3b8e12b4d9805979321212dd6db05961" title=" " alt="" coords="618,107,737,133"/>
+<area shape="rect" href="class_vertex.html#ab2916c006fa35b918910a2232095e785" title=" " alt="" coords="615,157,739,184"/>
+<area shape="rect" href="class_vertex.html#ada7d878fff0c3d585fce0a51cffa6435" title=" " alt="" coords="618,208,737,235"/>
+<area shape="rect" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218" title=" " alt="" coords="616,259,739,285"/>
+<area shape="rect" href="class_vertex.html#ac7b2e53890abfbcd4d7ce3b7d34ee932" title=" " alt="" coords="596,309,759,336"/>
+<area shape="rect" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="609,360,746,387"/>
+<area shape="rect" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="615,461,740,488"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a8cff91882fd7313aee8178b821cc7c17_icgraph.png" border="0" usemap="#aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_icgraph" alt=""/></div>
+<map name="aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_icgraph" id="aclass_management_system_a8cff91882fd7313aee8178b821cc7c17_icgraph">
+<area shape="rect" title="Returns the essential airports." alt="" coords="612,5,836,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae3fd9afea15f7038171d8b0e938427e1" name="ae3fd9afea15f7038171d8b0e938427e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fd9afea15f7038171d8b0e938427e1">&#9670;&nbsp;</a></span>findBestFlight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_airport.html">Airport</a> &gt; ManagementSystem::findBestFlight </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt;&#160;</td>
+          <td class="paramname"><em>sourceAirports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt;&#160;</td>
+          <td class="paramname"><em>targetAirports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_airport.html">Airport</a> &gt; * &gt;&#160;</td>
+          <td class="paramname"><em>filteredAirports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airline.html">Airline</a> &gt;&#160;</td>
+          <td class="paramname"><em>filteredAirlines</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the best flight options for a trip. </p>
+<p >Complexity is O(n² + kn) where n is the number of airports and k is the number of flights. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceAirports</td><td>A set with the source airports. </td></tr>
+    <tr><td class="paramname">targetAirports</td><td>A set with the target airports. </td></tr>
+    <tr><td class="paramname">filteredAirports</td><td>A set with the filtered airports (airports that should not be considered while searching). </td></tr>
+    <tr><td class="paramname">filteredAirlines</td><td>A set with the filtered airlines (airlines that should not be considered while searching). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The best trip (a trip is a vector of airports). </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ae3fd9afea15f7038171d8b0e938427e1_cgraph.png" border="0" usemap="#aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_cgraph" alt=""/></div>
+<map name="aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_cgraph" id="aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_cgraph">
+<area shape="rect" title="Finds the best flight options for a trip." alt="" coords="5,115,224,156"/>
+<area shape="rect" href="class_management_system.html#ad428988c1d9b613634892f704a62a98d" title="Auxiliary function that determines if all airlines are part of the filtered airlines." alt="" coords="272,5,492,47"/>
+<area shape="rect" href="class_vertex.html#a0b0341340972782503ff5065f46673fe" title=" " alt="" coords="325,71,439,98"/>
+<area shape="rect" href="class_vertex.html#a48eae2f7af2362634adab02b7b2dbec6" title=" " alt="" coords="323,122,441,149"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="305,173,459,199"/>
+<area shape="rect" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="313,223,451,250"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ae3fd9afea15f7038171d8b0e938427e1_icgraph.png" border="0" usemap="#aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_icgraph" alt=""/></div>
+<map name="aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_icgraph" id="aclass_management_system_ae3fd9afea15f7038171d8b0e938427e1_icgraph">
+<area shape="rect" title="Finds the best flight options for a trip." alt="" coords="376,5,595,47"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,13,328,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ab0d0046df8f73bb6184a8fb762bbde01" name="ab0d0046df8f73bb6184a8fb762bbde01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0d0046df8f73bb6184a8fb762bbde01">&#9670;&nbsp;</a></span>getAirlines()</h2>
 
@@ -136,6 +733,17 @@ Public Member Functions</h2></td></tr>
 
 <p>Airlines getter. </p>
 <dl class="section return"><dt>Returns</dt><dd>An unordered set of all the airlines. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ab0d0046df8f73bb6184a8fb762bbde01_icgraph.png" border="0" usemap="#aclass_management_system_ab0d0046df8f73bb6184a8fb762bbde01_icgraph" alt=""/></div>
+<map name="aclass_management_system_ab0d0046df8f73bb6184a8fb762bbde01_icgraph" id="aclass_management_system_ab0d0046df8f73bb6184a8fb762bbde01_icgraph">
+<area shape="rect" title="Airlines getter." alt="" coords="556,31,791,57"/>
+<area shape="rect" href="class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="376,5,508,32"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,31,328,57"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,31,101,57"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -154,48 +762,444 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_airport.html">Airport</a> network graph getter. </p>
+<p><a class="el" href="class_airport.html" title="Class used to represent an airport.">Airport</a> network graph getter. </p>
 <dl class="section return"><dt>Returns</dt><dd>The graph representing the airport network. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a2bfd67f819528b1e405aad63b91ed963_icgraph.png" border="0" usemap="#aclass_management_system_a2bfd67f819528b1e405aad63b91ed963_icgraph" alt=""/></div>
+<map name="aclass_management_system_a2bfd67f819528b1e405aad63b91ed963_icgraph" id="aclass_management_system_a2bfd67f819528b1e405aad63b91ed963_icgraph">
+<area shape="rect" title="Airport network graph getter." alt="" coords="868,86,1099,127"/>
+<area shape="rect" href="class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="617,5,788,32"/>
+<area shape="rect" href="class_management_system.html#a5a34aafdcc5305d56312e08aca798599" title="Prints details of a given airline, like number of flights and airports." alt="" coords="599,57,806,98"/>
+<area shape="rect" href="class_management_system.html#a590d07135eb0ae3a9605a00cb0d69953" title="Prints details of a given city, like number of flights, countries and airlines." alt="" coords="585,123,820,149"/>
+<area shape="rect" href="class_management_system.html#a1a05a8736b1d92a27ceec3b62fdf7576" title="Prints details of a given country, like number of flights, countries and airlines." alt="" coords="595,174,810,215"/>
+<area shape="rect" href="class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="391,5,523,32"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,56,328,83"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,89,101,116"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="376,119,537,145"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="ad3e8b32ba29e2faaa3fa88babf96a621" name="ad3e8b32ba29e2faaa3fa88babf96a621"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3e8b32ba29e2faaa3fa88babf96a621">&#9670;&nbsp;</a></span>getAirports()</h2>
+<a id="adf84ce827481ed57f5b04359182e8c12" name="adf84ce827481ed57f5b04359182e8c12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf84ce827481ed57f5b04359182e8c12">&#9670;&nbsp;</a></span>getCities()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const unordered_set&lt; <a class="el" href="class_airport.html">Airport</a>, <a class="el" href="struct_airport_1_1_hash_function.html">Airport::HashFunction</a> &gt; &amp; ManagementSystem::getAirports </td>
+          <td class="memname">const map&lt; string, vector&lt; string &gt; &gt; &amp; ManagementSystem::getCities </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Airports getter. </p>
-<dl class="section return"><dt>Returns</dt><dd>An unordered set of all the airports. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_adf84ce827481ed57f5b04359182e8c12_icgraph.png" border="0" usemap="#aclass_management_system_adf84ce827481ed57f5b04359182e8c12_icgraph" alt=""/></div>
+<map name="aclass_management_system_adf84ce827481ed57f5b04359182e8c12_icgraph" id="aclass_management_system_adf84ce827481ed57f5b04359182e8c12_icgraph">
+<area shape="rect" title=" " alt="" coords="800,31,1023,57"/>
+<area shape="rect" href="class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="569,5,739,32"/>
+<area shape="rect" href="class_menu.html#a22458f4ca27ba3558483ae3e9033cd7e" title="Menu for removing airport(s) to the current selection." alt="" coords="556,56,752,83"/>
+<area shape="rect" href="class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="376,31,508,57"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,31,328,57"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,31,101,57"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="a1a09594a8260974aeed357df7eb9e6a5" name="a1a09594a8260974aeed357df7eb9e6a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a09594a8260974aeed357df7eb9e6a5">&#9670;&nbsp;</a></span>getFlights()</h2>
+<a id="ac4efc484e6b530122484d9c81201b737" name="ac4efc484e6b530122484d9c81201b737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4efc484e6b530122484d9c81201b737">&#9670;&nbsp;</a></span>getNumberOfDestinations()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const set&lt; <a class="el" href="class_flight.html">Flight</a> &gt; &amp; ManagementSystem::getFlights </td>
+          <td class="memname">vector&lt; int &gt; ManagementSystem::getNumberOfDestinations </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airportString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>countries</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cities</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Flights getter. </p>
-<dl class="section return"><dt>Returns</dt><dd>A set of all the flights. </dd></dl>
+<p>Gets the numbers of destinations possible from a given airport. </p>
+<p >Complexity is O(n + k + nlog(n)) where n is the number of airports and k is the number of flights per airport. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airportString</td><td>The code of the airport. </td></tr>
+    <tr><td class="paramname">airports</td><td>Auxiliary set of airports containing the possible destinations. </td></tr>
+    <tr><td class="paramname">countries</td><td>Auxiliary set of countries containing the possible destinations. </td></tr>
+    <tr><td class="paramname">cities</td><td>Auxiliary set of cities containing the possible destinations. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector with 3 elements: the number of airports, countries and cities. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ac4efc484e6b530122484d9c81201b737_cgraph.png" border="0" usemap="#aclass_management_system_ac4efc484e6b530122484d9c81201b737_cgraph" alt=""/></div>
+<map name="aclass_management_system_ac4efc484e6b530122484d9c81201b737_cgraph" id="aclass_management_system_ac4efc484e6b530122484d9c81201b737_cgraph">
+<area shape="rect" title="Gets the numbers of destinations possible from a given airport." alt="" coords="5,74,244,115"/>
+<area shape="rect" href="class_graph.html#a911798b1a89f8c4ae90ba3eee849cff8" title=" " alt="" coords="321,5,410,32"/>
+<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="298,56,433,83"/>
+<area shape="rect" href="class_airport.html#a4f8fbb5b1c5250bf0aaa77dfc25897dc" title="Airport city getter." alt="" coords="305,107,426,133"/>
+<area shape="rect" href="class_airport.html#aefabe22c551403c9ca291404eba2323b" title="Airport country getter." alt="" coords="292,157,439,184"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ac4efc484e6b530122484d9c81201b737_icgraph.png" border="0" usemap="#aclass_management_system_ac4efc484e6b530122484d9c81201b737_icgraph" alt=""/></div>
+<map name="aclass_management_system_ac4efc484e6b530122484d9c81201b737_icgraph" id="aclass_management_system_ac4efc484e6b530122484d9c81201b737_icgraph">
+<area shape="rect" title="Gets the numbers of destinations possible from a given airport." alt="" coords="612,5,851,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acd6208efc50b192e627cd2a0cf41d03d" name="acd6208efc50b192e627cd2a0cf41d03d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd6208efc50b192e627cd2a0cf41d03d">&#9670;&nbsp;</a></span>getNumberOfDestinationsInXLayovers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; ManagementSystem::getNumberOfDestinationsInXLayovers </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>airportString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; <a class="el" href="class_airport.html">Airport</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>countries</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>cities</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the numbers of destinations possible from a given airport in X layovers. </p>
+<p >Complexity is O(n + k + nlog(n)) where n is the number of airports and k is the number of flights per airport. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">airportString</td><td>The code of the airport. </td></tr>
+    <tr><td class="paramname">airports</td><td>Auxiliary set of airports. </td></tr>
+    <tr><td class="paramname">countries</td><td>Auxiliary set of countries. </td></tr>
+    <tr><td class="paramname">cities</td><td>Auxiliary set of cities. </td></tr>
+    <tr><td class="paramname">x</td><td>The maximum number of layovers. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector with 3 elements: the number of airports, countries and cities. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_acd6208efc50b192e627cd2a0cf41d03d_cgraph.png" border="0" usemap="#aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_cgraph" alt=""/></div>
+<map name="aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_cgraph" id="aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_cgraph">
+<area shape="rect" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="5,99,244,141"/>
+<area shape="rect" href="class_graph.html#a16d0a8d45cf09694ff538521ae58288a" title=" " alt="" coords="296,31,435,57"/>
+<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="298,81,433,108"/>
+<area shape="rect" href="class_airport.html#a4f8fbb5b1c5250bf0aaa77dfc25897dc" title="Airport city getter." alt="" coords="305,132,426,159"/>
+<area shape="rect" href="class_airport.html#aefabe22c551403c9ca291404eba2323b" title="Airport country getter." alt="" coords="292,183,439,209"/>
+<area shape="rect" href="class_vertex.html#ab2916c006fa35b918910a2232095e785" title=" " alt="" coords="487,5,611,32"/>
+<area shape="rect" href="class_vertex.html#a7eecd09188d8f959b1c0ac9332c14218" title=" " alt="" coords="487,56,610,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_acd6208efc50b192e627cd2a0cf41d03d_icgraph.png" border="0" usemap="#aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_icgraph" alt=""/></div>
+<map name="aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_icgraph" id="aclass_management_system_acd6208efc50b192e627cd2a0cf41d03d_icgraph">
+<area shape="rect" title="Gets the numbers of destinations possible from a given airport in X layovers." alt="" coords="612,5,851,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aecb3d1eb2f81e2a80526ba68eb766f00" name="aecb3d1eb2f81e2a80526ba68eb766f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb3d1eb2f81e2a80526ba68eb766f00">&#9670;&nbsp;</a></span>GlobalNumberOfAirports()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ManagementSystem::GlobalNumberOfAirports </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the total number of airports. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer representing the total numbers of airports. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_cgraph.png" border="0" usemap="#aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_cgraph" alt=""/></div>
+<map name="aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_cgraph" id="aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_cgraph">
+<area shape="rect" title="Gets the total number of airports." alt="" coords="5,5,212,47"/>
+<area shape="rect" href="class_graph.html#a0853eac15cdf0f06d63f4b8a7820ec71" title=" " alt="" coords="260,13,423,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_icgraph.png" border="0" usemap="#aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_icgraph" alt=""/></div>
+<map name="aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_icgraph" id="aclass_management_system_aecb3d1eb2f81e2a80526ba68eb766f00_icgraph">
+<area shape="rect" title="Gets the total number of airports." alt="" coords="359,5,565,47"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a34d8fc43a6b007d5618b6db69d19201a" name="a34d8fc43a6b007d5618b6db69d19201a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34d8fc43a6b007d5618b6db69d19201a">&#9670;&nbsp;</a></span>GlobalNumberOfFlights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ManagementSystem::GlobalNumberOfFlights </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns global number of available flights. </p>
+<dl class="section return"><dt>Returns</dt><dd>Integer representing the total number of flights.</dd></dl>
+<p>Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a34d8fc43a6b007d5618b6db69d19201a_cgraph.png" border="0" usemap="#aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_cgraph" alt=""/></div>
+<map name="aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_cgraph" id="aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_cgraph">
+<area shape="rect" title="Returns global number of available flights." alt="" coords="5,5,212,47"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="260,13,413,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a34d8fc43a6b007d5618b6db69d19201a_icgraph.png" border="0" usemap="#aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_icgraph" alt=""/></div>
+<map name="aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_icgraph" id="aclass_management_system_a34d8fc43a6b007d5618b6db69d19201a_icgraph">
+<area shape="rect" title="Returns global number of available flights." alt="" coords="359,5,565,47"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2739416353e1d7f3abd54aa02fc76e17" name="a2739416353e1d7f3abd54aa02fc76e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2739416353e1d7f3abd54aa02fc76e17">&#9670;&nbsp;</a></span>haversine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ManagementSystem::haversine </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lat1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lon1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lat2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>lon2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function uses the haversine distance to calculate distance between 2 points on a sphere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lat1</td><td>First point latitude. </td></tr>
+    <tr><td class="paramname">lon1</td><td>First point longitude. </td></tr>
+    <tr><td class="paramname">lat2</td><td>Second point latitude. </td></tr>
+    <tr><td class="paramname">lon2</td><td>Second point longitude. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance between the points. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a2739416353e1d7f3abd54aa02fc76e17_icgraph.png" border="0" usemap="#aclass_management_system_a2739416353e1d7f3abd54aa02fc76e17_icgraph" alt=""/></div>
+<map name="aclass_management_system_a2739416353e1d7f3abd54aa02fc76e17_icgraph" id="aclass_management_system_a2739416353e1d7f3abd54aa02fc76e17_icgraph">
+<area shape="rect" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="919,71,1148,97"/>
+<area shape="rect" href="class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07" title="Menu for adding airport(s) to the current selection." alt="" coords="681,71,852,97"/>
+<area shape="rect" href="class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2" title="This functions calculates the spherical distance between 2 airports." alt="" coords="663,122,871,163"/>
+<area shape="rect" href="class_menu.html#a22458f4ca27ba3558483ae3e9033cd7e" title="Menu for removing airport(s) to the current selection." alt="" coords="669,20,865,47"/>
+<area shape="rect" href="class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116" title="Menu for changing the filters." alt="" coords="429,24,561,51"/>
+<area shape="rect" href="class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="149,24,328,51"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,24,101,51"/>
+<area shape="rect" href="class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="376,129,615,156"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae64677753f15199d630d7d7d7767d0df" name="ae64677753f15199d630d7d7d7767d0df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae64677753f15199d630d7d7d7767d0df">&#9670;&nbsp;</a></span>MakeUndirected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ManagementSystem::MakeUndirected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Makes the graph undirected by duplicating edges. </p>
+<p >Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ae64677753f15199d630d7d7d7767d0df_cgraph.png" border="0" usemap="#aclass_management_system_ae64677753f15199d630d7d7d7767d0df_cgraph" alt=""/></div>
+<map name="aclass_management_system_ae64677753f15199d630d7d7d7767d0df_cgraph" id="aclass_management_system_ae64677753f15199d630d7d7d7767d0df_cgraph">
+<area shape="rect" title="Makes the graph undirected by duplicating edges." alt="" coords="5,31,276,57"/>
+<area shape="rect" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="338,5,463,32"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="324,56,477,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_ae64677753f15199d630d7d7d7767d0df_icgraph.png" border="0" usemap="#aclass_management_system_ae64677753f15199d630d7d7d7767d0df_icgraph" alt=""/></div>
+<map name="aclass_management_system_ae64677753f15199d630d7d7d7767d0df_icgraph" id="aclass_management_system_ae64677753f15199d630d7d7d7767d0df_icgraph">
+<area shape="rect" title="Makes the graph undirected by duplicating edges." alt="" coords="884,13,1155,39"/>
+<area shape="rect" href="class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="612,5,836,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6dcf0a2f23037d07bf4546299c437314" name="a6dcf0a2f23037d07bf4546299c437314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dcf0a2f23037d07bf4546299c437314">&#9670;&nbsp;</a></span>maxTripWithSourceDest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pair&lt; set&lt; pair&lt; <a class="el" href="class_airport.html">Airport</a>, <a class="el" href="class_airport.html">Airport</a> &gt; &gt;, int &gt; ManagementSystem::maxTripWithSourceDest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the maximum diameter and corresponding set of airport pairs in the graph. </p>
+<p >Complexity is O(n² + kn) where n is the number of airports and k is the number of flights. </p><dl class="section return"><dt>Returns</dt><dd>A pair containing the set of airport pairs in the maximum diameter and the diameter value. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a6dcf0a2f23037d07bf4546299c437314_cgraph.png" border="0" usemap="#aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_cgraph" alt=""/></div>
+<map name="aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_cgraph" id="aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_cgraph">
+<area shape="rect" title="Find the maximum diameter and corresponding set of airport pairs in the graph." alt="" coords="5,26,223,67"/>
+<area shape="rect" href="class_management_system.html#aa6fb813391b6e909aa029aff8ccb44f6" title="Perform BFS traversal to find the maximum distance and set of airports in the diameter." alt="" coords="271,55,513,97"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="561,5,715,32"/>
+<area shape="rect" href="class_vertex.html#a410c4d3cae0e22e83a3670ea616ccc94" title=" " alt="" coords="563,60,713,87"/>
+<area shape="rect" href="class_vertex.html#aa1a1921cded8cb209382407b5a9433f3" title=" " alt="" coords="569,111,707,137"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a6dcf0a2f23037d07bf4546299c437314_icgraph.png" border="0" usemap="#aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_icgraph" alt=""/></div>
+<map name="aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_icgraph" id="aclass_management_system_a6dcf0a2f23037d07bf4546299c437314_icgraph">
+<area shape="rect" title="Find the maximum diameter and corresponding set of airport pairs in the graph." alt="" coords="601,5,819,47"/>
+<area shape="rect" href="class_menu.html#abbba6bf21b34983a169fe5b089787250" title="Menu with statistics about flights." alt="" coords="359,13,553,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -215,6 +1219,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read airlines from the csv file. </p>
+<p >Complexity is, on average, O(n), where n is the number of airlines. </p>
 
 </div>
 </div>
@@ -234,6 +1239,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read airports from the csv file. </p>
+<p >Complexity is O(n log(k)), where n is the number of airports and k is the number of cities. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -262,14 +1268,65 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Read flights from the csv file. </p>
+<p >Complexity is, on average, O(n * k) where n is the number of flights and k is the number of airlines per flight. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_management_system_ae0de3e007210a78ac5d599d10315d51d_cgraph.png" border="0" usemap="#aclass_management_system_ae0de3e007210a78ac5d599d10315d51d_cgraph" alt=""/></div>
 <map name="aclass_management_system_ae0de3e007210a78ac5d599d10315d51d_cgraph" id="aclass_management_system_ae0de3e007210a78ac5d599d10315d51d_cgraph">
-<area shape="rect" title="Read flights from the csv file." alt="" coords="5,31,244,57"/>
-<area shape="rect" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="297,5,422,32"/>
-<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="292,56,427,83"/>
+<area shape="rect" title="Read flights from the csv file." alt="" coords="5,81,244,108"/>
+<area shape="rect" href="class_edge.html#af421cc07c859009f4ca6e197008b8b47" title=" " alt="" coords="332,5,460,32"/>
+<area shape="rect" href="class_graph.html#abba9f46183f3f3d090d6732517701c0a" title=" " alt="" coords="333,56,459,83"/>
+<area shape="rect" href="class_management_system.html#a3bf7e6c8aa3dfa18153a733883cf8ac2" title="This functions calculates the spherical distance between 2 airports." alt="" coords="292,158,500,199"/>
+<area shape="rect" href="class_graph.html#a8b7b7465fbfd562e2a469f90a437ab75" title=" " alt="" coords="595,111,730,137"/>
+<area shape="rect" href="class_management_system.html#a2739416353e1d7f3abd54aa02fc76e17" title="This function uses the haversine distance to calculate distance between 2 points on a sphere." alt="" coords="548,165,777,192"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2fd2d671e5319b6aa5ed385fec55d7ae" name="a2fd2d671e5319b6aa5ed385fec55d7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fd2d671e5319b6aa5ed385fec55d7ae">&#9670;&nbsp;</a></span>topKAirportsMaxFlights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; pair&lt; <a class="el" href="class_airport.html">Airport</a>, int &gt; &gt; ManagementSystem::topKAirportsMaxFlights </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the top k airports with the maximum number of flights. </p>
+<p >Complexity is O(n * k + log(n)) where n is the number of airports and k is the number of flights per airport. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The number of top airports to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of pairs, where each pair contains an airport and the corresponding number of flights. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_cgraph.png" border="0" usemap="#aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_cgraph" alt=""/></div>
+<map name="aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_cgraph" id="aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_cgraph">
+<area shape="rect" title="Get the top k airports with the maximum number of flights." alt="" coords="5,5,252,47"/>
+<area shape="rect" href="class_graph.html#a6805ab6e8fdc0b2c0c247638746862da" title=" " alt="" coords="300,13,453,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_icgraph.png" border="0" usemap="#aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_icgraph" alt=""/></div>
+<map name="aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_icgraph" id="aclass_management_system_a2fd2d671e5319b6aa5ed385fec55d7ae_icgraph">
+<area shape="rect" title="Get the top k airports with the maximum number of flights." alt="" coords="612,5,859,47"/>
+<area shape="rect" href="class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" href="class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" href="class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
 </map>
 </div>
 

@@ -1,4 +1,9 @@
 <map id="Graph::addEdge" name="Graph::addEdge">
-<area shape="rect" id="node1" title=" " alt="" coords="292,5,417,32"/>
-<area shape="rect" id="node2" href="$class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="5,5,244,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1203,38,1328,65"/>
+<area shape="rect" id="node2" href="$class_management_system.html#ae64677753f15199d630d7d7d7767d0df" title="Makes the graph undirected by duplicating edges." alt="" coords="884,13,1155,39"/>
+<area shape="rect" id="node7" href="$class_management_system.html#ae0de3e007210a78ac5d599d10315d51d" title="Read flights from the csv file." alt="" coords="900,63,1139,90"/>
+<area shape="rect" id="node3" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="612,5,836,47"/>
+<area shape="rect" id="node4" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,13,564,39"/>
+<area shape="rect" id="node5" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" id="node6" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
 </map>
