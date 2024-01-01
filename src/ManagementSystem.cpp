@@ -626,9 +626,9 @@ bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airlin
     return true;
 }
 
-vector<vector<Airport>>
-ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports,
-                                  set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
+vector<Airport>
+ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports,
+                                 vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
     vector<vector<Airport>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
@@ -653,7 +653,7 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
         while (!auxQueue.empty()) {
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
-            if (targetAirports.find(currentAirportVertex) != targetAirports.end()) {
+            if (std::find(targetAirports.begin(), targetAirports.end(), currentAirportVertex) != targetAirports.end()) {
                 foundtargets.insert(currentAirportVertex->getInfo());
                 foundDistance = auxQueue.front().second.size();
                 res.push_back(auxQueue.front().second);
@@ -674,11 +674,14 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             auxQueue.pop();
         }
     }
+    // Sort the result by number of stops.
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
-
-    return res;
+    if (res.size() == 0){
+        return {};
+    }
+    return res[0];
 }
 
 const map<string, vector<string>> &ManagementSystem::getCities() const {

@@ -12,22 +12,18 @@ int main() {
     system.readAirports();
     cout << "Loading flights\n";
     system.readFlights();
-    set<Vertex<Airport> *> source;
-    set<Vertex<Airport> *> target;
-    set<Vertex<Airport> *> filteredAirports;
-    set<Airline> filteredAirlines;
-    source.insert(system.getAirportNetwork().findVertex(Airport("OPO", "", "", "", 0, 0)));
-    filteredAirports.insert(system.getAirportNetwork().findVertex(Airport("YYZ", "", "", "", 0, 0)));
-    target.insert(system.getAirportNetwork().findVertex(Airport("SRV", "", "", "", 0, 0)));
+    vector<Vertex<Airport> *> source;
+    vector<Vertex<Airport> *> target;
+    vector<Vertex<Airport> *> filteredAirports;
+    set < Airline > filteredAirlines;
+    source.push_back(system.getAirportNetwork().findVertex(Airport("OPO", "", "", "", 0, 0)));
+    filteredAirports.push_back(system.getAirportNetwork().findVertex(Airport("YYZ", "", "", "", 0, 0)));
+    target.push_back(system.getAirportNetwork().findVertex(Airport("SRV", "", "", "", 0, 0)));
 
-    vector<vector<Airport>> paths = system.findBestFlights(source, target, filteredAirports, filteredAirlines);
-    for (auto i: paths) {
-        cout << "Trip:\n";
-        for (auto j: i) {
-            cout << j.getCode() << " ";
-        }
+    vector<Airport> trip = system.findBestFlight(source, target, filteredAirports, filteredAirlines);
+    for (auto i: trip) {
+        cout << i.getCode() << " ";
     }
-
     cout << endl;
     Menu menu(system);
     menu.start();

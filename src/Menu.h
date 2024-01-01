@@ -45,22 +45,24 @@ public:
 
     /**
      * @brief Menu for adding airport(s) to the current selection.
-     * @param airports A set of the currently selected airports.
+     * @param airports A vector of the currently selected airports.
      */
-    void addAirportMenu(set<Vertex<Airport> *> &airports);
+    void addAirportMenu(vector<Vertex<Airport> *> &airports);
 
     /**
      * @brief Menu for removing airport(s) to the current selection
-     * @param airports A set of the currently selected airports.
+     * @param airports A vector of the currently selected airports.
      */
-    void removeAirportMenu(set<Vertex<Airport> *> &airports);
+    void removeAirportMenu(vector<Vertex<Airport> *> &airports);
 
     /**
      * @brief Menu for changing the filters.
      * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
      * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     * @param mandatoryStops A set with airports that need to be visited (layover).
+     * @param mandatoryAirlines A set with the only airlines than can be used.
      */
-    void filterMenu(set<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines);
+    void filterMenu(vector<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines, vector<Vertex<Airport>*> &mandatoryStops, set<Airline> &mandatoryAirlines);
 };
 
 
