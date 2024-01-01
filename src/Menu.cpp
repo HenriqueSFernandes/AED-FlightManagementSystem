@@ -183,6 +183,7 @@ void Menu::flightSearchMenu() {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
             vector<pair<Airport, set<Airline>>> bestTrip;
+            set < Airline > filteredAirlinesBackup = filteredAirlines;
             if (!mandatoryAirlines.empty()) {
                 // Mandatory airlines.
                 filteredAirlines.clear();
@@ -227,6 +228,7 @@ void Menu::flightSearchMenu() {
                     cout << "\t\t\t" << airline << endl;
                 }
             }
+            filteredAirlines = filteredAirlinesBackup;
         } else if (option == "7") {
             break;
         } else {

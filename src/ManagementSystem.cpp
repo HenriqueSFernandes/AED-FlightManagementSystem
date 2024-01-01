@@ -716,8 +716,10 @@ bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airlin
 }
 
 vector<pair<Airport, set<Airline>>>
-ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports,
-                                 vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
+ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
+                                 const vector<Vertex<Airport> *> &targetAirports,
+                                 const vector<Vertex<Airport> *> &filteredAirports,
+                                 const set<Airline> &filteredAirlines) {
     vector<vector<pair<Airport, set<Airline>>>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
