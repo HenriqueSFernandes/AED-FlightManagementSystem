@@ -10,6 +10,7 @@
 #include <stack>
 #include <list>
 #include <map>
+#include <unordered_map>
 #include "Flight.h"
 
 using namespace std;
@@ -122,10 +123,10 @@ public:
 
 template<class T>
 class Graph {
-    vector<Vertex<T> *> vertexSet;      // vertex set
+    unordered_map<string, Vertex<T> *> vertexSet;      // vertex set
     int _index_;                        // auxiliary field
     stack<Vertex<T>> _stack_;           // auxiliary field
-    list<list<T>> _list_sccs_;        // auxiliary field
+    list <list<T>> _list_sccs_;        // auxiliary field
 
     void dfsVisit(Vertex<T> *v, vector<T> &res) const;
 
@@ -144,7 +145,7 @@ public:
 
     bool removeEdge(const T &sourc, const T &dest);
 
-    vector<Vertex<T> *> getVertexSet() const;
+    unordered_map<string, Vertex<T> *> getVertexSet() const;
 
     vector<T> dfs() const;
 
@@ -181,7 +182,7 @@ int Graph<T>::getNumVertex() const {
 }
 
 template<class T>
-vector<Vertex<T> *> Graph<T>::getVertexSet() const {
+unordered_map<string, Vertex<T> *> Graph<T>::getVertexSet() const {
     return vertexSet;
 }
 
@@ -241,9 +242,10 @@ void Edge<T>::addAirline(Airline airline) {
  */
 template<class T>
 Vertex<T> *Graph<T>::findVertex(const T &in) const {
-    for (auto v: vertexSet)
-        if (static_cast<const Airport>(v->info) == in)
-            return v;
+    auto vertex = vertexSet.find(static_cast<Airport>(in).getCode());
+    if (vertex != vertexSet.end()) {
+        return vertex->second;
+    }
     return NULL;
 }
 
@@ -306,8 +308,9 @@ template<class T>
 bool Graph<T>::addVertex(const T &in) {
     if (findVertex(in) != NULL)
         return false;
-    vertexSet.push_back(new Vertex<T>(in));
+    vertexSet[static_cast<Airport>(in).getCode()] = new Vertex(in);
     return true;
+
 }
 
 
@@ -447,7 +450,7 @@ vector<T> Graph<T>::dfs(const T &source) const {
         return res;
 
     for (auto v: vertexSet)
-        v->visited = false;
+        v.second->visited = false;
 
     dfsVisit(s, res);
     return res;
@@ -508,8 +511,8 @@ vector<T> Graph<T>::bfsLimited(const T &source, int k) const {
         return res;
     queue<Vertex<T> *> q;
     for (auto v: vertexSet) {
-        v->visited = false;
-        v->setNum(0);
+        v.second->visited = false;
+        v.second->setNum(0);
 
     }
     q.push(s);
