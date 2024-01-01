@@ -63,11 +63,12 @@ void ManagementSystem::readAirports() {
         getline(iss, longitude, '\r');
         Airport newAirport = Airport(code, name, city, country, stod(latitude), stod(longitude));
         airportNetwork.addVertex(newAirport);
-        if (cities.find(city) == cities.end()) {
+        // Search for cities with the same name.
+        auto mappedCity = cities.find(city);
+        if (mappedCity == cities.end()) {
             vector<string> countries = {country};
             cities[city] = countries;
         } else {
-            auto mappedCity = cities.find(city);
             if (std::find(mappedCity->second.begin(), mappedCity->second.end(), country) == mappedCity->second.end()) {
                 mappedCity->second.push_back(country);
             }
@@ -95,7 +96,7 @@ void ManagementSystem::readFlights() {
         getline(iss, source, ',');
         getline(iss, target, ',');
         getline(iss, airlineCode, '\r');
-        // Get the airline and airports for the flight
+        // Get the airline and airports for the flight.
         auto airline = airlines.find(Airline(airlineCode, "", "", ""));
         auto sourceAirportVertex = airportNetwork.findVertex(Airport(source, "", "", "", 0, 0));
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
@@ -115,7 +116,6 @@ void ManagementSystem::readFlights() {
             sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
             targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
         }
-
     }
     flightsFile.close();
 }
@@ -255,10 +255,20 @@ int ManagementSystem::GlobalNumberOfFlights() {
     }
     return numberOfFlights;
 }
+void ManagementSystem::MakeUndirected(){
+    for( auto vertex : airportNetwork.getVertexSet()){
+        for( auto edge: vertex.second->getAdj()){
+            airportNetwork.addEdge(edge.getDest()->getInfo(),vertex.second->getInfo(),{},0);
+        }
+    }
 
+}
 set<Airport> ManagementSystem::essentialAirports() {
     set < Airport > res;
     int k = 1;
+    Graph<Airport> recover=airportNetwork;
+    MakeUndirected();
+
     for (pair<string, Vertex<Airport> *> vertex: airportNetwork.getVertexSet()) {
         vertex.second->setVisited(false);
         vertex.second->setProcessing(false);
@@ -271,9 +281,9 @@ set<Airport> ManagementSystem::essentialAirports() {
             ManagementSystem::dfs_art(vertex.second, s, res, k);
         }
     }
+    airportNetwork=recover;
     return res;
 }
-
 void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {
 
     v->setLow(i);
@@ -295,10 +305,6 @@ void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airpor
             }
         } else if (edge.getDest()->isProcessing()) {
             v->setLow(min(v->getLow(), edge.getDest()->getNum()));
-        }
-        if (treeedges > 1 and v->getNum() == 1) {
-            // cout<<"here"<<v->getInfo().getCode()<<endl;
-            //l.insert(v->getInfo());
         }
     }
     v->setProcessing(false);
@@ -567,10 +573,10 @@ void ManagementSystem::airlineDetails(string airlineCode) {
     int flightCount = 0;
     set < string > availableCountries;
     auto airline = airlines.find(Airline(airlineCode, "", "", ""));
-    /*if (airline == nullptr) {
+    if (airline == airlines.end()) {
         cout << "The airline doesn't exist!\n";
         return;
-    }*/
+    }
     cout << "Details for " << airline->getName() << " (" << airline->getCallsign() << ") , located in "
          << airline->getCountry() << ":\n";
     for (pair<string, Vertex<Airport> *> airportVertex: getAirportNetwork().getVertexSet()) {
@@ -693,8 +699,18 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
-vector<vector<Airport>>
-ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports) {
+bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines) {
+    for (Airline airline: airlines) {
+        if (filteredAirlines.find(airline) == filteredAirlines.end()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+vector<Airport>
+ManagementSystem::findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports,
+                                 vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines) {
     vector<vector<Airport>> res;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
@@ -704,6 +720,10 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
         // Set all airports to not visited.
         for (pair<string, Vertex<Airport> *> airport: airportNetwork.getVertexSet()) {
             airport.second->setVisited(false);
+        }
+        // Set the filtered airports as visited, so they won't be considered when searching.
+        for (Vertex<Airport> *airportVertex: filteredAirports) {
+            airportVertex->setVisited(true);
         }
         // Set the vertex as visited.
         sourceAirportVertex->setVisited(true);
@@ -715,7 +735,7 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
         while (!auxQueue.empty()) {
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
-            if (targetAirports.find(currentAirportVertex) != targetAirports.end()) {
+            if (std::find(targetAirports.begin(), targetAirports.end(), currentAirportVertex) != targetAirports.end()) {
                 foundtargets.insert(currentAirportVertex->getInfo());
                 foundDistance = auxQueue.front().second.size();
                 res.push_back(auxQueue.front().second);
@@ -724,7 +744,8 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             if (foundDistance == -1) {
                 // Get the adjacent flights and add them to que queue.
                 for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
-                    if (!flight.getDest()->isVisited()) {
+                    if (!(flight.getDest()->isVisited()) &&
+                        !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
                         flight.getDest()->setVisited(true);
                         vector<Airport> path = auxQueue.front().second;
                         path.push_back(flight.getDest()->getInfo());
@@ -735,11 +756,14 @@ ManagementSystem::findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Ver
             auxQueue.pop();
         }
     }
+    // Sort the result by number of stops.
     std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
-
-    return res;
+    if (res.size() == 0){
+        return {};
+    }
+    return res[0];
 }
 
 const map<string, vector<string>> &ManagementSystem::getCities() const {

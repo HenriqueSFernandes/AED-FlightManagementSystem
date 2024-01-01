@@ -36,16 +36,22 @@ public:
 
     /**
      * @brief Read airlines from the csv file.
+     *
+     * Complexity is, on average, O(n), where n is the number of airlines.
      */
     void readAirlines();
 
     /**
      * @brief Read airports from the csv file.
+     *
+     * Complexity is O(n log(k)), where n is the number of airports and k is the number of cities.
      */
     void readAirports();
 
     /**
      * @brief Read flights from the csv file.
+     *
+     * Complexity is, on average, O(n * k) where n is the number of flights and k is the number of airlines per flight.
      */
     void readFlights();
 
@@ -58,17 +64,23 @@ public:
     /**
      * @brief Returns global number of available flights.
      * @return Integer representing the total number of flights.
+     *
+     * Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport.
      */
     int GlobalNumberOfFlights();
 
     /**
-     * @brief Returns the essential airports..
+     * @brief Returns the essential airports.
+     *
+     * Complexity is O(n * k + n + n³ + kn²) where n is the number of airports and k is the number of flights per airport.
      * @return Set representing the essential points.
      */
     set<Airport> essentialAirports();
 
     /**
-     * @brief
+     * @brief Auxiliary DFS function for finding articulation points.
+     *
+     * Complexity is O(n * (n + k) where n is the number of airports and k is the number of flights per airport.
      * @param v Current vertex.
      * @param s Auxiliary stack of vertices.
      * @param l Set of vertices that are articulation points.
@@ -78,6 +90,8 @@ public:
 
     /**
      * @brief Gets the numbers of destinations possible from a given airport.
+     *
+     * Complexity is O(n + k + nlog(n)) where n is the number of airports and k is the number of flights per airport.
      * @param airportString The code of the airport.
      * @param airports Auxiliary set of airports containing the possible destinations.
      * @param countries Auxiliary set of countries containing the possible destinations.
@@ -90,6 +104,8 @@ public:
     /**
      *
      * @brief Gets the numbers of destinations possible from a given airport in X layovers.
+     *
+     * Complexity is O(n + k + nlog(n)) where n is the number of airports and k is the number of flights per airport.
      * @param airportString The code of the airport.
      * @param airports Auxiliary set of airports.
      * @param countries Auxiliary set of countries.
@@ -102,30 +118,40 @@ public:
 
     /**
      * @brief Prints details of a given airport, like number of flights, countries and airlines.
+     *
+     * Complexity is O(n * k) where n is the number of flights and k is the number of airlines per flight.
      * @param airportString The airport code.
      */
     void airportDetails(string airportString);
 
     /**
      * @brief Prints details of a given country, like number of flights, countries and airlines.
+     *
+     * Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight.
      * @param countryName The name of the country.
      */
     void countryDetails(string countryName);
 
     /**
      * @brief Prints details of a given city, like number of flights, countries and airlines.
+     *
+     * Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight.
      * @param cityName The name of the city.
      */
     void cityDetails(string cityName);
 
     /**
      * @brief Prints details of a given airline, like number of flights and airports.
+     *
+     * Complexity is  O(n * k) where n is the number of airports and k is the number of flights per airport.
      * @param airlineCode The code of the airline.
      */
     void airlineDetails(string airlineCode);
 
     /**
     * @brief Get the top k airports with the maximum number of flights.
+     *
+     * Complexity is  O(n * k + log(n)) where n is the number of airports and k is the number of flights per airport.
     * @param k The number of top airports to retrieve.
     * @return A vector of pairs, where each pair contains an airport and the corresponding number of flights.
     */
@@ -133,6 +159,8 @@ public:
 
     /**
      * @brief Perform BFS traversal to find the maximum distance and set of airports in the diameter.
+     *
+     * Complexity is O(n + k) where n is the number of airports and k is the number of flights.
      * @param v The starting vertex for BFS traversal.
      * @return A pair containing the maximum distance and the set of airports at that distance.
      */
@@ -140,6 +168,8 @@ public:
 
     /**
      * @brief Find the maximum diameter and corresponding set of airport pairs in the graph.
+     *
+     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
      * @return A pair containing the set of airport pairs in the maximum diameter and the diameter value.
      */
     pair<set<pair<Airport, Airport>>, int> maxTripWithSourceDest();
@@ -163,11 +193,26 @@ public:
     double haversine(double lat1, double lon1, double lat2, double lon2);
 
     /**
+     * @brief Auxiliary function that determines if all airlines are part of the filtered airlines.
+     *
+     * Complexity is O(n * log(k)) where n is the number of airlines and k is the number of filtered airlines.
+     * @param airlines Set with the current airlines.
+     * @param filteredAirlines Set with the filtered airlines.
+     * @return True if all airlines are part of the filtered airlines.
+     */
+    bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
+
+    /**
      * @brief Finds the best flight options for a trip.
+     *
+     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
      * @param sourceAirports A set with the source airports.
      * @param targetAirports A set with the target airports.
-     * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     * @return The best trip (a trip is a vector of airports).
      */
+
 
     vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
     /**
@@ -189,9 +234,26 @@ public:
      * @param destinationFile
      */
     void printComposedPath(vector<Airport> mySet, string destinationFile);
+      /**
+     * @brief Finds the best flight options for a trip.
+     *
+     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
+     * @param sourceAirports A set with the source airports.
+     * @param targetAirports A set with the target airports.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     * @return The best trip (a trip is a vector of airports).
+     */
 
-    vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports);
+    vector<Airport> findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports, vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
 
+
+    /**
+     * @brief Makes the graph undirected by duplicating edges.
+     *
+     * Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport.
+     */
+    void MakeUndirected();
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
