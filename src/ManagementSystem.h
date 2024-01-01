@@ -180,15 +180,24 @@ public:
      * @return A vector of trips (a trip is a vector of airports). This vector is ordered from shortest trip to longest.
      */
     vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
-
+    /**
+     * @brief Prints given airports in the specified image file
+     * @param airports
+     * @param destinationFile
+     */
     void printAirports(set<Airport> airports, string destinationFile);
-
+    /**
+     * @brief Helper prints direct path between A and B
+     * @param airport1
+     * @param airport2
+     * @param destinationFile
+     */
     void printPath(Airport airport1, Airport airport2, string destinationFile);
-
-    void printPath(Airport airport1, Airport airport2, string destinationFile, bool helper);
-
-    void printComposedPath(set<Airport> mySet, string destinationFile);
-
+    /**
+     * @brief Prints path
+     * @param mySet
+     * @param destinationFile
+     */
     void printComposedPath(vector<Airport> mySet, string destinationFile);
 };
 
