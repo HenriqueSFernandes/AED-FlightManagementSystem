@@ -180,6 +180,7 @@ public:
      */
     vector<vector<Airport>> findBestFlights(set<Vertex<Airport> *> sourceAirports, set<Vertex<Airport> *> targetAirports, set<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
 
+    void MakeUndirected();
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
