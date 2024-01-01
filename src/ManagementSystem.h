@@ -212,7 +212,41 @@ public:
      * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
      * @return The best trip (a trip is a vector of airports).
      */
+
+
+    vector<vector<Airport>> findBestFlights(set<Airport> sourceAirports, set<Airport> targetAirports);
+    /**
+     * @brief Prints given airports in the specified image file
+     * @param airports
+     * @param destinationFile
+     */
+    void printAirports(set<Airport> airports, string destinationFile);
+    /**
+     * @brief Helper prints direct path between A and B
+     * @param airport1
+     * @param airport2
+     * @param destinationFile
+     */
+    void printPath(Airport airport1, Airport airport2, string destinationFile);
+    /**
+     * @brief Prints path
+     * @param mySet
+     * @param destinationFile
+     */
+    void printComposedPath(vector<Airport> mySet, string destinationFile);
+      /**
+     * @brief Finds the best flight options for a trip.
+     *
+     * Complexity is O(n² + kn) where n is the number of airports and k is the number of flights.
+     * @param sourceAirports A set with the source airports.
+     * @param targetAirports A set with the target airports.
+     * @param filteredAirports A set with the filtered airports (airports that should not be considered while searching).
+     * @param filteredAirlines A set with the filtered airlines (airlines that should not be considered while searching).
+     * @return The best trip (a trip is a vector of airports).
+     */
+
     vector<Airport> findBestFlight(vector<Vertex<Airport> *> sourceAirports, vector<Vertex<Airport> *> targetAirports, vector<Vertex<Airport> *> filteredAirports, set<Airline> filteredAirlines);
+
 
     /**
      * @brief Makes the graph undirected by duplicating edges.

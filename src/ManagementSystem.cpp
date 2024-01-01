@@ -6,7 +6,7 @@
 #include <map>
 #include <algorithm>
 #include <cmath>
-
+#include "Image/Script.hpp"
 using namespace std;
 
 void ManagementSystem::readAirlines() {
@@ -118,6 +118,92 @@ void ManagementSystem::readFlights() {
         }
     }
     flightsFile.close();
+}
+void ManagementSystem::printAirports(set<Airport> airports, string destinationFile){
+    prog::Script script= prog::Script();
+    script.open("src/Image/input/worldmap.png");
+    for( auto airport : airports){
+        int x=round(airport.getLongitude()*1.7621+343.4);
+        int y=  260 -round(1.23*(450/(2*M_PI)*log2(tan(M_PI/4+airport.getLatitude()*M_PI*0.4/180))));
+        if( airport.getLatitude()<0){
+            y=round(airport.getLatitude()*(-1.909)+258.71);
+        }else{
+            if(airport.getLatitude()>60){
+                y=round(airport.getLatitude()*(-2.209)+268.71);
+            }else{
+                y=round(-1.909*airport.getLatitude()+261.71);
+            }
+
+        }
+
+
+        script.fill(x,y,3,3,255,0,0);
+
+    }
+    script.save(destinationFile);
+}
+void ManagementSystem::printPath(Airport airport1, Airport airport2, string destinationFile){
+    prog::Script script= prog::Script();
+    script.open(destinationFile);
+    double currentLat;
+    double targetLat;
+    if(min(airport1.getLongitude(),airport2.getLongitude())==airport1.getLongitude()){
+        currentLat=airport1.getLatitude();
+        targetLat=airport2.getLatitude();
+    }else{
+        currentLat=airport2.getLatitude();
+        targetLat=airport1.getLatitude();
+    }
+    double currentLong=min(airport1.getLongitude(),airport2.getLongitude());
+    double targetLong=max(airport1.getLongitude(),airport2.getLongitude());
+    while(abs(targetLat-currentLat)>0.01 or abs(targetLong-currentLong)>0.01){
+        if(currentLong<-180){
+            currentLong=180;
+        }
+        if(currentLong>180){
+            currentLong=-180;
+        }
+        double deltaX=(targetLong-currentLong)/360;
+        if(targetLong-currentLong >180){
+            deltaX=(180-targetLong+currentLong)/360;
+        }
+        currentLong+=deltaX;
+        double deltay=(targetLat-currentLat)/180;
+        currentLat+=deltay;
+        int x = round(currentLong* 1.7621 + 343.4);
+        int y = 260 - round(1.23 * (450 / (2 * M_PI) * log2(tan(M_PI / 4 + currentLat* M_PI * 0.4 / 180))));
+        script.fill(x, y, 2, 2, 255, 0, 0);
+    }
+
+
+    script.save(destinationFile);
+
+
+}
+void ManagementSystem::printComposedPath(vector<Airport>mySet, string destinationFile) {
+    prog::Script script = prog::Script();
+    script.open("src/Image/input/worldmap.png");
+    script.save(destinationFile);
+
+    if (mySet.empty()) {
+        return;  // Nothing to print if the set is empty
+    }
+
+    auto it = mySet.begin();
+    while (it != std::prev(mySet.end())) {
+        auto currentAirport = *it;
+        auto nextIt = std::next(it);
+
+        if (nextIt == mySet.end()) {
+            break;
+        }
+
+        auto nextAirport = *nextIt;
+
+        printPath(currentAirport, nextAirport, destinationFile);
+
+        ++it;
+    }
 }
 
 double ManagementSystem::haversine(double lat1, double lon1,
