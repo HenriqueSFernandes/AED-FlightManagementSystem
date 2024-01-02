@@ -171,7 +171,7 @@ void Menu::flightSearchMenu() {
         }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) View/Change filters (layovers, allowed airlines and exclusions)\n\n6) Search flights\n\n7) Go back\n";
+                << "1) Add departure\n2) Remove departure\n3) Add arrival\n4) Remove arrival\n5) View/Change filters (layovers, allowed airlines and exclusions)\n6) Search flights\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
