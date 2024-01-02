@@ -1,6 +1,8 @@
 #include "Menu.h"
 
-Menu::Menu(const ManagementSystem &system) : system(system) {}
+#include <utility>
+
+Menu::Menu(ManagementSystem system) : system(std::move(system)) {}
 
 void Menu::start() {
     string option;
@@ -74,8 +76,8 @@ void Menu::airportStatisticsMenu() {
             cout << "How many airports do you want to see?\n";
             cin >> k;
             vector<pair<Airport, int>> res = system.topKAirportsMaxFlights(k);
-            for (auto i: res) {
-                cout << i.first << " with " << i.second << " flights\n";
+            for (const pair<Airport, int> &topAirports: res) {
+                cout << topAirports.first << " with " << topAirports.second << " flights\n";
             }
         } else if (option == "3") {
             int k;
@@ -109,7 +111,7 @@ void Menu::airportStatisticsMenu() {
             int n;
             cout << "How many essential airports do you wish to see?\n";
             cin >> n;
-            for (auto airport: essentialAirports) {
+            for (const Airport &airport: essentialAirports) {
                 if (n == 0) {
                     break;
                 }
@@ -135,7 +137,7 @@ void Menu::flightStatisticsMenu() {
             pair<set<pair<Airport, Airport>>, int> longestTrip = system.maxTripWithSourceDest();
             cout << "There are " << longestTrip.first.size() << " trips with the maximum amount of stops ("
                  << longestTrip.second << "):\n";
-            for (pair<Airport, Airport> trip: longestTrip.first) {
+            for (const pair<Airport, Airport> &trip: longestTrip.first) {
                 cout << "\n\tFrom " << trip.first.getName() << " (" << trip.first.getCode() << ") located in "
                      << trip.first.getCity() << ", " << trip.first.getCountry() << endl;
                 cout << "\tTo " << trip.second.getName() << " (" << trip.second.getCode() << ") located in "
@@ -187,7 +189,7 @@ void Menu::flightSearchMenu() {
             if (!mandatoryAirlines.empty()) {
                 // Mandatory airlines.
                 filteredAirlines.clear();
-                for (Airline airline: system.getAirlines()) {
+                for (const Airline &airline: system.getAirlines()) {
                     if (mandatoryAirlines.find(airline) == mandatoryAirlines.end()) {
                         filteredAirlines.insert(airline);
                     }
@@ -242,7 +244,7 @@ void Menu::flightSearchMenu() {
 
 }
 
-void Menu::addAirportMenu(vector<Vertex<Airport> *> &airports) {
+void Menu::addAirportMenu(vector<Vertex<Airport> *> & airports) {
     string option;
     while (true) {
         cout << "\nWhat do you want to add?\n";
@@ -321,13 +323,13 @@ void Menu::addAirportMenu(vector<Vertex<Airport> *> &airports) {
                 unordered_map<string, Vertex<Airport> *> vertices = system.getAirportNetwork().getVertexSet();
                 auto currentAirport = vertices.begin();
                 auto closestAirport = currentAirport;
-                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
-                                                           closestAirport->second->getInfo().getLatitude(),
-                                                           closestAirport->second->getInfo().getLongitude());
+                double shortestDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                      closestAirport->second->getInfo().getLatitude(),
+                                                                      closestAirport->second->getInfo().getLongitude());
                 while (currentAirport != vertices.end()) {
-                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
-                                                              currentAirport->second->getInfo().getLatitude(),
-                                                              currentAirport->second->getInfo().getLongitude());
+                    double currentDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                         currentAirport->second->getInfo().getLatitude(),
+                                                                         currentAirport->second->getInfo().getLongitude());
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
                         closestAirport = currentAirport;
@@ -445,13 +447,13 @@ void Menu::removeAirportMenu(vector<Vertex<Airport> *> & airports) {
             if (validCoordinates) {
                 auto currentAirport = airports.begin();
                 auto closestAirport = currentAirport;
-                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
-                                                           (*closestAirport)->getInfo().getLatitude(),
-                                                           (*closestAirport)->getInfo().getLongitude());
+                double shortestDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                      (*closestAirport)->getInfo().getLatitude(),
+                                                                      (*closestAirport)->getInfo().getLongitude());
                 while (currentAirport != airports.end()) {
-                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
-                                                              (*currentAirport)->getInfo().getLatitude(),
-                                                              (*currentAirport)->getInfo().getLongitude());
+                    double currentDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                         (*currentAirport)->getInfo().getLatitude(),
+                                                                         (*currentAirport)->getInfo().getLongitude());
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
                         closestAirport = currentAirport;
@@ -484,7 +486,7 @@ void Menu::filterMenu(vector<Vertex<Airport> *> & filteredAirports, set < Airlin
             cout << "\t\t" << airportVertex->getInfo() << endl;
         }
         cout << "\tAirlines excluded from searching:\n";
-        for (Airline airline: filteredAirlines) {
+        for (const Airline &airline: filteredAirlines) {
             cout << "\t\t" << airline << endl;
         }
         cout << "\tMandatory layovers:\n";
@@ -495,7 +497,7 @@ void Menu::filterMenu(vector<Vertex<Airport> *> & filteredAirports, set < Airlin
         if (mandatoryAirlines.empty()) {
             cout << "\t\tAll\n";
         } else {
-            for (Airline airline: mandatoryAirlines) {
+            for (const Airline &airline: mandatoryAirlines) {
                 cout << "\t\t" << airline << endl;
             }
         }

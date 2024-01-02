@@ -416,7 +416,7 @@ void ManagementSystem::airportDetails(string airportString) {
     // Iterates over every flight and gets the different countries and airlines.
     for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
         availableCountries.insert(flight.getDest()->getInfo().getCountry());
-        for (const Airline& airline: flight.getAirlines()) {
+        for (const Airline &airline: flight.getAirlines()) {
             if (availableAirlines.find(airline) == availableAirlines.end()) {
                 availableAirlines[airline] = 1;
             } else {
@@ -436,17 +436,18 @@ void ManagementSystem::airportDetails(string airportString) {
          << sourceAirportVertex->getInfo().getCountry() << endl;
     cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
          << availableCountries.size() << " different countries, ";
-    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
+    cout << "which means this airport covers " << fixed << setprecision(2)
+         << availableCountries.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << availableAirlines.size()
          << " airlines, which are the following:\n";
-    for (const pair<Airline, int>& airline: sortedEntries) {
+    for (const pair<Airline, int> &airline: sortedEntries) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 }
 
-void ManagementSystem::countryDetails(const string& countryName) const {
+void ManagementSystem::countryDetails(const string &countryName) const {
     map<Airport, int> countryAirports;
     map<Airline, int> countryAirlines;
     set < string > countriesAvailable;
@@ -461,7 +462,7 @@ void ManagementSystem::countryDetails(const string& countryName) const {
             for (Edge<Airport> flight: vertexAirport.second->getAdj()) {
                 countryAirports[vertexAirport.second->getInfo()]++;
                 flightCount++;
-                for (const Airline& airline: flight.getAirlines()) {
+                for (const Airline &airline: flight.getAirlines()) {
                     if (countryAirlines.find(airline) == countryAirlines.end()) {
                         countryAirlines[airline] = 1;
                     } else {
@@ -489,7 +490,7 @@ void ManagementSystem::countryDetails(const string& countryName) const {
 
     cout << "Details for " << countryName << ":\n";
     cout << "\tThere are " << countryAirports.size() << " airports in " << countryName << ":\n";
-    for (const pair<Airport, int>& airport: sortedAirports) {
+    for (const pair<Airport, int> &airport: sortedAirports) {
         cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") located in "
              << airport.first.getCity() << " with " << airport.second << " outgoing flights\n";
     }
@@ -499,13 +500,13 @@ void ManagementSystem::countryDetails(const string& countryName) const {
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << countryAirlines.size()
          << " airlines, which are the following:\n";
-    for (const pair<Airline, int>& airline: sortedAirlines) {
+    for (const pair<Airline, int> &airline: sortedAirlines) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 }
 
-void ManagementSystem::cityDetails(const string& cityName) {
+void ManagementSystem::cityDetails(const string &cityName) {
     auto mappedCity = cities.find(cityName);
     if (mappedCity == cities.end()) {
         cout << "The city doesn't exist!\n";
@@ -536,7 +537,7 @@ void ManagementSystem::cityDetails(const string& cityName) {
             for (Edge<Airport> flight: vertexAirport.second->getAdj()) {
                 flightCount++;
                 cityAirports[vertexAirport.second->getInfo()]++;
-                for (const Airline& airline: flight.getAirlines()) {
+                for (const Airline &airline: flight.getAirlines()) {
                     if (cityAirlines.find(airline) == cityAirlines.end()) {
                         cityAirlines[airline] = 1;
                     } else {
@@ -560,7 +561,7 @@ void ManagementSystem::cityDetails(const string& cityName) {
 
     cout << "Details for " << cityName << ", located in " << countryName << ":\n";
     cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
-    for (const pair<Airport, int>& airport: sortedAirports) {
+    for (const pair<Airport, int> &airport: sortedAirports) {
         cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second
              << " outgoing flights\n";
     }
@@ -570,14 +571,14 @@ void ManagementSystem::cityDetails(const string& cityName) {
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << cityAirlines.size()
          << " airlines, which are the following:\n";
-    for (const pair<Airline, int>& airline: sortedAirlines) {
+    for (const pair<Airline, int> &airline: sortedAirlines) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 
 }
 
-void ManagementSystem::airlineDetails(const string& airlineCode) {
+void ManagementSystem::airlineDetails(const string &airlineCode) {
     map<Airport, int> availableAirports;
     int flightCount = 0;
     set < string > availableCountries;
@@ -689,7 +690,7 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
 
         // If the current diameter equals the max diameter, add airport pairs to the result set
         if (val == max) {
-            for (Airport airport: dest) {
+            for (const Airport &airport: dest) {
                 resAirports.insert({vertex.second->getInfo(), airport});
             }
         }
@@ -698,7 +699,7 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
         if (max < val) {
             max = val;
             resAirports.clear();
-            for (Airport airport: dest) {
+            for (const Airport &airport: dest) {
                 resAirports.insert({vertex.second->getInfo(), airport});
             }
         }
@@ -708,8 +709,8 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
-bool ManagementSystem::containsFilteredAirline(const set<Airline>& airlines, const set<Airline>& filteredAirlines) {
-    for (const Airline& airline: airlines) {
+bool ManagementSystem::containsFilteredAirline(const set<Airline> &airlines, const set<Airline> &filteredAirlines) {
+    for (const Airline &airline: airlines) { // NOLINT(*-use-anyofallof)
         if (filteredAirlines.find(airline) == filteredAirlines.end()) {
             return false;
         }
@@ -749,7 +750,7 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
             if (std::find(targetAirports.begin(), targetAirports.end(), currentAirportVertex) != targetAirports.end()) {
                 foundtargets.insert(currentAirportVertex->getInfo());
-                foundDistance = auxQueue.front().second.size();
+                foundDistance = auxQueue.front().second.size(); // NOLINT(*-narrowing-conversions)
                 res.push_back(auxQueue.front().second);
 
             }
@@ -762,14 +763,14 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
 
                         flight.getDest()->setVisited(true);
                         vector<pair<Airport, set<Airline>>> path = auxQueue.front().second;
-                        set < Airline > airlines;
-                        for (Airline airline: flight.getAirlines()) {
+                        set < Airline > pathAirlines;
+                        for (const Airline &airline: flight.getAirlines()) {
                             if (filteredAirlines.find(airline) == filteredAirlines.end()) {
                                 airlines.insert(airline);
                             }
                         }
-                        path.push_back({flight.getDest()->getInfo(), airlines});
-                        auxQueue.push({flight.getDest(), path});
+                        path.emplace_back(flight.getDest()->getInfo(), pathAirlines);
+                        auxQueue.emplace(flight.getDest(), path);
                     }
                 }
             }
