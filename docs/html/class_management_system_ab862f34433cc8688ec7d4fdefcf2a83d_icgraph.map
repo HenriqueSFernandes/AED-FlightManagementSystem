@@ -1,0 +1,5 @@
+<map id="ManagementSystem::countryDetails" name="ManagementSystem::countryDetails">
+<area shape="rect" id="node1" title="Prints details of a given country, like number of flights, countries and airlines." alt="" coords="359,5,573,47"/>
+<area shape="rect" id="node2" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,13,311,39"/>
+<area shape="rect" id="node3" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,13,101,39"/>
+</map>

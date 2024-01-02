@@ -1,7 +1,7 @@
 <map id="Vertex::getInfo" name="Vertex::getInfo">
 <area shape="rect" id="node1" title=" " alt="" coords="1143,87,1261,113"/>
 <area shape="rect" id="node2" href="$class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c" title="Auxiliary DFS function for finding articulation points." alt="" coords="884,29,1095,56"/>
-<area shape="rect" id="node7" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="615,79,833,121"/>
+<area shape="rect" id="node7" href="$class_management_system.html#a9f1e1b954183799c7e52dea1bc7e249f" title="Finds the best flight options for a trip." alt="" coords="615,79,833,121"/>
 <area shape="rect" id="node9" href="$class_menu.html#a22458f4ca27ba3558483ae3e9033cd7e" title="Menu for removing airport(s) to the current selection." alt="" coords="891,145,1087,172"/>
 <area shape="rect" id="node3" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="612,14,836,55"/>
 <area shape="rect" id="node4" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,27,564,53"/>

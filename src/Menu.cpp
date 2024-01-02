@@ -10,13 +10,16 @@ void Menu::start() {
     cout << "Hello, welcome to the flight database!\n";
     while (true) {
         cout << "\nWhat do you want to do?\n";
-        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Exit\n";
+        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Generate Graph Image\nWarning: It will take a really long time\n4) Exit\n";
         cin >> option;
         if (option == "1") {
             statisticsMenu();
         } else if (option == "2") {
             flightSearchMenu();
         } else if (option == "3") {
+            system.generateGraphImage();
+            cout<<"done";
+        } else if (option == "4") {
             exit(0);
         } else {
             cout << "Invalid option, please choose again.\n";
@@ -185,6 +188,25 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
+            bool invalid = false;
+            for(auto i : sourceAirports){
+                if(std::find(targetAirports.begin(), targetAirports.end(),i) != targetAirports.end()){
+                    if(mandatoryStops.size()==0){
+                        cout<<"There is at least one airport included in both source and target when mandatory stops is empty\nmaking it impossible to find a path, please change it."<<endl;
+                        invalid = true;
+                        break;
+                    }else if(mandatoryStops.size()>0){
+                        if(std::find(mandatoryStops.begin(), mandatoryStops.end(),i) !=mandatoryStops.end()){
+                            cout<<"There is at least one airport included in both source, target and mandatory stops\nmaking it impossible to find a path, please change it."<<endl;
+                            invalid = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(invalid){
+                continue;
+            }
             vector<vector<pair<Airport, set<Airline>>>> bestTrips;
             set < Airline > filteredAirlinesBackup = filteredAirlines;
             // If there are mandatory airlines set non-mandatory airlines as filtered.
@@ -230,7 +252,6 @@ void Menu::flightSearchMenu() {
                 }
                 currentSources = currentTargets;
             }
-
             currentTrips = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
             vector<vector<pair<Airport, set<Airline>>>> tempTrips;
             if (!bestTrips.empty()) {
@@ -241,6 +262,7 @@ void Menu::flightSearchMenu() {
                         temporaryTrip.insert(temporaryTrip.end(), currentTrip.begin(), currentTrip.end());
                         tempTrips.push_back(temporaryTrip);
                     }
+
                 }
                 bestTrips = tempTrips;
             } else {
@@ -255,9 +277,49 @@ void Menu::flightSearchMenu() {
                 cin >> tripsToShow;
                 tripsToShow = min(tripsToShow, (int) bestTrips.size());
                 for (int i = 0; i < tripsToShow; i++) {
+                    cout<<"Trip " << i+1 <<":"<<endl;
                     printTrip(bestTrips[i]);
                     cout << "\n----------------------------------------------------------------\n";
                 }
+                cout<<"Do you want to generate an image with a path?\n1) Yes\n2) No"<<endl;
+                string printChoice;
+                cin>>printChoice;
+                if(printChoice=="1"){
+                    while(true) {
+                        cout << "Which path do you want an image of? Choose a number from 1 to " << tripsToShow << endl;
+                        string drawPrintChoice;
+                        cin >> drawPrintChoice;
+                        bool isNum = std::all_of(drawPrintChoice.begin(), drawPrintChoice.end(),
+                                                 [](char c) { return std::isdigit(c); });
+                        if (isNum) {
+                            int drawChoice = stoi(drawPrintChoice);
+                            if (drawChoice < 1 || drawChoice > tripsToShow) {
+                                cout << "Invalid choice, please provide a new one." << endl;
+                                continue;
+                            } else {
+                                vector<Airport> path;
+                                string filename = "src/Image/output/";
+                                auto drawing = bestTrips[drawChoice-1];
+                                for(int i =0; i<drawing.size();i++){
+                                    path.push_back(drawing[i].first);
+                                    filename+=drawing[i].first.getCode();
+                                    if(i != drawing.size()-1){
+                                        filename+="_";
+                                    }
+                                }
+                                filename+=".png";
+                                system.printComposedPath(path,filename);
+                                cout<<"Image generated at " << filename << " ." <<endl;
+                                break;
+                            }
+                        }else{
+                            cout << "Invalid choice, please provide a new one." << endl;
+                            continue;
+                        }
+                    }
+                }
+
+
             }
             filteredAirlines = filteredAirlinesBackup;
         } else if (option == "7") {

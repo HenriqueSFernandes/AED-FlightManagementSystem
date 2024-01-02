@@ -1,0 +1,6 @@
+<map id="ManagementSystem::printComposedPath" name="ManagementSystem::printComposedPath">
+<area shape="rect" id="node1" title="Prints a trip (vector of airports) to the file." alt="" coords="420,35,712,61"/>
+<area shape="rect" id="node2" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="171,5,350,32"/>
+<area shape="rect" id="node4" href="$class_management_system.html#aa60d3aac3962c068b194268357bff1d7" title=" " alt="" coords="149,57,372,98"/>
+<area shape="rect" id="node3" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,35,101,61"/>
+</map>

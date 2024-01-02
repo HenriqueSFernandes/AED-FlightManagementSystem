@@ -246,6 +246,10 @@ public:
      * Complexity is O(n * k) where n is the number of airports and k is the number of flights per airport.
      */
     void MakeUndirected();
+
+    void generateGraphImage();
+
+    void printComposedPathOnExistingImg(vector<Airport> airports, string originFile, string destinationFile);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H

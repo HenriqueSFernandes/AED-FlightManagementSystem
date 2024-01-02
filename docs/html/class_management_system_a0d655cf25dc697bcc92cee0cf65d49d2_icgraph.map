@@ -1,0 +1,8 @@
+<map id="ManagementSystem::printPath" name="ManagementSystem::printPath">
+<area shape="rect" id="node1" title="Prints the path from A to B to the given file." alt="" coords="760,35,983,61"/>
+<area shape="rect" id="node2" href="$class_management_system.html#ab1f214e5af43030d1f27ffcae351bafb" title="Prints a trip (vector of airports) to the file." alt="" coords="420,5,712,32"/>
+<area shape="rect" id="node6" href="$class_management_system.html#ae0cc84bb7fb31ec588908d997c3d1866" title=" " alt="" coords="434,57,698,98"/>
+<area shape="rect" id="node3" href="$class_menu.html#a78446365b622bdb73e38135161d036b4" title="Menu searching flights." alt="" coords="171,5,350,32"/>
+<area shape="rect" id="node5" href="$class_management_system.html#aa60d3aac3962c068b194268357bff1d7" title=" " alt="" coords="149,57,372,98"/>
+<area shape="rect" id="node4" href="$class_menu.html#ae1ec62e738dda7faaaec850bd0b58ffe" title="Main menu." alt="" coords="5,35,101,61"/>
+</map>

@@ -1,7 +1,7 @@
 <map id="Vertex::getAdj" name="Vertex::getAdj">
 <area shape="rect" id="node1" title=" " alt="" coords="1151,59,1265,85"/>
 <area shape="rect" id="node2" href="$class_management_system.html#a563a3d48fb291cf7be2825cf67a9ea4c" title="Auxiliary DFS function for finding articulation points." alt="" coords="888,29,1099,56"/>
-<area shape="rect" id="node7" href="$class_management_system.html#ae3fd9afea15f7038171d8b0e938427e1" title="Finds the best flight options for a trip." alt="" coords="884,81,1103,122"/>
+<area shape="rect" id="node7" href="$class_management_system.html#a9f1e1b954183799c7e52dea1bc7e249f" title="Finds the best flight options for a trip." alt="" coords="884,81,1103,122"/>
 <area shape="rect" id="node3" href="$class_management_system.html#a8cff91882fd7313aee8178b821cc7c17" title="Returns the essential airports." alt="" coords="612,22,836,63"/>
 <area shape="rect" id="node4" href="$class_menu.html#ac47d945e3c3634874315dfb499047592" title="Menu with statistics about airports." alt="" coords="359,32,564,59"/>
 <area shape="rect" id="node5" href="$class_menu.html#a507094bbf82ed6960e8e3543a4cf5466" title="Statistics menu." alt="" coords="149,33,311,60"/>

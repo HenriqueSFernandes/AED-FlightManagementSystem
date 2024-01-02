@@ -804,3 +804,62 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
 const map<string, vector<string>> &ManagementSystem::getCities() const {
     return cities;
 }
+
+void ManagementSystem::generateGraphImage() {
+    vector<Airport> airports;
+    int i = 0;
+    auto set = airportNetwork.getVertexSet();
+    for(auto a = set.begin() ; a != set.end(); a++){
+        auto vertex = (*a).second;
+
+        if(a == set.begin()){
+            airports.push_back(vertex->getInfo());
+            for(auto i : vertex->getAdj()){
+                airports.push_back(i.getDest()->getInfo());
+                airports.push_back(vertex->getInfo());
+            }
+
+            printComposedPath(airports,"src/Image/output/graphImage.png");
+        }else{
+            for(auto i : vertex->getAdj()){
+                airports.clear();
+                airports.push_back(vertex->getInfo());
+                airports.push_back(i.getDest()->getInfo());
+                printComposedPathOnExistingImg(airports,"graphImage.png","src/Image/output/graphImage.png");
+            }
+        }
+        i++;
+        cout<< vertex->getInfo().getCode()<< " is the airport and has " << vertex->getAdj().size() <<" flights"<<endl;
+        cout<< "It should have " << vertex->getAdj().size() << " lines"<<endl;
+        airports.clear();
+
+        cout<<i << "/" << set.size()<< " done"<<endl;
+    }
+
+}
+
+void ManagementSystem::printComposedPathOnExistingImg(vector<Airport> airports, string originFile, string destinationFile) {
+    prog::Script script = prog::Script();
+    script.open("src/Image/output/" + originFile);
+    script.save(destinationFile);
+
+    if (airports.empty()) {
+        return;  // Nothing to print if the set is empty
+    }
+
+    auto it = airports.begin();
+    while (it != std::prev(airports.end())) {
+        auto currentAirport = *it;
+        auto nextIt = std::next(it);
+
+        if (nextIt == airports.end()) {
+            break;
+        }
+
+        auto nextAirport = *nextIt;
+
+        printPath(currentAirport, nextAirport, destinationFile);
+
+        ++it;
+    }
+}
