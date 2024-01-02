@@ -16,7 +16,7 @@ public:
      * @brief Parameterized constructor.
      * @param system Management system.
      */
-    explicit Menu(const ManagementSystem &system);
+    explicit Menu(ManagementSystem system);
 
     /**
      * @brief Main menu.
@@ -62,7 +62,8 @@ public:
      * @param mandatoryStops A set with airports that need to be visited (layover).
      * @param mandatoryAirlines A set with the only airlines than can be used.
      */
-    void filterMenu(vector<Vertex<Airport>*> &filteredAirports, set<Airline> &filteredAirlines, vector<Vertex<Airport>*> &mandatoryStops, set<Airline> &mandatoryAirlines);
+    void filterMenu(vector<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines,
+                    vector<Vertex<Airport> *> &mandatoryStops, set<Airline> &mandatoryAirlines);
 };
 
 
