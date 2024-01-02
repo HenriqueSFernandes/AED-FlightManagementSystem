@@ -56,7 +56,6 @@ namespace prog {
         if (pos != std::string::npos) {
             filename.erase(pos, subdirectoryToRemove.length());
         }
-        cout<<"open"<<filename<<endl;
         image = loadFromPNG(filename);
 
     }
@@ -84,7 +83,6 @@ namespace prog {
         if (pos != std::string::npos) {
             out.erase(pos, subdirectoryToRemove.length());
         }
-        cout<<"close"<<out<<endl;
         saveToPNG(out, image);
     }
 

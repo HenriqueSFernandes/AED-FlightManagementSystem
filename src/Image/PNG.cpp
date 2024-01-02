@@ -25,7 +25,6 @@ namespace prog {
                 p += 3;
             }
         }
-        cout<<image->width();
         stbi_image_free(buffer);
         return image;
     }

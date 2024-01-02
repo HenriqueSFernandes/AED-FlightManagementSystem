@@ -7,13 +7,16 @@ void Menu::start() {
     cout << "Hello, welcome to the flight database!\n";
     while (true) {
         cout << "\nWhat do you want to do?\n";
-        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Exit\n";
+        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Generate Graph Image\nWarning: It will take a really long time\n4) Exit\n";
         cin >> option;
         if (option == "1") {
             statisticsMenu();
         } else if (option == "2") {
             flightSearchMenu();
         } else if (option == "3") {
+            system.generateGraphImage();
+            cout<<"done";
+        } else if (option == "4") {
             exit(0);
         } else {
             cout << "Invalid option, please choose again.\n";
@@ -196,6 +199,7 @@ void Menu::flightSearchMenu() {
             vector<Vertex<Airport> *> currentSources = sourceAirports;
             vector<Vertex<Airport> *> currentTargets;
             vector<pair<Airport, set<Airline>>> currentTrip;
+            vector<Airport> airports;
             for (Vertex<Airport> *layoverAirportVertex: mandatoryStops) {
                 currentTargets.clear();
                 currentTargets.push_back(layoverAirportVertex);
@@ -219,18 +223,37 @@ void Menu::flightSearchMenu() {
             } else {
                 cout << "The best trip with the current filters is:\n";
                 cout << "\n\tSource: " << bestTrip[0].first << endl;
+
+                airports.push_back(bestTrip[0].first);
+                string filename = "src/Image/output/" + bestTrip[0].first.getCode() + "_";
                 for (int i = 1; i < bestTrip.size() - 1; i++) {
                     cout << "\n\tLayover: " << bestTrip[i].first << endl;
+                    airports.push_back(bestTrip[i].first);
+                    filename+= bestTrip[i].first.getCode() + "_";
+
                     cout << "\t\tPossible airlines:\n";
                     for (const Airline &airline: bestTrip[i].second) {
                         cout << "\t\t\t" << airline << endl;
                     }
+
                 }
+
                 cout << "\n\tTarget: " << bestTrip.back().first << endl;
+                filename+= bestTrip.back().first.getCode() + ".png";
+                airports.push_back(bestTrip.back().first);
                 cout << "\t\tPossible airlines:\n";
                 for (const Airline &airline: bestTrip.back().second) {
                     cout << "\t\t\t" << airline << endl;
                 }
+                cout<<endl<<"Want to generate an image of the trip?\n1) Yes\n2) No"<<endl;
+                string choice;
+                cin>>choice;
+                if(choice == "1"){
+                    system.printComposedPath(airports,filename);
+                    cout<<endl<<"An image of the trip was created on " << filename <<endl;
+                    cout<<"File might take a while to appear."<<endl;
+                }
+
             }
             filteredAirlines = filteredAirlinesBackup;
         } else if (option == "7") {
