@@ -315,6 +315,9 @@ ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l
         } else if (edge.getDest()->isProcessing()) {
             v->setLow(min(v->getLow(), edge.getDest()->getNum()));
         }
+        if (treeEdges > 1 and v->getNum() == 1) {
+            l.insert(v->getInfo());
+        }
     }
     v->setProcessing(false);
     s.pop();
@@ -743,16 +746,18 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
 
         auxQueue.push({sourceAirportVertex, {{sourceAirport, {}}}});
         // Integer that saves the distance between the source and the target.
-        int foundDistance = -1;
         // Perform BFS.
+        int foundDistance = -1;
         while (!auxQueue.empty()) {
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
+            currentAirportVertex->setVisited(true);
+
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
             if (std::find(targetAirports.begin(), targetAirports.end(), currentAirportVertex) != targetAirports.end()) {
+                foundtargets.insert(currentAirportVertex->getInfo());
                 if (auxQueue.front().second.size() > foundDistance && foundDistance != -1) {
                     break;
                 }
-                foundtargets.insert(currentAirportVertex->getInfo());
                 foundDistance = auxQueue.front().second.size(); // NOLINT(*-narrowing-conversions)
                 bestFlights.push_back(auxQueue.front().second);
 
@@ -762,8 +767,6 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
                 // If the destination has not been visited and there is at least one valid airline then add it to the queue.
                 if (!(flight.getDest()->isVisited()) &&
                     !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
-
-                    flight.getDest()->setVisited(true);
                     vector<pair<Airport, set<Airline>>> path = auxQueue.front().second;
                     set < Airline > pathAirlines;
                     for (const Airline &airline: flight.getAirlines()) {
@@ -788,7 +791,7 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
     }
     vector<vector<pair<Airport, set<Airline>>>> res;
     int stops = bestFlights[0].size(); // NOLINT(*-narrowing-conversions)
-    for (auto flight: bestFlights) {
+    for (const auto& flight: bestFlights) {
         if (flight.size() == stops) {
             res.push_back(flight);
         } else {
