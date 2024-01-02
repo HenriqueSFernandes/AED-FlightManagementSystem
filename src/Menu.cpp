@@ -10,16 +10,13 @@ void Menu::start() {
     cout << "Hello, welcome to the flight database!\n";
     while (true) {
         cout << "\nWhat do you want to do?\n";
-        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Generate Graph Image\nWarning: It will take a really long time\n4) Exit\n";
+        cout << "1) Get statistics about the flight network\n2) Search for a flight\n3) Exit\n";
         cin >> option;
         if (option == "1") {
             statisticsMenu();
         } else if (option == "2") {
             flightSearchMenu();
         } else if (option == "3") {
-            system.generateGraphImage();
-            cout<<"done";
-        } else if (option == "4") {
             exit(0);
         } else {
             cout << "Invalid option, please choose again.\n";

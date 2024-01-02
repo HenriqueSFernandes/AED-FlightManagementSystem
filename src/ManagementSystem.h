@@ -247,9 +247,6 @@ public:
      */
     void MakeUndirected();
 
-    void generateGraphImage();
-
-    void printComposedPathOnExistingImg(vector<Airport> airports, string originFile, string destinationFile);
 };
 
 #endif //AED_FLIGHTS_MANAGEMENTSYSTEM_H
