@@ -64,6 +64,8 @@ public:
      */
     void filterMenu(vector<Vertex<Airport> *> &filteredAirports, set<Airline> &filteredAirlines,
                     vector<Vertex<Airport> *> &mandatoryStops, set<Airline> &mandatoryAirlines);
+
+    static void printTrip(const vector<pair<Airport, set<Airline>>>& trip) ;
 };
 
 

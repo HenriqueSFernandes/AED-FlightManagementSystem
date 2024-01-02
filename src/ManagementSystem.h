@@ -234,7 +234,7 @@ public:
    * @return The best trip (a trip is a vector of pairs airport-airlines).
    */
 
-    vector<pair<Airport, set<Airline>>> findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
+    vector<vector<pair<Airport, set<Airline>>>> findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
                                                        const vector<Vertex<Airport> *> &targetAirports,
                                                        const vector<Vertex<Airport> *> &filteredAirports,
                                                        const set<Airline> &filteredAirlines);

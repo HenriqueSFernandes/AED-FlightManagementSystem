@@ -718,12 +718,12 @@ bool ManagementSystem::containsFilteredAirline(const set<Airline> &airlines, con
     return true;
 }
 
-vector<pair<Airport, set<Airline>>>
+vector<vector<pair<Airport, set<Airline>>>>
 ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
                                  const vector<Vertex<Airport> *> &targetAirports,
                                  const vector<Vertex<Airport> *> &filteredAirports,
                                  const set<Airline> &filteredAirlines) {
-    vector<vector<pair<Airport, set<Airline>>>> res;
+    vector<vector<pair<Airport, set<Airline>>>> bestFlights;
     set < Airport > foundtargets;
     for (Vertex<Airport> *sourceAirportVertex: sourceAirports) {
         Airport sourceAirport = sourceAirportVertex->getInfo();
@@ -749,42 +749,53 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
             Vertex<Airport> *currentAirportVertex = auxQueue.front().first;
             // If the current airport is a target airport update the found distance and stop adding new airports to the queue.
             if (std::find(targetAirports.begin(), targetAirports.end(), currentAirportVertex) != targetAirports.end()) {
+                if (auxQueue.front().second.size() > foundDistance && foundDistance != -1) {
+                    break;
+                }
                 foundtargets.insert(currentAirportVertex->getInfo());
                 foundDistance = auxQueue.front().second.size(); // NOLINT(*-narrowing-conversions)
-                res.push_back(auxQueue.front().second);
+                bestFlights.push_back(auxQueue.front().second);
 
             }
-            if (foundDistance == -1) {
-                // Get the adjacent flights and add them to que queue.
-                for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
-                    // If the destination has not been visited and there is at least one valid airline then add it to the queue.
-                    if (!(flight.getDest()->isVisited()) &&
-                        !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
+            // Get the adjacent flights and add them to que queue.
+            for (Edge<Airport> flight: currentAirportVertex->getAdj()) {
+                // If the destination has not been visited and there is at least one valid airline then add it to the queue.
+                if (!(flight.getDest()->isVisited()) &&
+                    !containsFilteredAirline(flight.getAirlines(), filteredAirlines)) {
 
-                        flight.getDest()->setVisited(true);
-                        vector<pair<Airport, set<Airline>>> path = auxQueue.front().second;
-                        set < Airline > pathAirlines;
-                        for (const Airline &airline: flight.getAirlines()) {
-                            if (filteredAirlines.find(airline) == filteredAirlines.end()) {
-                                airlines.insert(airline);
-                            }
+                    flight.getDest()->setVisited(true);
+                    vector<pair<Airport, set<Airline>>> path = auxQueue.front().second;
+                    set < Airline > pathAirlines;
+                    for (const Airline &airline: flight.getAirlines()) {
+                        if (filteredAirlines.find(airline) == filteredAirlines.end()) {
+                            airlines.insert(airline);
                         }
-                        path.emplace_back(flight.getDest()->getInfo(), pathAirlines);
-                        auxQueue.emplace(flight.getDest(), path);
                     }
+                    path.emplace_back(flight.getDest()->getInfo(), pathAirlines);
+                    auxQueue.emplace(flight.getDest(), path);
                 }
+
             }
             auxQueue.pop();
         }
     }
     // Sort the result by number of stops.
-    std::sort(res.begin(), res.end(), [](const auto &a, const auto &b) {
+    std::sort(bestFlights.begin(), bestFlights.end(), [](const auto &a, const auto &b) {
         return a.size() < b.size();
     });
-    if (res.empty()) {
+    if (bestFlights.empty()) {
         return {};
     }
-    return res[0];
+    vector<vector<pair<Airport, set<Airline>>>> res;
+    int stops = bestFlights[0].size(); // NOLINT(*-narrowing-conversions)
+    for (auto flight: bestFlights) {
+        if (flight.size() == stops) {
+            res.push_back(flight);
+        } else {
+            return res;
+        }
+    }
+    return res;
 }
 
 const map<string, vector<string>> &ManagementSystem::getCities() const {
