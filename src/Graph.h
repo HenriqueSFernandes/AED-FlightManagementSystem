@@ -124,7 +124,6 @@ public:
 template<class T>
 class Graph {
     unordered_map<string, Vertex<T> *> vertexSet;      // vertex set
-    int _index_;                        // auxiliary field
     stack<Vertex<T>> _stack_;           // auxiliary field
     list <list<T>> _list_sccs_;        // auxiliary field
 
@@ -153,7 +152,7 @@ public:
 
     vector<T> bfs(const T &source) const;
 
-    vector<T> topsort() const;
+    vector<T> topSort() const;
 
     bool isDAG() const;
 
@@ -593,7 +592,7 @@ bool Graph<T>::dfsIsDAG(Vertex<T> *v) const {
  */
 
 template<class T>
-vector<T> Graph<T>::topsort() const {
+vector<T> Graph<T>::topSort() const {
     vector<T> res;
     queue<Vertex<T> *> toProcess;
     if (!this->isDAG()) return {};

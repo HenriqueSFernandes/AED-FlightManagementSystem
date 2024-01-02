@@ -1,6 +1,6 @@
 var class_menu =
 [
-    [ "Menu", "class_menu.html#aa5e11cc3106ef7d5e00243e2c5a2c521", null ],
+    [ "Menu", "class_menu.html#a39b361d0b97caccffdd2323975ff3569", null ],
     [ "addAirportMenu", "class_menu.html#aeb1cd209171edcf3a7c22b91790e0c07", null ],
     [ "airportStatisticsMenu", "class_menu.html#ac47d945e3c3634874315dfb499047592", null ],
     [ "filterMenu", "class_menu.html#a56b07daf6cb4cc8e63cf7fca901a7116", null ],

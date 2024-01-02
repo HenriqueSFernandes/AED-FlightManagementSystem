@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['makeundirected_0',['MakeUndirected',['../class_management_system.html#ae64677753f15199d630d7d7d7767d0df',1,'ManagementSystem']]],
-  ['maxtripwithsourcedest_1',['maxTripWithSourceDest',['../class_management_system.html#a6dcf0a2f23037d07bf4546299c437314',1,'ManagementSystem']]],
-  ['menu_2',['Menu',['../class_menu.html#aa5e11cc3106ef7d5e00243e2c5a2c521',1,'Menu']]]
+  ['loadfrompng_0',['loadFromPNG',['../namespaceprog.html#a67f3516b10c3b19b0b1d97a6e23e6982',1,'prog::loadFromPNG(const string &amp;file)'],['../namespaceprog.html#aa501396f22eeb09822c85939169aa5a0',1,'prog::loadFromPNG(const std::string &amp;file)']]]
 ];

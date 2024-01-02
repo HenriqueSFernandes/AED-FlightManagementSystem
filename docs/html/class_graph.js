@@ -15,5 +15,5 @@ var class_graph =
     [ "isDAG", "class_graph.html#a1ea1512afe5ab878301bc806c2eba9d2", null ],
     [ "removeEdge", "class_graph.html#a1106092a37366486cf55576f9ec01692", null ],
     [ "removeVertex", "class_graph.html#af9c903104ad69a7782979fa9caedf163", null ],
-    [ "topsort", "class_graph.html#af1d4affd1f886bf598d0f4cf4a0cb7cb", null ]
+    [ "topSort", "class_graph.html#a2f839b36f334fd71573688c1eb816b61", null ]
 ];
