@@ -9,7 +9,7 @@ using namespace std;
 
 namespace prog {
     // Use to read color values from a script file.
-    istream& operator>>(istream& input, Color& c) {
+    istream &operator>>(istream &input, Color &c) {
         int r, g, b;
         input >> r >> g >> b;
         c.red() = r;
@@ -19,15 +19,17 @@ namespace prog {
     }
 
     Script::Script() :
-            image(nullptr){
+            image(nullptr) {
 
     }
+
     void Script::clear_image_if_any() {
         if (image != nullptr) {
             delete image;
             image = nullptr;
         }
     }
+
     Script::~Script() {
         clear_image_if_any();
     }
@@ -38,13 +40,13 @@ namespace prog {
         clear_image_if_any();
         string filename;
         std::filesystem::path absolutePath = std::filesystem::absolute(input);
-        filename=absolutePath.string();
+        filename = absolutePath.string();
         std::string subdirectoryToRemove = "cmake-build-debug/";
-        for(char c : filename){
-            if ( c == '\\'){
+        for (char c: filename) {
+            if (c == '\\') {
                 subdirectoryToRemove = "cmake-build-debug\\";
                 break;
-            }else if ( c == '/'){
+            } else if (c == '/') {
                 subdirectoryToRemove = "cmake-build-debug/";
                 break;
             }
@@ -65,13 +67,13 @@ namespace prog {
         // Save current image to PNG file.
         string out;
         std::filesystem::path absolutePath = std::filesystem::absolute(ou);
-        out=absolutePath.string();
+        out = absolutePath.string();
         std::string subdirectoryToRemove = "cmake-build-debug/";
-        for(char c : out){
-            if ( c == '\\'){
+        for (char c: out) {
+            if (c == '\\') {
                 subdirectoryToRemove = "cmake-build-debug\\";
                 break;
-            }else if ( c == '/'){
+            } else if (c == '/') {
                 subdirectoryToRemove = "cmake-build-debug/";
                 break;
             }
@@ -86,18 +88,18 @@ namespace prog {
         saveToPNG(out, image);
     }
 
-    void Script::fill(int x, int y, int w, int h,rgb_value r,rgb_value g,rgb_value b){
+    void Script::fill(int x, int y, int w, int h, rgb_value r, rgb_value g, rgb_value b) {
         //Assign (r, g, b) to all pixels contained in rectangle defined by top-left corner (x, y), width w, and height h
 
 
         int x_ = image->width();
         int y_ = image->height();
-        for(int i = 0; i < x_; i++){
-            for (int j=0; j < y_; j++){
-                if((i>=x and i<x+w) and (j>=y and j<y+h)  ){    //Condition for it to be in the rectangle
-                    image->at(i,j).red()=r;
-                    image->at(i,j).green()=g;
-                    image->at(i,j).blue()=b;
+        for (int i = 0; i < x_; i++) {
+            for (int j = 0; j < y_; j++) {
+                if ((i >= x and i < x + w) and (j >= y and j < y + h)) {    //Condition for it to be in the rectangle
+                    image->at(i, j).red() = r;
+                    image->at(i, j).green() = g;
+                    image->at(i, j).blue() = b;
 
                 }
             }
@@ -105,25 +107,43 @@ namespace prog {
     }
 
 
- 
-void window_calculator(vector<int> &helper,int i, int j, int left, int right, int up, int down,int n){ //gets the new values for the window taking into consideration the image limits
-    int displacement =(n-1)/2;
-    int newleft,newright,newup,newdown;
-    newleft=i-displacement;
-    if(newleft<left){newleft=left;}
-    newright=i+displacement;
-    if(newright>right){newright=right;}
-    newup=j-displacement;
-    if(newup<up){newup=up;}
-    newdown=j+displacement;
-    if(newdown>down){newdown=down;}
-    helper[0]=newleft;
-    helper[1]=newright;
-    helper[2]=newup;
-    helper[3]=newdown;
+    void window_calculator(vector<int> & helper, int
+    i,
+    int j,
+    int left,
+    int right,
+    int up,
+    int down,
+    int n
+    ) { //gets the new values for the window taking into consideration the image limits
+    int displacement = (n - 1) / 2;
+    int newleft, newright, newup, newdown;
+    newleft = i - displacement;
+    if(newleft<left) {
+    newleft = left;
+}
+newright = i + displacement;
+if(newright>right){
+newright = right;
+}
+newup = j - displacement;
+if(newup<up){
+newup = up;
+}
+newdown = j + displacement;
+if(newdown>down){
+newdown = down;
+}
+helper[0]=
+newleft;
+helper[1]=
+newright;
+helper[2]=
+newup;
+helper[3]=
+newdown;
 
-    }
+}
 
 
- 
 }

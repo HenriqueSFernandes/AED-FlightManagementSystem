@@ -17,7 +17,6 @@ int main() {
     system.readFlights();
     Menu menu(system);
     menu.start();
-    cout<<"END"<<endl;
 
     return 0;
 }

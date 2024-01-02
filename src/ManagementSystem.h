@@ -129,7 +129,7 @@ public:
      * Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight.
      * @param countryName The name of the country.
      */
-    void countryDetails(string countryName);
+    void countryDetails(const string &countryName) const;
 
     /**
      * @brief Prints details of a given city, like number of flights, countries and airlines.
@@ -137,7 +137,7 @@ public:
      * Complexity is O(n * k * l) where n is the number of airports, k is the number of flights per airport and l is the number of airlines per flight.
      * @param cityName The name of the city.
      */
-    void cityDetails(string cityName);
+    void cityDetails(const string &cityName);
 
     /**
      * @brief Prints details of a given airline, like number of flights and airports.
@@ -145,7 +145,7 @@ public:
      * Complexity is  O(n * k) where n is the number of airports and k is the number of flights per airport.
      * @param airlineCode The code of the airline.
      */
-    void airlineDetails(string airlineCode);
+    void airlineDetails(const string &airlineCode);
 
     /**
     * @brief Get the top k airports with the maximum number of flights.
@@ -189,7 +189,7 @@ public:
      * @param lon2 Second point longitude.
      * @return The distance between the points.
      */
-    double haversine(double lat1, double lon1, double lat2, double lon2);
+    static double haversine(double lat1, double lon1, double lat2, double lon2);
 
     /**
      * @brief Auxiliary function that determines if all airlines are part of the filtered airlines.
@@ -199,7 +199,7 @@ public:
      * @param filteredAirlines Set with the filtered airlines.
      * @return True if all airlines are part of the filtered airlines.
      */
-    bool containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines);
+    static bool containsFilteredAirline(const set<Airline> &airlines, const set<Airline> &filteredAirlines);
 
     /**
      * @brief Prints given airports in the specified image file.
@@ -234,7 +234,7 @@ public:
    * @return The best trip (a trip is a vector of pairs airport-airlines).
    */
 
-    vector<pair<Airport, set<Airline>>> findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
+    vector<vector<pair<Airport, set<Airline>>>> findBestFlight(const vector<Vertex<Airport> *> &sourceAirports,
                                                        const vector<Vertex<Airport> *> &targetAirports,
                                                        const vector<Vertex<Airport> *> &filteredAirports,
                                                        const set<Airline> &filteredAirlines);

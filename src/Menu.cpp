@@ -1,6 +1,9 @@
 #include "Menu.h"
 
-Menu::Menu(const ManagementSystem &system) : system(system) {}
+#include <utility>
+#include <algorithm>
+
+Menu::Menu(ManagementSystem system) : system(std::move(system)) {}
 
 void Menu::start() {
     string option;
@@ -77,8 +80,8 @@ void Menu::airportStatisticsMenu() {
             cout << "How many airports do you want to see?\n";
             cin >> k;
             vector<pair<Airport, int>> res = system.topKAirportsMaxFlights(k);
-            for (auto i: res) {
-                cout << i.first << " with " << i.second << " flights\n";
+            for (const pair<Airport, int> &topAirports: res) {
+                cout << topAirports.first << " with " << topAirports.second << " flights\n";
             }
         } else if (option == "3") {
             int k;
@@ -112,7 +115,7 @@ void Menu::airportStatisticsMenu() {
             int n;
             cout << "How many essential airports do you wish to see?\n";
             cin >> n;
-            for (auto airport: essentialAirports) {
+            for (const Airport &airport: essentialAirports) {
                 if (n == 0) {
                     break;
                 }
@@ -138,7 +141,7 @@ void Menu::flightStatisticsMenu() {
             pair<set<pair<Airport, Airport>>, int> longestTrip = system.maxTripWithSourceDest();
             cout << "There are " << longestTrip.first.size() << " trips with the maximum amount of stops ("
                  << longestTrip.second << "):\n";
-            for (pair<Airport, Airport> trip: longestTrip.first) {
+            for (const pair<Airport, Airport> &trip: longestTrip.first) {
                 cout << "\n\tFrom " << trip.first.getName() << " (" << trip.first.getCode() << ") located in "
                      << trip.first.getCity() << ", " << trip.first.getCountry() << endl;
                 cout << "\tTo " << trip.second.getName() << " (" << trip.second.getCode() << ") located in "
@@ -172,7 +175,7 @@ void Menu::flightSearchMenu() {
         }
         cout << "\nWhat do you want to do?\n";
         cout
-                << "1) Add departure\n2) Remove departure\n\n3) Add arrival\n4) Remove arrival\n\n5) View/Change filters (layovers, allowed airlines and exclusions)\n\n6) Search flights\n\n7) Go back\n";
+                << "1) Add departure\n2) Remove departure\n3) Add arrival\n4) Remove arrival\n5) View/Change filters (layovers, allowed airlines and exclusions)\n6) Search flights\n7) Go back\n";
         cin >> option;
         if (option == "1") {
             addAirportMenu(sourceAirports);
@@ -185,12 +188,12 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
-            vector<pair<Airport, set<Airline>>> bestTrip;
+            vector<vector<pair<Airport, set<Airline>>>> bestTrips;
             set < Airline > filteredAirlinesBackup = filteredAirlines;
+            // If there are mandatory airlines set non-mandatory airlines as filtered.
             if (!mandatoryAirlines.empty()) {
-                // Mandatory airlines.
                 filteredAirlines.clear();
-                for (Airline airline: system.getAirlines()) {
+                for (const Airline &airline: system.getAirlines()) {
                     if (mandatoryAirlines.find(airline) == mandatoryAirlines.end()) {
                         filteredAirlines.insert(airline);
                     }
@@ -198,60 +201,65 @@ void Menu::flightSearchMenu() {
             }
             vector<Vertex<Airport> *> currentSources = sourceAirports;
             vector<Vertex<Airport> *> currentTargets;
-            vector<pair<Airport, set<Airline>>> currentTrip;
-            vector<Airport> airports;
+            vector<vector<pair<Airport, set<Airline>>>> currentTrips;
+            // For every layover get the best trips and store them in bestTrips.
             for (Vertex<Airport> *layoverAirportVertex: mandatoryStops) {
                 currentTargets.clear();
                 currentTargets.push_back(layoverAirportVertex);
-                currentTrip = system.findBestFlight(currentSources, currentTargets,
-                                                    filteredAirports, filteredAirlines);
-                if (currentTrip.empty()) {
+                currentTrips = system.findBestFlight(currentSources, currentTargets,
+                                                     filteredAirports, filteredAirlines);
+                if (currentTrips.empty()) {
                     cout << "It was impossible to find a trip with the current filters.\n";
                     break;
                 }
-                for (int i = 0; i < currentTrip.size() - 1; i++) {
-                    bestTrip.push_back(currentTrip[i]);
+                vector<vector<pair<Airport, set<Airline>>>> tempTrips;
+                if (!bestTrips.empty()) {
+                    for (int i = 0; i < currentTrips.size(); i++) {
+                        vector<pair<Airport, set<Airline>>> currentTrip = currentTrips[i];
+                        for (auto bestTrip: bestTrips) {
+                            vector<pair<Airport, set<Airline>>> temporaryTrip;
+                            temporaryTrip.insert(temporaryTrip.end(), bestTrip.begin(), bestTrip.end());
+                            temporaryTrip.insert(temporaryTrip.end(), currentTrip.begin(), currentTrip.end() - 1);
+                            tempTrips.push_back(temporaryTrip);
+                        }
+                    }
+                    bestTrips = tempTrips;
+                } else {
+                    for (auto trip: currentTrips) {
+                        vector<pair<Airport, set<Airline>>> temporaryTrip;
+                        temporaryTrip.insert(temporaryTrip.end(), trip.begin(), trip.end() - 1);
+                        bestTrips.push_back(temporaryTrip);
+                    }
                 }
                 currentSources = currentTargets;
             }
-            currentTrip = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
-            for (const pair<Airport, set<Airline>> &airport: currentTrip) {
-                bestTrip.push_back(airport);
-            }
-            if (bestTrip.empty()) {
-                cout << "It was impossible to find a trip with the current filters.\n";
-            } else {
-                cout << "The best trip with the current filters is:\n";
-                cout << "\n\tSource: " << bestTrip[0].first << endl;
-
-                airports.push_back(bestTrip[0].first);
-                string filename = "src/Image/output/" + bestTrip[0].first.getCode() + "_";
-                for (int i = 1; i < bestTrip.size() - 1; i++) {
-                    cout << "\n\tLayover: " << bestTrip[i].first << endl;
-                    airports.push_back(bestTrip[i].first);
-                    filename+= bestTrip[i].first.getCode() + "_";
-
-                    cout << "\t\tPossible airlines:\n";
-                    for (const Airline &airline: bestTrip[i].second) {
-                        cout << "\t\t\t" << airline << endl;
+            currentTrips = system.findBestFlight(currentSources, targetAirports, filteredAirports, filteredAirlines);
+            vector<vector<pair<Airport, set<Airline>>>> tempTrips;
+            if (!bestTrips.empty()) {
+                for (auto currentTrip: currentTrips) {
+                    for (auto bestTrip: bestTrips) {
+                        vector<pair<Airport, set<Airline>>> temporaryTrip;
+                        temporaryTrip.insert(temporaryTrip.end(), bestTrip.begin(), bestTrip.end());
+                        temporaryTrip.insert(temporaryTrip.end(), currentTrip.begin(), currentTrip.end());
+                        tempTrips.push_back(temporaryTrip);
                     }
 
                 }
-
-                cout << "\n\tTarget: " << bestTrip.back().first << endl;
-                filename+= bestTrip.back().first.getCode() + ".png";
-                airports.push_back(bestTrip.back().first);
-                cout << "\t\tPossible airlines:\n";
-                for (const Airline &airline: bestTrip.back().second) {
-                    cout << "\t\t\t" << airline << endl;
-                }
-                cout<<endl<<"Want to generate an image of the trip?\n1) Yes\n2) No"<<endl;
-                string choice;
-                cin>>choice;
-                if(choice == "1"){
-                    system.printComposedPath(airports,filename);
-                    cout<<endl<<"An image of the trip was created on " << filename <<endl;
-                    cout<<"File might take a while to appear."<<endl;
+                bestTrips = tempTrips;
+            } else {
+                bestTrips = currentTrips;
+            }
+            if (bestTrips.empty()) {
+                cout << "It was impossible to find a trip with the current filters.\n";
+            } else {
+                cout << "There are " << bestTrips.size() << " shortest trips with " << bestTrips[0].size() - 2
+                     << " layovers. How many do you wish to see?\n";
+                int tripsToShow;
+                cin >> tripsToShow;
+                tripsToShow = min(tripsToShow, (int) bestTrips.size());
+                for (int i = 0; i < tripsToShow; i++) {
+                    printTrip(bestTrips[i]);
+                    cout << "\n----------------------------------------------------------------\n";
                 }
 
             }
@@ -263,6 +271,22 @@ void Menu::flightSearchMenu() {
         }
     }
 
+}
+
+void Menu::printTrip(const vector<pair<Airport, set<Airline>>> &trip) {
+    cout << "\n\tSource: " << trip[0].first << endl;
+    for (int i = 1; i < trip.size() - 1; i++) {
+        cout << "\n\tLayover: " << trip[i].first << endl;
+        cout << "\t\tPossible airlines:\n";
+        for (const Airline &airline: trip[i].second) {
+            cout << "\t\t\t" << airline << endl;
+        }
+    }
+    cout << "\n\tTarget: " << trip.back().first << endl;
+    cout << "\t\tPossible airlines:\n";
+    for (const Airline &airline: trip.back().second) {
+        cout << "\t\t\t" << airline << endl;
+    }
 }
 
 void Menu::addAirportMenu(vector<Vertex<Airport> *> & airports) {
@@ -344,13 +368,13 @@ void Menu::addAirportMenu(vector<Vertex<Airport> *> & airports) {
                 unordered_map<string, Vertex<Airport> *> vertices = system.getAirportNetwork().getVertexSet();
                 auto currentAirport = vertices.begin();
                 auto closestAirport = currentAirport;
-                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
-                                                           closestAirport->second->getInfo().getLatitude(),
-                                                           closestAirport->second->getInfo().getLongitude());
+                double shortestDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                      closestAirport->second->getInfo().getLatitude(),
+                                                                      closestAirport->second->getInfo().getLongitude());
                 while (currentAirport != vertices.end()) {
-                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
-                                                              currentAirport->second->getInfo().getLatitude(),
-                                                              currentAirport->second->getInfo().getLongitude());
+                    double currentDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                         currentAirport->second->getInfo().getLatitude(),
+                                                                         currentAirport->second->getInfo().getLongitude());
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
                         closestAirport = currentAirport;
@@ -468,13 +492,13 @@ void Menu::removeAirportMenu(vector<Vertex<Airport> *> & airports) {
             if (validCoordinates) {
                 auto currentAirport = airports.begin();
                 auto closestAirport = currentAirport;
-                double shortestDistance = system.haversine(currentLatitude, currentLongitude,
-                                                           (*closestAirport)->getInfo().getLatitude(),
-                                                           (*closestAirport)->getInfo().getLongitude());
+                double shortestDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                      (*closestAirport)->getInfo().getLatitude(),
+                                                                      (*closestAirport)->getInfo().getLongitude());
                 while (currentAirport != airports.end()) {
-                    double currentDistance = system.haversine(currentLatitude, currentLongitude,
-                                                              (*currentAirport)->getInfo().getLatitude(),
-                                                              (*currentAirport)->getInfo().getLongitude());
+                    double currentDistance = ManagementSystem::haversine(currentLatitude, currentLongitude,
+                                                                         (*currentAirport)->getInfo().getLatitude(),
+                                                                         (*currentAirport)->getInfo().getLongitude());
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
                         closestAirport = currentAirport;
@@ -507,7 +531,7 @@ void Menu::filterMenu(vector<Vertex<Airport> *> & filteredAirports, set < Airlin
             cout << "\t\t" << airportVertex->getInfo() << endl;
         }
         cout << "\tAirlines excluded from searching:\n";
-        for (Airline airline: filteredAirlines) {
+        for (const Airline &airline: filteredAirlines) {
             cout << "\t\t" << airline << endl;
         }
         cout << "\tMandatory layovers:\n";
@@ -518,7 +542,7 @@ void Menu::filterMenu(vector<Vertex<Airport> *> & filteredAirports, set < Airlin
         if (mandatoryAirlines.empty()) {
             cout << "\t\tAll\n";
         } else {
-            for (Airline airline: mandatoryAirlines) {
+            for (const Airline &airline: mandatoryAirlines) {
                 cout << "\t\t" << airline << endl;
             }
         }
