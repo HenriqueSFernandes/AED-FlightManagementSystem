@@ -768,7 +768,7 @@ ManagementSystem::findBestFlight(const vector<Vertex<Airport> *> &sourceAirports
                     set < Airline > pathAirlines;
                     for (const Airline &airline: flight.getAirlines()) {
                         if (filteredAirlines.find(airline) == filteredAirlines.end()) {
-                            airlines.insert(airline);
+                            pathAirlines.insert(airline);
                         }
                     }
                     path.emplace_back(flight.getDest()->getInfo(), pathAirlines);
