@@ -242,7 +242,7 @@ void Menu::flightSearchMenu() {
 
 }
 
-void Menu::addAirportMenu(vector<Vertex<Airport> *> & airports) {
+void Menu::addAirportMenu(vector<Vertex<Airport> *> &airports) {
     string option;
     while (true) {
         cout << "\nWhat do you want to add?\n";

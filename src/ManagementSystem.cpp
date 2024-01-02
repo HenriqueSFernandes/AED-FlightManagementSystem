@@ -103,17 +103,18 @@ void ManagementSystem::readFlights() {
         auto targetAirportVertex = airportNetwork.findVertex(Airport(target, "", "", "", 0, 0));
         bool flightExists = false;
         for (const Edge<Airport> &flight: sourceAirportVertex->getAdj()) {
-            Edge<Airport> *flightPtr = const_cast<Edge<Airport> *>(&flight);
+            auto *flightPtr = const_cast<Edge<Airport> *>(&flight);
             if (flight.getDest()->getInfo().getCode() == targetAirportVertex->getInfo().getCode()) {
                 flightExists = true;
                 flightPtr->addAirline(*airline);
             }
         }
         if (!flightExists) {
-            set < Airline > airlines = {*airline};
+            set < Airline > currentAirlines = {*airline};
             double distance = airportDistance(sourceAirportVertex->getInfo().getCode(),
                                               targetAirportVertex->getInfo().getCode());
-            airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), airlines, distance);
+            airportNetwork.addEdge(sourceAirportVertex->getInfo(), targetAirportVertex->getInfo(), currentAirlines,
+                                   distance);
             sourceAirportVertex->setOutdegree(sourceAirportVertex->getOutdegree() + 1);
             targetAirportVertex->setIndegree(targetAirportVertex->getIndegree() + 1);
         }
@@ -233,8 +234,8 @@ double ManagementSystem::haversine(double lat1, double lon1,
 }
 
 double ManagementSystem::airportDistance(string airport1, string airport2) {
-    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airport1, "", "", "", 0, 0));
-    auto destinationAirportVertex = airportNetwork.findVertex(Airport(airport2, "", "", "", 0, 0));
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(std::move(airport1), "", "", "", 0, 0));
+    auto destinationAirportVertex = airportNetwork.findVertex(Airport(std::move(airport2), "", "", "", 0, 0));
     if (sourceAirportVertex != nullptr and destinationAirportVertex != nullptr) {
         return haversine(sourceAirportVertex->getInfo().getLatitude(), sourceAirportVertex->getInfo().getLongitude(),
                          destinationAirportVertex->getInfo().getLatitude(),
@@ -254,15 +255,15 @@ int ManagementSystem::GlobalNumberOfFlights() {
     int numberOfFlights = 0;
     for (pair<string, Vertex<Airport> *> vertex: airportNetwork.getVertexSet()) {
         for (Edge<Airport> edge: vertex.second->getAdj()) {
-            numberOfFlights += edge.getAirlines().size();
+            numberOfFlights += edge.getAirlines().size(); // NOLINT(*-narrowing-conversions)
         }
     }
     return numberOfFlights;
 }
 
 void ManagementSystem::MakeUndirected() {
-    for (auto vertex: airportNetwork.getVertexSet()) {
-        for (auto edge: vertex.second->getAdj()) {
+    for (const auto &vertex: airportNetwork.getVertexSet()) {
+        for (const auto &edge: vertex.second->getAdj()) {
             airportNetwork.addEdge(edge.getDest()->getInfo(), vertex.second->getInfo(), {}, 0);
         }
     }
@@ -291,7 +292,8 @@ set<Airport> ManagementSystem::essentialAirports() {
     return res;
 }
 
-void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) {
+void
+ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airport> &l, int &i) { // NOLINT(*-no-recursion)
 
     v->setLow(i);
     v->setNum(i);
@@ -299,10 +301,10 @@ void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airpor
     v->setVisited(true);
     s.push(v->getInfo());
     i++;
-    int treeedges = 0;
+    int treeEdges = 0;
     for (auto &edge: v->getAdj()) {
         if (!edge.getDest()->isVisited()) {
-            treeedges++;
+            treeEdges++;
             dfs_art(edge.getDest(), s, l, i);
             v->setLow(min(v->getLow(), edge.getDest()->getLow()));
             if (edge.getDest()->getLow() >= v->getNum()) {
@@ -320,8 +322,8 @@ void ManagementSystem::dfs_art(Vertex<Airport> *v, stack<Airport> &s, set<Airpor
 
 vector<int>
 ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &airports, set<string> &countries,
-                                          set<string> &cities) {
-    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+                                          set<string> &auxiliaryCities) {
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(std::move(airportString), "", "", "", 0, 0));
     if (sourceAirportVertex == nullptr) {
         cout << "The airport doesn't exist!\n";
         vector<int> res = {};
@@ -342,7 +344,7 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
             numCountries++;
         }
         if (cities.find(airport.getCity()) == cities.end()) {
-            cities.insert(airport.getCity());
+            auxiliaryCities.insert(airport.getCity());
             numCities++;
         }
     }
@@ -357,8 +359,8 @@ ManagementSystem::getNumberOfDestinations(string airportString, set<Airport> &ai
 vector<int>
 ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<Airport> &airports,
                                                      set<string> &countries,
-                                                     set<string> &cities, int x) {
-    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+                                                     set<string> &auxiliaryCities, int x) {
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(std::move(airportString), "", "", "", 0, 0));
     if (sourceAirportVertex == nullptr) {
         cout << "The airport doesn't exist!\n";
         vector<int> res = {};
@@ -381,7 +383,7 @@ ManagementSystem::getNumberOfDestinationsInXLayovers(string airportString, set<A
             numCountries++;
         }
         if (cities.find(airport.getCity()) == cities.end()) {
-            cities.insert(airport.getCity());
+            auxiliaryCities.insert(airport.getCity());
             numCities++;
         }
     }
@@ -404,7 +406,7 @@ const unordered_set<Airline, Airline::HashFunction> &ManagementSystem::getAirlin
 
 void ManagementSystem::airportDetails(string airportString) {
     // Finds the airport
-    auto sourceAirportVertex = airportNetwork.findVertex(Airport(airportString, "", "", "", 0, 0));
+    auto sourceAirportVertex = airportNetwork.findVertex(Airport(std::move(airportString), "", "", "", 0, 0));
     if (sourceAirportVertex == nullptr) {
         cout << "The airport doesn't exist!\n";
         return;
@@ -414,7 +416,7 @@ void ManagementSystem::airportDetails(string airportString) {
     // Iterates over every flight and gets the different countries and airlines.
     for (Edge<Airport> flight: sourceAirportVertex->getAdj()) {
         availableCountries.insert(flight.getDest()->getInfo().getCountry());
-        for (Airline airline: flight.getAirlines()) {
+        for (const Airline& airline: flight.getAirlines()) {
             if (availableAirlines.find(airline) == availableAirlines.end()) {
                 availableAirlines[airline] = 1;
             } else {
@@ -434,17 +436,17 @@ void ManagementSystem::airportDetails(string airportString) {
          << sourceAirportVertex->getInfo().getCountry() << endl;
     cout << "\tThere are " << sourceAirportVertex->getAdj().size() << " available destinations to "
          << availableCountries.size() << " different countries, ";
-    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100
+    cout << "which means this airport covers " << fixed << setprecision(2) << availableCountries.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << availableAirlines.size()
          << " airlines, which are the following:\n";
-    for (pair<Airline, int> airline: sortedEntries) {
+    for (const pair<Airline, int>& airline: sortedEntries) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 }
 
-void ManagementSystem::countryDetails(string countryName) {
+void ManagementSystem::countryDetails(const string& countryName) const {
     map<Airport, int> countryAirports;
     map<Airline, int> countryAirlines;
     set < string > countriesAvailable;
@@ -459,7 +461,7 @@ void ManagementSystem::countryDetails(string countryName) {
             for (Edge<Airport> flight: vertexAirport.second->getAdj()) {
                 countryAirports[vertexAirport.second->getInfo()]++;
                 flightCount++;
-                for (Airline airline: flight.getAirlines()) {
+                for (const Airline& airline: flight.getAirlines()) {
                     if (countryAirlines.find(airline) == countryAirlines.end()) {
                         countryAirlines[airline] = 1;
                     } else {
@@ -487,23 +489,23 @@ void ManagementSystem::countryDetails(string countryName) {
 
     cout << "Details for " << countryName << ":\n";
     cout << "\tThere are " << countryAirports.size() << " airports in " << countryName << ":\n";
-    for (pair<Airport, int> airport: sortedAirports) {
+    for (const pair<Airport, int>& airport: sortedAirports) {
         cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") located in "
              << airport.first.getCity() << " with " << airport.second << " outgoing flights\n";
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
-         << countriesAvailable.size() / 225.0 * 100
+         << countriesAvailable.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << countryAirlines.size()
          << " airlines, which are the following:\n";
-    for (pair<Airline, int> airline: sortedAirlines) {
+    for (const pair<Airline, int>& airline: sortedAirlines) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 }
 
-void ManagementSystem::cityDetails(string cityName) {
+void ManagementSystem::cityDetails(const string& cityName) {
     auto mappedCity = cities.find(cityName);
     if (mappedCity == cities.end()) {
         cout << "The city doesn't exist!\n";
@@ -534,7 +536,7 @@ void ManagementSystem::cityDetails(string cityName) {
             for (Edge<Airport> flight: vertexAirport.second->getAdj()) {
                 flightCount++;
                 cityAirports[vertexAirport.second->getInfo()]++;
-                for (Airline airline: flight.getAirlines()) {
+                for (const Airline& airline: flight.getAirlines()) {
                     if (cityAirlines.find(airline) == cityAirlines.end()) {
                         cityAirlines[airline] = 1;
                     } else {
@@ -558,24 +560,24 @@ void ManagementSystem::cityDetails(string cityName) {
 
     cout << "Details for " << cityName << ", located in " << countryName << ":\n";
     cout << "\tThere are " << cityAirports.size() << " airports in " << cityName << ":\n";
-    for (pair<Airport, int> airport: sortedAirports) {
+    for (const pair<Airport, int>& airport: sortedAirports) {
         cout << "\t\t" << airport.first.getName() << " (" << airport.first.getCode() << ") with " << airport.second
              << " outgoing flights\n";
     }
     cout << "\tThere are " << flightCount << " available destinations to " << countriesAvailable.size()
          << " different countries, which means this country covers " << fixed << setprecision(2)
-         << countriesAvailable.size() / 225.0 * 100
+         << countriesAvailable.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
          << "% of all the countries.\n";
     cout << "\tThese flights are made by a total of " << cityAirlines.size()
          << " airlines, which are the following:\n";
-    for (pair<Airline, int> airline: sortedAirlines) {
+    for (const pair<Airline, int>& airline: sortedAirlines) {
         cout << "\t\t" << airline.first.getName() << " (" << airline.first.getCode() << ") with " << airline.second
              << " outgoing flight(s).\n";
     }
 
 }
 
-void ManagementSystem::airlineDetails(string airlineCode) {
+void ManagementSystem::airlineDetails(const string& airlineCode) {
     map<Airport, int> availableAirports;
     int flightCount = 0;
     set < string > availableCountries;
@@ -602,7 +604,7 @@ void ManagementSystem::airlineDetails(string airlineCode) {
 
     cout << "\tThis airline is responsible for " << flightCount << " flights to " << availableCountries.size()
          << " different countries, which means this airline covers " << fixed << setprecision(2)
-         << availableCountries.size() / 225.0 * 100
+         << availableCountries.size() / 225.0 * 100 // NOLINT(*-narrowing-conversions)
          << "% of all the countries.\n";
     cout << "\tThis airline operates in " << availableAirports.size() << " different airports.\n";
 }
@@ -615,12 +617,12 @@ vector<pair<Airport, int>> ManagementSystem::topKAirportsMaxFlights(int k) {
     for (pair<string, Vertex<Airport> *> vertex: airportNetwork.getVertexSet()) {
         count = 0;
         for (Edge<Airport> edge: vertex.second->getAdj()) {
-            count += edge.getAirlines().size();
+            count += edge.getAirlines().size(); // NOLINT(*-narrowing-conversions)
         }
         pairs.insert({count, vertex.second->getInfo()});
     }
     for (auto it = pairs.rbegin(); it != pairs.rend() && k > 0; ++it, --k) {
-        res.push_back({it->second, it->first});
+        res.emplace_back(it->second, it->first);
     }
     return res;
 }
@@ -687,8 +689,8 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
 
         // If the current diameter equals the max diameter, add airport pairs to the result set
         if (val == max) {
-            for (auto i: dest) {
-                resAirports.insert({vertex.second->getInfo(), i});
+            for (Airport airport: dest) {
+                resAirports.insert({vertex.second->getInfo(), airport});
             }
         }
 
@@ -696,8 +698,8 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
         if (max < val) {
             max = val;
             resAirports.clear();
-            for (auto i: dest) {
-                resAirports.insert({vertex.second->getInfo(), i});
+            for (Airport airport: dest) {
+                resAirports.insert({vertex.second->getInfo(), airport});
             }
         }
     }
@@ -706,8 +708,8 @@ pair<set<pair<Airport, Airport>>, int> ManagementSystem::maxTripWithSourceDest()
     return {resAirports, max};
 }
 
-bool ManagementSystem::containsFilteredAirline(set<Airline> airlines, set<Airline> filteredAirlines) {
-    for (Airline airline: airlines) {
+bool ManagementSystem::containsFilteredAirline(const set<Airline>& airlines, const set<Airline>& filteredAirlines) {
+    for (const Airline& airline: airlines) {
         if (filteredAirlines.find(airline) == filteredAirlines.end()) {
             return false;
         }
