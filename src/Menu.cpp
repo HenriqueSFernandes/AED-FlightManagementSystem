@@ -188,6 +188,25 @@ void Menu::flightSearchMenu() {
         } else if (option == "5") {
             filterMenu(filteredAirports, filteredAirlines, mandatoryStops, mandatoryAirlines);
         } else if (option == "6") {
+            bool invalid = false;
+            for(auto i : sourceAirports){
+                if(std::find(targetAirports.begin(), targetAirports.end(),i) != targetAirports.end()){
+                    if(mandatoryStops.size()==0){
+                        cout<<"There is at least one airport included in both source and target when mandatory stops is empty\nmaking it impossible to find a path, please change it."<<endl;
+                        invalid = true;
+                        break;
+                    }else if(mandatoryStops.size()>0){
+                        if(std::find(mandatoryStops.begin(), mandatoryStops.end(),i) !=mandatoryStops.end()){
+                            cout<<"There is at least one airport included in both source, target and mandatory stops\nmaking it impossible to find a path, please change it."<<endl;
+                            invalid = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(invalid){
+                continue;
+            }
             vector<vector<pair<Airport, set<Airline>>>> bestTrips;
             set < Airline > filteredAirlinesBackup = filteredAirlines;
             // If there are mandatory airlines set non-mandatory airlines as filtered.
