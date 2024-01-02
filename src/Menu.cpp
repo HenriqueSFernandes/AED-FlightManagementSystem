@@ -258,9 +258,48 @@ void Menu::flightSearchMenu() {
                 cin >> tripsToShow;
                 tripsToShow = min(tripsToShow, (int) bestTrips.size());
                 for (int i = 0; i < tripsToShow; i++) {
+                    cout<<"Trip " << i+1 <<":"<<endl;
                     printTrip(bestTrips[i]);
                     cout << "\n----------------------------------------------------------------\n";
                 }
+                cout<<"Do you want to generate an image with a path?\n1) Yes\n2) No"<<endl;
+                string printChoice;
+                cin>>printChoice;
+                if(printChoice=="1"){
+                    while(true) {
+                        cout << "Which path do you want an image of? Choose a number from 1 to " << tripsToShow << endl;
+                        string drawPrintChoice;
+                        cin >> drawPrintChoice;
+                        bool isNum = std::all_of(drawPrintChoice.begin(), drawPrintChoice.end(),
+                                                 [](char c) { return std::isdigit(c); });
+                        if (isNum) {
+                            int drawChoice = stoi(drawPrintChoice);
+                            if (drawChoice < 1 || drawChoice > tripsToShow) {
+                                cout << "Invalid choice, please provide a new one." << endl;
+                                continue;
+                            } else {
+                                vector<Airport> path;
+                                string filename = "src/Image/output/";
+                                auto drawing = bestTrips[drawChoice-1];
+                                for(int i =0; i<drawing.size();i++){
+                                    path.push_back(drawing[i].first);
+                                    filename+=drawing[i].first.getCode();
+                                    if(i != drawing.size()-1){
+                                        filename+="_";
+                                    }
+                                }
+                                filename+=".png";
+                                system.printComposedPath(path,filename);
+                                cout<<"Image generated at " << filename << " ." <<endl;
+                                break;
+                            }
+                        }else{
+                            cout << "Invalid choice, please provide a new one." << endl;
+                            continue;
+                        }
+                    }
+                }
+
 
             }
             filteredAirlines = filteredAirlinesBackup;
